@@ -9,6 +9,10 @@
 .history
 .svn/
 
+# Additional comments
+/web/
+/windows/
+
 # IntelliJ related
 *.iml
 *.ipr
