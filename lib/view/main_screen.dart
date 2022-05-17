@@ -26,12 +26,7 @@ class _MainScreenState extends State<MainScreen> {
     double bodyMargin = size.width / 10;
 
 
-    List<Widget> techMainScreenPages = [
 
-      homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), //0
-      profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin) //1
-
-    ];
 
 
     return SafeArea(
@@ -60,7 +55,14 @@ class _MainScreenState extends State<MainScreen> {
           children: [
            Center(
              child: Positioned.fill(
-               child: techMainScreenPages[selectedPageIndex]
+               child: IndexedStack(
+                 index: selectedPageIndex,
+                 children: [
+                      homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), //0
+                      profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin) //1
+                 ],
+
+               )
             
             ),
            ),
