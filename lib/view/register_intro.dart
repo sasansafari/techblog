@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
+ 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
@@ -8,6 +6,8 @@ import 'package:tec/my_colors.dart';
 import 'package:tec/my_strings.dart';
 
 class RegisterIntro extends StatelessWidget{
+  const RegisterIntro({Key? key}) : super(key: key);
+
   
   
   
@@ -15,7 +15,6 @@ class RegisterIntro extends StatelessWidget{
   Widget build(BuildContext context) {
     
     var textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
 
 
     return SafeArea(
@@ -31,7 +30,7 @@ class RegisterIntro extends StatelessWidget{
                     textAlign: TextAlign.center,
                     
                     text: TextSpan(
-                      text: myStrings.welcom,
+                      text: MyStrings.welcom,
                       style: textTheme.headline4
 
                   )
@@ -41,7 +40,7 @@ class RegisterIntro extends StatelessWidget{
                   padding: const EdgeInsets.only(top: 32),
                   child: ElevatedButton(
                     onPressed: (){}, 
-                    child: Text("بزن بریم"),
+                    child: const Text("بزن بریم"),
                     style: ButtonStyle(
                       textStyle:  MaterialStateProperty.resolveWith((states){
 
@@ -58,10 +57,10 @@ class RegisterIntro extends StatelessWidget{
 
                           if(states.contains(MaterialState.pressed)){
 
-                            return solidColors.seeMore;
+                            return SolidColors.seeMore;
                           }
                     
-                            return solidColors.primeryColor;
+                            return SolidColors.primeryColor;
 
                       }),
 

@@ -1,4 +1,4 @@
-class myStrings{
+class MyStrings{
 
   static const String viewHotestBlog = "مشاهده داغ ترین نوشته ها ";
   static const String viewHotestPodCasts ="مشاهده داغ ترین پادکست ها";

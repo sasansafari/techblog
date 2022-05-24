@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/my_colors.dart';
+import 'package:tec/view/main_screen.dart';
 import 'package:tec/view/register_intro.dart';
-import 'package:tec/view/splash_screen.dart';
-
+ 
 void main() {
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     
-    statusBarColor: solidColors.statusBarColor,
+    statusBarColor: SolidColors.statusBarColor,
     statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: solidColors.systemNavigationBarColor,
+    systemNavigationBarColor: SolidColors.systemNavigationBarColor,
     systemNavigationBarIconBrightness: Brightness.dark
     
   ));
@@ -45,13 +44,13 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'dana',
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: solidColors.posterTitle),
+                  color: SolidColors.posterTitle),
 
              subtitle1: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   fontWeight: FontWeight.w300,
-                  color: solidColors.posterSubTitle),
+                  color: SolidColors.posterSubTitle),
 
               bodyText1: TextStyle(
                   fontFamily: 'dana',
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
               headline3: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
-                  color: solidColors.seeMore,
+                  color: SolidColors.seeMore,
                   fontWeight: FontWeight.w700),
               headline4: TextStyle(
                   fontFamily: 'dana',
@@ -74,7 +73,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w700))),
       debugShowCheckedModeBanner: false,
       // home: splashScreen()
-      home: RegisterIntro()
+      home: const MainScreen()
     );
   }
 }

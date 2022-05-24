@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/my_colors.dart';
-import 'package:tec/my_strings.dart';
-import 'package:tec/view/home_screen.dart';
+ import 'package:tec/view/home_screen.dart';
 import 'package:tec/view/profile_screen.dart';
 
-import '../models/fake_data.dart';
-
+ 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -25,15 +23,11 @@ class _MainScreenState extends State<MainScreen> {
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
 
-
-
-
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: solidColors.scafoldBg,
+          backgroundColor: SolidColors.scafoldBg,
           title: //appbar
               Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,19 +47,17 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
 
           children: [
-           Center(
-             child: Positioned.fill(
-               child: IndexedStack(
-                 index: selectedPageIndex,
-                 children: [
-                      homeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), //0
-                      profileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin) //1
-                 ],
+           Positioned.fill(
+             child: IndexedStack(
+               index: selectedPageIndex,
+               children: [
+                    HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), //0
+                    ProfileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin) //1
+               ],
 
-               )
+             )
             
             ),
-           ),
            BottomNavigation(
              size: size,
              bodyMargin: bodyMargin,
@@ -78,7 +70,6 @@ class _MainScreenState extends State<MainScreen> {
              },
              ),
           ],
-
 
         ),
        ),
@@ -109,7 +100,7 @@ class BottomNavigation extends StatelessWidget {
               height: size.height / 10,
               decoration: const BoxDecoration(
          gradient: LinearGradient(
-             colors: gradiantColors.bottomNavBackgroand,
+             colors: GradiantColors.bottomNavBackgroand,
              begin: Alignment.topCenter,
              end: Alignment.bottomCenter)),
               child: Padding(
@@ -119,7 +110,7 @@ class BottomNavigation extends StatelessWidget {
          decoration: const BoxDecoration(
            borderRadius: BorderRadius.all(Radius.circular(18)),
            gradient: LinearGradient(
-             colors: gradiantColors.bottomNav,
+             colors: GradiantColors.bottomNav,
            ),
          ),
          child: Row(
