@@ -24,7 +24,8 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
      physics: const BouncingScrollPhysics(),
      child:Padding(
-       padding: const EdgeInsets.only(top: 24),
+       padding: const EdgeInsets.only(top: 24
+       ),
        child: Column(
          mainAxisAlignment: MainAxisAlignment.center,
          children: [

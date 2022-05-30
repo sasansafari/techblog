@@ -19,6 +19,7 @@ class SolidColors{
     static const Color hashTag = Color.fromARGB(255, 255, 255, 255);
     static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
     static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
+    static const Color hintText = Color.fromARGB(255, 133, 133, 133);
 
 }
 

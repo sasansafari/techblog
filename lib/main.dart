@@ -25,6 +25,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    var textTheme = Theme.of(context).textTheme;
+
+
     return MaterialApp(
       localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
@@ -35,7 +39,38 @@ class MyApp extends StatelessWidget {
         Locale('fa', ''), // farsi
       ],
       theme: ThemeData(
-        
+
+
+          inputDecorationTheme: InputDecorationTheme(
+
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(width: 2),
+              
+              
+              ),
+              filled: true,
+              fillColor: Colors.white
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(style:  ButtonStyle(
+                  textStyle: MaterialStateProperty.resolveWith((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return textTheme.headline1;
+                    }
+
+                    return textTheme.subtitle1;
+                  }),
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return SolidColors.seeMore;
+                    }
+
+                    return SolidColors.primeryColor;
+                  }),
+                )),
+
+
+
           fontFamily: 'dana',
           brightness: Brightness.light,
           textTheme: const TextTheme(
@@ -70,10 +105,18 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Color.fromARGB(255, 70, 70, 70),
-                  fontWeight: FontWeight.w700))),
+                  fontWeight: FontWeight.w700),
+              headline5: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  color: SolidColors.hintText,
+                  fontWeight: FontWeight.w700)
+                  
+                  
+                  )),
       debugShowCheckedModeBanner: false,
       // home: splashScreen()
-      home: const MainScreen()
+      home: const RegisterIntro()
     );
   }
 }
