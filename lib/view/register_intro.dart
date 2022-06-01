@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/my_colors.dart';
 import 'package:tec/my_strings.dart';
+import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
   const RegisterIntro({Key? key}) : super(key: key);
@@ -32,56 +33,7 @@ class RegisterIntro extends StatelessWidget {
               padding: const EdgeInsets.only(top: 32),
               child: ElevatedButton(
                 onPressed: () {
-
-
-                    showModalBottomSheet(
-                      
-                      isScrollControlled: true,
-                      
-                      context: context, 
-                    backgroundColor: Colors.transparent,
-                    builder: ((context) {
-                      return Padding(
-                        padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                        child: Container(
-                          height: size.height/2,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30)
-                            )
-                          ),
-                        child: Center(child: 
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(MyStrings.insertYourEmail,style: textTheme.headline4,),
-                            Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  hintText: "techblog@gmail.com",
-                                  hintStyle: textTheme.headline5
-                                ),
-                              ),
-                            )
-                            ,ElevatedButton(onPressed: (() {
-                              
-                            }), child: Text("ادامه"))
-                          
-                          ],
-                        )
-                        ),
-                     
-                     
-                        ),
-                      );
-                    })
-                    );
-
-
+                  _showEmailBottomSheet(context, size, textTheme);
                 },
                 child: const Text("بزن بریم"),
               ),
@@ -90,5 +42,56 @@ class RegisterIntro extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  Future<dynamic> _showEmailBottomSheet(
+      BuildContext context, Size size, TextTheme textTheme) {
+
+
+
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: ((context) {
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Container(
+              height: size.height / 2,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyStrings.insertYourEmail,
+                    style: textTheme.headline4,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: TextField(
+                      onChanged: (value) {
+
+                          print(value + " is Email : "+  isEmail(value).toString());
+
+                      },
+                      style: textTheme.headline5,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                          hintText: "techblog@gmail.com",
+                          hintStyle: textTheme.headline5),
+                    ),
+                  ),
+                  ElevatedButton(onPressed: (() {}), child: Text("ادامه"))
+                ],
+              )),
+            ),
+          );
+        }));
   }
 }
