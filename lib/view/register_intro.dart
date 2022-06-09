@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/my_colors.dart';
 import 'package:tec/my_strings.dart';
+import 'package:tec/view/my_cats.dart';
 import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
@@ -87,11 +88,73 @@ class RegisterIntro extends StatelessWidget {
                           hintStyle: textTheme.headline5),
                     ),
                   ),
-                  ElevatedButton(onPressed: (() {}), child: Text("ادامه"))
+                  ElevatedButton(onPressed: (() {
+
+                    Navigator.pop(context);
+                    _activateCodeBottomSheet(context, size, textTheme);
+
+                  }), child: Text("ادامه"))
                 ],
               )),
             ),
           );
         }));
+      }
+
+  Future<dynamic> _activateCodeBottomSheet(
+      BuildContext context, Size size, TextTheme textTheme) {
+
+
+
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: ((context) {
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Container(
+              height: size.height / 2,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyStrings.activateCode,
+                    style: textTheme.headline4,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: TextField(
+                      onChanged: (value) {
+
+                          print(value + " is Email : "+  isEmail(value).toString());
+
+                      },
+                      style: textTheme.headline5,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                          hintText: "******",
+                          hintStyle: textTheme.headline5),
+                    ),
+                  ),
+                  ElevatedButton(onPressed: (() {
+
+
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MyCats()));
+
+                  }), child: Text("ادامه"))
+                ],
+              )),
+            ),
+          );
+        }));
+
   }
 }
