@@ -12,9 +12,12 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
+
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   var selectedPageIndex = 0; 
-
 
 
   @override
@@ -25,16 +28,80 @@ class _MainScreenState extends State<MainScreen> {
 
     return SafeArea(
       child: Scaffold(
+        key: _key,
+        drawer: Drawer(
+          backgroundColor: SolidColors.scafoldBg,
+          child: Padding(
+            padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Center(
+                    child: Image.asset(Assets.images.logo.path,scale: 3,),
+                  )
+                  ),
+                  ListTile(
+
+                    title: Text("پروفایل کاربری",style: textTheme.headline4,),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  const Divider(
+                    color: SolidColors.dividerColor,
+                  ),
+                  ListTile(
+
+                    title: Text("درباره تک‌بلاگ",style: textTheme.headline4,),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  const Divider(
+                    color: SolidColors.dividerColor,
+                  ),
+                  ListTile(
+
+                    title: Text("اشتراک گذاری تک بلاگ",style: textTheme.headline4,),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  const Divider(
+                    color: SolidColors.dividerColor,
+                  ),
+                  ListTile(
+
+                    title: Text("تک‌بلاگ در گیت هاب",style: textTheme.headline4,),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  const Divider(
+                    color: SolidColors.dividerColor,
+                  ),
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: SolidColors.scafoldBg,
           title: //appbar
               Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Icon(
-                Icons.menu,
-                color: Colors.black,
+              InkWell(
+                onTap: (() {
+
+                    _key.currentState!.openDrawer();
+
+                }),
+                child: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
               ),
               Image(
                 image: Assets.images.logo,
@@ -93,7 +160,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
+      bottom:8,
       right: 0,
       left: 0,
       child: Container(
