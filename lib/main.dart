@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tec/my_colors.dart';
+import 'package:tec/component/my_colors.dart';
+ 
 import 'package:tec/view/main_screen.dart';
 import 'package:tec/view/my_cats.dart';
 import 'package:tec/view/register_intro.dart';
@@ -117,7 +118,7 @@ class MyApp extends StatelessWidget {
                   )),
       debugShowCheckedModeBanner: false,
       // home: splashScreen()
-      home:   MyCats()
+      home:   MainScreen()
     );
   }
 }

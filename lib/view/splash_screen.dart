@@ -3,7 +3,7 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen.dart';
-import 'package:tec/my_colors.dart';
+import 'package:tec/component/my_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
