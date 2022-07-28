@@ -1,0 +1,2 @@
+dev/fluttercommunity/plus/share/BuildConfig.java
+ dev.fluttercommunity.plus.share.BuildConfig

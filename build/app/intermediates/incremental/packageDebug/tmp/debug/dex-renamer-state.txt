@@ -1,0 +1,4 @@
+#Sat Jul 23 03:23:13 IRDT 2022
+base.0=G\:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

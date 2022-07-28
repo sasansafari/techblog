@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-night-v21_background.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-night-v21\\background.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-night_background.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-night\\background.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi_splash.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-mdpi\\splash.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_splash.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\splash.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi_branding.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-hdpi\\branding.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_launch_background.xml.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_splash.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xxhdpi\\splash.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable_background.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable\\background.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-night-v21_launch_background.xml.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-night-v21\\launch_background.xml"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-night_launch_background.xml.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-night\\launch_background.xml"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi_branding.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xhdpi\\branding.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi_branding.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-mdpi\\branding.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_branding.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xxhdpi\\branding.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_branding.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\branding.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi_splash.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-hdpi\\splash.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi_splash.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-xhdpi\\splash.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_background.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\drawable-v21\\background.png"
+    },
+    {
+        "merged": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    }
+]

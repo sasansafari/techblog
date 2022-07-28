@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "G:\\techBlog\\TechBlog\\tec\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v31\\values-night-v31.xml",
+            "map": [
+                {
+                    "source": "G:\\techBlog\\TechBlog\\tec\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,800",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "449,964"
+                    },
+                    "to": {
+                        "startLines": "2,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,336",
+                        "endLines": "6,9",
+                        "endColumns": "12,12",
+                        "endOffsets": "331,500"
+                    }
+                }
+            ]
+        }
+    ]
+}
