@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tec/component/my_colors.dart';
+import 'package:tec/component/my_component.dart';
+import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
-  import 'package:tec/view/home_screen.dart';
+import 'package:tec/view/home_screen.dart';
 import 'package:tec/view/profile_screen.dart';
-
- 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
-  var selectedPageIndex = 0; 
+class MainScreen extends StatelessWidget {
+  RxInt selectedPageIndex = 0.obs;
 
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,54 +27,60 @@ class _MainScreenState extends State<MainScreen> {
         drawer: Drawer(
           backgroundColor: SolidColors.scafoldBg,
           child: Padding(
-            padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+            padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
-                  child: Center(
-                    child: Image.asset(Assets.images.logo.path,scale: 3,),
-                  )
+                    child: Center(
+                  child: Image.asset(
+                    Assets.images.logo.path,
+                    scale: 3,
                   ),
-                  ListTile(
-
-                    title: Text("پروفایل کاربری",style: textTheme.headline4,),
-                    onTap: () {
-                      
-                    },
+                )),
+                ListTile(
+                  title: Text(
+                    "پروفایل کاربری",
+                    style: textTheme.headline4,
                   ),
-                  const Divider(
-                    color: SolidColors.dividerColor,
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "درباره تک‌بلاگ",
+                    style: textTheme.headline4,
                   ),
-                  ListTile(
-
-                    title: Text("درباره تک‌بلاگ",style: textTheme.headline4,),
-                    onTap: () {
-                      
-                    },
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "اشتراک گذاری تک بلاگ",
+                    style: textTheme.headline4,
                   ),
-                  const Divider(
-                    color: SolidColors.dividerColor,
+                  onTap: () async{
+                    await Share.share(MyStrings.shareText);
+                  },
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "تک‌بلاگ در گیت هاب",
+                    style: textTheme.headline4,
                   ),
-                  ListTile(
-
-                    title: Text("اشتراک گذاری تک بلاگ",style: textTheme.headline4,),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  const Divider(
-                    color: SolidColors.dividerColor,
-                  ),
-                  ListTile(
-
-                    title: Text("تک‌بلاگ در گیت هاب",style: textTheme.headline4,),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  const Divider(
-                    color: SolidColors.dividerColor,
-                  ),
+                  onTap: () {
+                     myLaunchUrl(MyStrings.techBlogGithubUrl);
+                  },
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
               ],
             ),
           ),
@@ -94,9 +95,7 @@ class _MainScreenState extends State<MainScreen> {
             children: [
               InkWell(
                 onTap: (() {
-
-                    _key.currentState!.openDrawer();
-
+                  _key.currentState!.openDrawer();
                 }),
                 child: const Icon(
                   Icons.menu,
@@ -112,38 +111,36 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         body: Stack(
-
           children: [
-           Positioned.fill(
-             child: IndexedStack(
-               index: selectedPageIndex,
-               children: [
-                    HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin), //0
-                    ProfileScreen() //1
-               ],
-
-             )
-            
+            Positioned.fill(
+                child: Obx(
+              () => IndexedStack(
+                index: selectedPageIndex.value,
+                children: [
+                  HomeScreen(
+                      size: size,
+                      textTheme: textTheme,
+                      bodyMargin: bodyMargin), //0
+                  ProfileScreen() //1
+                ],
+              ),
+            )),
+            BottomNavigation(
+              size: size,
+              bodyMargin: bodyMargin,
+              changeScreen: (int value) {
+                selectedPageIndex.value = value;
+              },
             ),
-           BottomNavigation(
-             size: size,
-             bodyMargin: bodyMargin,
-             changeScreen: (int value){
-
-                  setState(() {
-                    selectedPageIndex = value;
-                  });
-
-             },
-             ),
           ],
-
         ),
-       ),
+      ),
     );
   }
-}
 
+
+  
+}
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({
@@ -160,52 +157,52 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom:8,
+      bottom: 8,
       right: 0,
       left: 0,
       child: Container(
-              height: size.height / 10,
-              decoration: const BoxDecoration(
-         gradient: LinearGradient(
-             colors: GradiantColors.bottomNavBackgroand,
-             begin: Alignment.topCenter,
-             end: Alignment.bottomCenter)),
-              child: Padding(
-       padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
-       child: Container(
-         height: size.height / 8,
-         decoration: const BoxDecoration(
-           borderRadius: BorderRadius.all(Radius.circular(18)),
-           gradient: LinearGradient(
-             colors: GradiantColors.bottomNav,
-           ),
-         ),
-         child: Row(
-           mainAxisAlignment: MainAxisAlignment.spaceAround,
-           children: [
-             IconButton(
-                 onPressed: (()=>changeScreen(0)),
-                 icon: ImageIcon(
-                   Assets.icons.home,
-                   color: Colors.white,
-                 )),
-             IconButton(
-                 onPressed: (() {}),
-                 icon: ImageIcon(
-                   Assets.icons.write,
-                   color: Colors.white,
-                 )),
-             IconButton(
-                 onPressed: (()=>changeScreen(1)),
-                 icon: ImageIcon(
-                   Assets.icons.user,
-                   color: Colors.white,
-                 )),
-           ],
-         ),
-       ),
+        height: size.height / 10,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: GradiantColors.bottomNavBackgroand,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+        child: Padding(
+          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+          child: Container(
+            height: size.height / 8,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(18)),
+              gradient: LinearGradient(
+                colors: GradiantColors.bottomNav,
               ),
             ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: (() => changeScreen(0)),
+                    icon: ImageIcon(
+                      Assets.icons.home,
+                      color: Colors.white,
+                    )),
+                IconButton(
+                    onPressed: (() {}),
+                    icon: ImageIcon(
+                      Assets.icons.write,
+                      color: Colors.white,
+                    )),
+                IconButton(
+                    onPressed: (() => changeScreen(1)),
+                    icon: ImageIcon(
+                      Assets.icons.user,
+                      color: Colors.white,
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

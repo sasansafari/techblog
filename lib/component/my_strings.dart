@@ -1,5 +1,6 @@
 class MyStrings{
 
+  static const String techBlogGithubUrl = "https://github.com/sasansafari/techblog";
   static const String viewHotestBlog = "مشاهده داغ ترین نوشته ها ";
   static const String viewHotestPodCasts ="مشاهده داغ ترین پادکست ها";
   static const String relatedArticle ="نوشته های مرتبط";
@@ -16,6 +17,13 @@ class MyStrings{
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
+  static const String shareText ="""
+
+من از تکبلاگ استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
+
+www.sasansafari.com
+
+""";
 
  static const String successfulRegistration = """
 تبریک میگم ، ایمیل با موفقیت تایید شد
