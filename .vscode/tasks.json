@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"upgrade"
+			],
+			"problemMatcher": [],
+			"label": "flutter: flutter pub upgrade",
+			"detail": "",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
            SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
         
            
-           HomePagePodcastList(size: size, bodyMargin: bodyMargin),
+           topPodcasts(),
         
            const SizedBox(height: 60,)
         
@@ -159,66 +159,58 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-}
 
-class HomePagePodcastList extends StatelessWidget {
-  const HomePagePodcastList({
-    Key? key,
-    required this.size,
-    required this.bodyMargin,
-  }) : super(key: key);
-
-  final Size size;
-  final double bodyMargin;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
+  Widget topPodcasts(){
+      return SizedBox(
       height: size.height / 3.5,
-      child: ListView.builder(
-          itemCount: podcastList.getRange(0, 5).length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: ((context, index) {
-            //podcast item
-            return Padding(
-              padding: EdgeInsets.only(
-                  right: index == 0 ? bodyMargin : 15),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: size.height / 5.3,
-                      width: size.width / 2.4,
-                      child: Stack(
-                        children: [
-                          Container(
-                              decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                                Radius.circular(16)),
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    podcastList[index].imageUrl),
-                                fit: BoxFit.cover),
-                          ))
-                        ],
+      child: Obx(
+       ()=> ListView.builder(
+            itemCount: homeScreenController.topPodcasts.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: ((context, index) {
+              //podcast item
+              return Padding(
+                padding: EdgeInsets.only(
+                    right: index == 0 ? bodyMargin : 15),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: size.height / 5.3,
+                        width: size.width / 2.4,
+                        child: Stack(
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(16)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                     homeScreenController.topPodcasts[index].poster!),
+                                  fit: BoxFit.cover),
+                            ))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                      width: size.width / 2.4,
-                      child: Text(
-                        podcastList[index].title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ))
-                ],
-              ),
-            );
-          })),
+                    SizedBox(
+                        width: size.width / 2.4,
+                        child: Text(
+                           homeScreenController.topPodcasts[index].title!,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ))
+                  ],
+                ),
+              );
+            })),
+      ),
     );
   }
 }
+
+ 
 
 class SeeMorePodcast extends StatelessWidget {
   const SeeMorePodcast({

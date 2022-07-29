@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:tec/component/api_constant.dart';
 import 'package:tec/models/article_model.dart';
-import 'package:tec/models/data_models.dart';
+import 'package:tec/models/podcast_model.dart';
+
 import 'package:tec/models/poster_model.dart';
 import 'package:tec/services/dio_service.dart';
 
@@ -23,6 +24,10 @@ class HomeScreenController extends GetxController {
     if (response.statusCode == 200) {
       response.data['top_visited'].forEach((element) {
         topVisitedList.add(ArticleModel.fromJson(element));
+      });
+
+       response.data['top_podcasts'].forEach((element) {
+        topPodcasts.add(PodcastModel.fromJson(element));
       });
     }
   }
