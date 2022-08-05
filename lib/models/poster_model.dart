@@ -15,7 +15,6 @@ class PosterModel {
      id  = element["id"];
      title=element["title"];
      image=element["image"];
- 
   }
 }
  
