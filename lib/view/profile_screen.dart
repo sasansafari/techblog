@@ -21,7 +21,6 @@ class ProfileScreen extends StatelessWidget {
 
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
-    double bodyMargin = size.width / 10;
 
     return SingleChildScrollView(
      physics: const BouncingScrollPhysics(),

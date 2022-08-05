@@ -4,8 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tec/component/my_colors.dart';
  
 import 'package:tec/view/main_screen.dart';
-import 'package:tec/view/my_cats.dart';
-import 'package:tec/view/register_intro.dart';
  
 void main() {
 
@@ -118,7 +116,7 @@ class MyApp extends StatelessWidget {
                   )),
       debugShowCheckedModeBanner: false,
       // home: splashScreen()
-      home:   MainScreen()
+      home:   const MainScreen()
     );
   }
 }

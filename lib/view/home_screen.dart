@@ -10,6 +10,7 @@ import 'package:tec/models/fake_data.dart';
 
 import '../gen/assets.gen.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({
     Key? key,
@@ -183,7 +184,7 @@ class HomeScreen extends StatelessWidget {
                                 Container(
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(16)),
+                                          const BorderRadius.all(Radius.circular(16)),
                                       image: DecorationImage(
                                           image: imageProvider,
                                           fit: BoxFit.cover)),

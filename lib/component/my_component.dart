@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
@@ -26,6 +25,7 @@ class TechDivider extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MainTags extends StatelessWidget {
   MainTags({
     Key? key,

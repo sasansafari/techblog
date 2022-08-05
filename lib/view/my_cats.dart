@@ -5,11 +5,12 @@ import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/models/data_models.dart';
 import 'package:tec/models/fake_data.dart';
  
 
 class MyCats extends StatefulWidget {
+  const MyCats({Key? key}) : super(key: key);
+
   @override
   State<MyCats> createState() => _MyCatsState();
 }
@@ -23,7 +24,7 @@ class _MyCatsState extends State<MyCats> {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
         child: Center(
@@ -31,14 +32,14 @@ class _MyCatsState extends State<MyCats> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               SvgPicture.asset(
                 Assets.images.tcbot.path,
                 height: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Text(
@@ -52,7 +53,7 @@ class _MyCatsState extends State<MyCats> {
                     hintText: "نام و نام خانوادگی",
                     hintStyle: textTheme.headline4),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               Text(

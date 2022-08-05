@@ -1,22 +1,25 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:tec/component/api_constant.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/home_screen.dart';
 import 'package:tec/view/profile_screen.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class MainScreen extends StatelessWidget {
-  RxInt selectedPageIndex = 0.obs;
+class MainScreen extends StatefulWidget {
 
-  MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  RxInt selectedPageIndex = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +130,7 @@ class MainScreen extends StatelessWidget {
                       size: size,
                       textTheme: textTheme,
                       bodyMargin: bodyMargin), //0
-                  ProfileScreen() //1
+                  const ProfileScreen() //1
                 ],
               ),
             )),
@@ -143,9 +146,6 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-
-
-  
 }
 
 class BottomNavigation extends StatelessWidget {
