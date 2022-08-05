@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "G:\\techBlog\\TechBlog\\tec\\build\\path_provider_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-gu\\values-gu.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\nitro\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-gu\\values-gu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "G:\\techBlog\\TechBlog\\tec\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\values-gu\\values-gu.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\nitro\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-gu\\values-gu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
