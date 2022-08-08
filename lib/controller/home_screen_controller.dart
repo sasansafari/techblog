@@ -7,10 +7,11 @@ import 'package:tec/models/poster_model.dart';
 import 'package:tec/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
-  Rx<PosterModel>? poster ;
+  Rx<PosterModel> poster = PosterModel().obs;
   RxList tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcasts = RxList();
+  RxBool loading = false.obs;
 
   @override
   onInit() {
@@ -19,6 +20,9 @@ class HomeScreenController extends GetxController {
   }
 
   getHomeItems() async {
+
+    loading.value =true;
+
     var response = await DioSevice().getMethod(ApiConstant.getHomeItems);
 
     if (response.statusCode == 200) {
@@ -34,9 +38,9 @@ class HomeScreenController extends GetxController {
       });
 
 
- 
+      poster.value = PosterModel.fromJson(response.data['poster']);
 
-
+      loading.value=false;
      }
   }
 }

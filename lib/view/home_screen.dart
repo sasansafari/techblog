@@ -28,29 +28,32 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-        child: Column(
-          children: [
-            HomePagePoster(size: size, textTheme: textTheme),
-            const SizedBox(
-              height: 16,
-            ),
-            HomePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
-            const SizedBox(
-              height: 32,
-            ),
-            SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
-            topVisited(),
-            const SizedBox(
-              height: 32,
-            ),
-            SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
-            topPodcasts(),
-            const SizedBox(
-              height: 100,
+      child: Obx(
+        ()=> Padding(
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+          child:homeScreenController.loading.value==false? Column(
+              children: [
+                poster(),
+                const SizedBox(
+                  height: 16,
+                ),
+                HomePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
+                const SizedBox(
+                  height: 32,
+                ),
+                SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
+                topVisited(),
+                const SizedBox(
+                  height: 32,
+                ),
+                SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
+                topPodcasts(),
+                const SizedBox(
+                  height: 100,
+                )
+              ],
             )
-          ],
+          :const Center(child:  loading()),
         ),
       ),
     );
@@ -97,10 +100,7 @@ class HomeScreen extends StatelessWidget {
                                             colors: GradiantColors.blogPost)),
                                   )),
                               placeholder: ((context, url) =>
-                                  const SpinKitFadingCube(
-                                    color: SolidColors.primeryColor,
-                                    size: 32.0,
-                                  )),
+                                  const loading()),
                               errorWidget: ((context, url, error) => const Icon(
                                     Icons.image_not_supported_outlined,
                                     size: 50,
@@ -190,10 +190,7 @@ class HomeScreen extends StatelessWidget {
                                           fit: BoxFit.cover)),
                                 )),
                             placeholder: ((context, url) =>
-                                const SpinKitFadingCube(
-                                  color: SolidColors.primeryColor,
-                                  size: 32.0,
-                                )),
+                                const loading()),
                             errorWidget: ((context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 50,
@@ -216,7 +213,64 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget poster(){
+
+    return Stack(
+      children: [
+        Container(
+          width: size.width / 1.25,
+          height: size.height / 4.2,
+          child: CachedNetworkImage(
+                            imageUrl:
+                               homeScreenController.poster.value.image!,
+                            imageBuilder: ((context, imageProvider) =>
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          const BorderRadius.all(Radius.circular(16)),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover)),
+                                )),
+                            placeholder: ((context, url) =>
+                                const SpinKitFadingCube(
+                                  color: SolidColors.primeryColor,
+                                  size: 32.0,
+                                )),
+                            errorWidget: ((context, url, error) => const Icon(
+                                  Icons.image_not_supported_outlined,
+                                  size: 50,
+                                  color: Colors.grey,
+                                )),
+                          ),
+          foregroundDecoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              gradient: LinearGradient(
+                colors: GradiantColors.homePosterCoverGradiant,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
+        ),
+        Positioned(
+          bottom: 8,
+          left: 0,
+          right: 0,
+          child: Column(
+            children: [
+                
+              Text(
+                homeScreenController.poster.value.title!,
+                style: textTheme.headline1,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
 }
+
+
 
 class SeeMorePodcast extends StatelessWidget {
   const SeeMorePodcast({
@@ -315,51 +369,4 @@ class HomePageTagList extends StatelessWidget {
   }
 }
 
-class HomePagePoster extends StatelessWidget {
-  const HomePagePoster({
-    Key? key,
-    required this.size,
-    required this.textTheme,
-  }) : super(key: key);
-
-  final Size size;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: size.width / 1.25,
-          height: size.height / 4.2,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              image: DecorationImage(
-                  image: AssetImage(homePagePosterMap["imageAsset"]),
-                  fit: BoxFit.cover)),
-          foregroundDecoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              gradient: LinearGradient(
-                colors: GradiantColors.homePosterCoverGradiant,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 0,
-          right: 0,
-          child: Column(
-            children: [
-                
-              Text(
-                "دوازده قدم برنامه نویسی یک دوره ی...س",
-                style: textTheme.headline1,
-              ),
-            ],
-          ),
-        )
-      ],
-    );
-  }
-}
+ 

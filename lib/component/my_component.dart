@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -81,4 +82,18 @@ myLaunchUrl(String url) async {
     log("could not launch ${uri.toString()}");
   }
 
+}
+
+class loading extends StatelessWidget {
+  const loading({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitFadingCube(
+      color: SolidColors.primeryColor,
+      size: 32.0,
+    );
+  }
 }
