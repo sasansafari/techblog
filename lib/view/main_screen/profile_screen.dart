@@ -31,12 +31,12 @@ class ProfileScreen extends StatelessWidget {
        child: Column(
          mainAxisAlignment: MainAxisAlignment.center,
          children: [
-            Image(image: Assets.images.profileAvatar,height: 100,),
+            Image.asset(  Assets.images.profileAvatar.path,height: 100,),
             const SizedBox(height: 12,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ImageIcon(Assets.icons.bluePen,color: SolidColors.seeMore,),
+                ImageIcon( Image.asset( Assets.icons.bluePen.path).image,color: SolidColors.seeMore,),
                 const SizedBox(width: 8,),
                 Text(
                   MyStrings.imageProfileEdit,

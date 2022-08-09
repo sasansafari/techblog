@@ -108,8 +108,8 @@ class _MainScreenState extends State<MainScreen> {
                   color: Colors.black,
                 ),
               ),
-              Image(
-                image: Assets.images.logo,
+              Image.asset(
+                  Assets.images.logo.path,
                 height: size.height / 13.6,
               ),
               const Icon(Icons.search, color: Colors.black),
@@ -186,7 +186,7 @@ class BottomNavigation extends StatelessWidget {
                 IconButton(
                     onPressed: (() => changeScreen(0)),
                     icon: ImageIcon(
-                      Assets.icons.home,
+                       Image.asset( Assets.icons.home.path).image,
                       color: Colors.white,
                     )),
                 IconButton(
@@ -194,13 +194,13 @@ class BottomNavigation extends StatelessWidget {
                      
                     }),
                     icon: ImageIcon(
-                      Assets.icons.write,
+                       Image.asset( Assets.icons.write.path).image,
                       color: Colors.white,
                     )),
                 IconButton(
                     onPressed: (() => changeScreen(1)),
                     icon: ImageIcon(
-                      Assets.icons.user,
+                       Image.asset( Assets.icons.user.path).image,
                       color: Colors.white,
                     )),
               ],

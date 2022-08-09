@@ -310,7 +310,7 @@ class SeeMorePodcast extends StatelessWidget {
       child: Row(
         children: [
           ImageIcon(
-            Assets.icons.microphon,
+           Image.asset( Assets.icons.microphon.path).image,
             color: SolidColors.seeMore,
           ),
           const SizedBox(
@@ -343,8 +343,8 @@ class SeeMoreBlog extends StatelessWidget {
       child: Row(
         children: [
           ImageIcon(
-            Assets.icons.bluePen,
-            color: SolidColors.seeMore,
+             Image.asset( Assets.icons.bluePen.path).image,
+             color: SolidColors.seeMore,
           ),
           const SizedBox(
             width: 8,
