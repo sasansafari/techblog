@@ -5,13 +5,13 @@ import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/view/home_screen.dart';
-import 'package:tec/view/profile_screen.dart';
+import 'package:tec/view/main_screen/home_screen.dart';
+import 'package:tec/view/main_screen/profile_screen.dart';
+ 
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class MainScreen extends StatefulWidget {
-
   const MainScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,9 +23,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
@@ -71,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
                     "اشتراک گذاری تک بلاگ",
                     style: textTheme.headline4,
                   ),
-                  onTap: () async{
+                  onTap: () async {
                     await Share.share(MyStrings.shareText);
                   },
                 ),
@@ -84,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                     style: textTheme.headline4,
                   ),
                   onTap: () {
-                     myLaunchUrl(MyStrings.techBlogGithubUrl);
+                    myLaunchUrl(MyStrings.techBlogGithubUrl);
                   },
                 ),
                 const Divider(
@@ -193,7 +190,9 @@ class BottomNavigation extends StatelessWidget {
                       color: Colors.white,
                     )),
                 IconButton(
-                    onPressed: (() {}),
+                    onPressed: (() {
+                     
+                    }),
                     icon: ImageIcon(
                       Assets.icons.write,
                       color: Colors.white,

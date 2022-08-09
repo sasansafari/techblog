@@ -6,9 +6,9 @@ import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
+import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
-
-import '../gen/assets.gen.dart';
+ 
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics:  const BouncingScrollPhysics(),
       child: Obx(
         ()=> Padding(
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                HomePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
+                tags(),
                 const SizedBox(
                   height: 32,
                 ),
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 )
               ],
             )
-          :const Center(child:  loading()),
+          :  const Center(child:loading()),
         ),
       ),
     );
@@ -268,6 +268,27 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+
+  Widget tags(){
+
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: tagList.length,
+          itemBuilder: ((context, index) {
+            return Padding(
+              padding:
+                  EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+              child: MainTags(
+                textTheme: textTheme,
+                index: index,
+              ),
+            );
+          })),
+    );
+  }
+
 }
 
 
@@ -334,37 +355,6 @@ class SeeMoreBlog extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class HomePageTagList extends StatelessWidget {
-  const HomePageTagList({
-    Key? key,
-    required this.bodyMargin,
-    required this.textTheme,
-  }) : super(key: key);
-
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: tagList.length,
-          itemBuilder: ((context, index) {
-            return Padding(
-              padding:
-                  EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
-              child: MainTags(
-                textTheme: textTheme,
-                index: index,
-              ),
-            );
-          })),
     );
   }
 }

@@ -14,8 +14,6 @@ class TagsModel {
   TagsModel.fromJson(Map<String, dynamic> element) {
      id  = element["id"];
      title=element["title"];
- 
- 
   }
 }
  

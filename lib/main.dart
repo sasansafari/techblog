@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tec/component/my_colors.dart';
+import 'package:tec/view/articel_list_sceen.dart';
+   
  
-import 'package:tec/view/main_screen.dart';
+import 'package:tec/view/splash_screen.dart';
+
+import 'view/main_screen/main_screen.dart';
  
 void main() {
 
@@ -110,13 +114,14 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: SolidColors.hintText,
-                  fontWeight: FontWeight.w700)
+                  fontWeight: FontWeight.w700),
+    
                   
                   
                   )),
       debugShowCheckedModeBanner: false,
-      // home: splashScreen()
-      home:   const MainScreen()
+      // home: SplashScreen()
+      home:     ArticleListScreen()
     );
   }
 }
