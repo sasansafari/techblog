@@ -1,9 +1,7 @@
- 
-  ### TechBlog  
-  
-
 <div align="center">
-<img src="https://sasansafari.com/techblog_github/Screenshot_1652643493.png" align="left" height="" width="200" />
+<img src="assets/images/logo.png"align="center" width="200" />
+
+<img src="https://sasansafari.com/techblog_github/Screenshot_1652643493.png" align="center" height="" width="200" />
 </div>  
   
 
@@ -11,6 +9,8 @@
 
 
 ## Skills
+
+
 <table><tr><td valign="top" width="33%">
 
 
@@ -35,12 +35,3 @@
  </table>  
 
 <br/>  
-
-
-
-
- 
-
-
- 
- 
