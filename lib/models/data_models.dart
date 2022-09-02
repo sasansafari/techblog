@@ -1,17 +1,10 @@
+class HashTagModel {
+  String title;
 
-
-class HashTagModel{
-
-String title;
-
-HashTagModel({required this.title});
-
-
+  HashTagModel({required this.title});
 }
 
-
 class BlogModel {
-
   int id;
   String imageUrl;
   String title;
@@ -21,20 +14,13 @@ class BlogModel {
   String content;
   String views;
 
-  BlogModel({
-    required this.id,
-    required this.imageUrl,
-    required this.title,
-    required this.writer,
-    required this.writerImageUrl,
-    required this.date,
-    required this.content,
-    required this.views
-  });
+  BlogModel(
+      {required this.id,
+      required this.imageUrl,
+      required this.title,
+      required this.writer,
+      required this.writerImageUrl,
+      required this.date,
+      required this.content,
+      required this.views});
 }
-
-
-
-
-   
-

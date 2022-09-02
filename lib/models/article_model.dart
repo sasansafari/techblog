@@ -26,15 +26,14 @@ class ArticleModel {
   });
 
   ArticleModel.fromJson(Map<String, dynamic> element) {
-     id  = element["id"];
-     title=element["title"];
-     image=ApiConstant.hostDlUrl+element["image"];
-     catId=element["cat_id"];
-     catName=element["cat_name"];
-     author=element["author"];
-     view=element["view"];
-     status=element["status"];
-     createdAt=element["created_at"];
+    id = element["id"];
+    title = element["title"];
+    image = ApiConstant.hostDlUrl + element["image"];
+    catId = element["cat_id"];
+    catName = element["cat_name"];
+    author = element["author"];
+    view = element["view"];
+    status = element["status"];
+    createdAt = element["created_at"];
   }
 }
- 
