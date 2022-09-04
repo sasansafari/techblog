@@ -59,15 +59,15 @@ class ArticleListScreen extends StatelessWidget {
                                 );
                               })),
                               placeholder: ((context, url) {
-                                return Loading();
+                                return const Loading();
                               }),
                               errorWidget: ((context, url, error) {
-                                return Icon(Icons.image_not_supported_outlined,
+                                return const Icon(Icons.image_not_supported_outlined,
                                     size: 50, color: Colors.grey);
                               }),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 16,
                           ),
                           Column(
@@ -82,7 +82,7 @@ class ArticleListScreen extends StatelessWidget {
                                   maxLines: 2,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Row(
@@ -94,7 +94,7 @@ class ArticleListScreen extends StatelessWidget {
                                         .articleList[index].author!,
                                     style: textTheme.caption,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Text(

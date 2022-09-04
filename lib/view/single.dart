@@ -7,7 +7,10 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
+import 'package:tec/controller/article_controller.dart';
+import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
+import 'package:tec/view/articel_list_sceen.dart';
 
 import '../controller/single_article_controller.dart';
 
@@ -155,21 +158,30 @@ class _SingleState extends State<Single> {
       height: 35,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 6,
+          itemCount: singleArcticleController.tagList.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                height: 30,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                    color: Colors.grey),
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    child: Text(
-                      "tagtitle",
-                      style: textheme.headline2,
-                    )),
+            return GestureDetector(
+              onTap: () async {
+                var tagId = singleArcticleController.tagList[index].id!;
+                await Get.find<ListArcticleController>()
+                    .getArticleListWithTagsId(tagId);
+
+                    Get.to(ArticleListScreen());
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Container(
+                  height: 30,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(24)),
+                      color: Colors.grey),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                      child: Text(
+                        singleArcticleController.tagList[index].title!,
+                        style: textheme.headline2,
+                      )),
+                ),
               ),
             );
           })),
@@ -180,7 +192,7 @@ class _SingleState extends State<Single> {
     return SizedBox(
       height: Get.height / 3.5,
       child: ListView.builder(
-          itemCount: 12,
+          itemCount: singleArcticleController.releatedList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: ((context, index) {
             //blog item
@@ -196,7 +208,8 @@ class _SingleState extends State<Single> {
                       child: Stack(
                         children: [
                           CachedNetworkImage(
-                            imageUrl: "url",
+                            imageUrl: singleArcticleController
+                                .releatedList[index].image!,
                             imageBuilder: ((context, imageProvider) =>
                                 Container(
                                   decoration: BoxDecoration(
@@ -229,13 +242,15 @@ class _SingleState extends State<Single> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Text(
-                                  "text3",
+                                  singleArcticleController
+                                      .releatedList[index].author!,
                                   style: textheme.subtitle1,
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      "text2",
+                                      singleArcticleController
+                                          .releatedList[index].view!,
                                       style: textheme.subtitle1,
                                     ),
                                     const SizedBox(
@@ -257,9 +272,8 @@ class _SingleState extends State<Single> {
                   ),
                   SizedBox(
                       width: Get.width / 2.4,
-                      child: const Text(
-                        """سالیدیتی چیست؛ معرفی زبان
- معروف برنامه‌نویسی ...ع""",
+                      child: Text(
+                        singleArcticleController.releatedList[index].title!,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ))
@@ -267,7 +281,6 @@ class _SingleState extends State<Single> {
               ),
             );
           })),
-
     );
   }
 }

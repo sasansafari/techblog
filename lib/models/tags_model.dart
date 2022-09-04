@@ -3,8 +3,8 @@ class TagsModel {
   String? title;
 
   TagsModel({
-    required this.id,
-    required this.title,
+      this.id,
+      this.title,
   });
 
   TagsModel.fromJson(Map<String, dynamic> element) {

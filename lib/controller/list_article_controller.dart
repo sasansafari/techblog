@@ -26,4 +26,20 @@ class ListArcticleController extends GetxController {
       loading.value = false;
     }
   }
+
+  getArticleListWithTagsId(String id) async {
+    articleList.clear();
+    loading.value = true;
+    //TODO get userid from getStorage ApiConstant.getArticleList+userid
+    var response = await DioSevice().getMethod(ApiConstant.baseUrl +
+        'article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');
+
+    if (response.statusCode == 200) {
+      response.data.forEach((element) {
+        articleList.add(ArticleModel.fromJson(element));
+      });
+
+      loading.value = false;
+    }
+  }
 }
