@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/view/single.dart';
+import 'package:tec/view/splash_screen.dart';
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -21,16 +24,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    return MaterialApp(
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('fa', ''), // farsi
-        ],
-        theme: ThemeData(
+
+
+    return GetMaterialApp(
+      locale: const Locale('fa'),
+      theme: ThemeData(
+
+
+
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
@@ -58,52 +59,51 @@ class MyApp extends StatelessWidget {
           fontFamily: 'dana',
           brightness: Brightness.light,
           textTheme: const TextTheme(
-            headline1: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: SolidColors.posterTitle,
-            ),
-            subtitle1: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              fontWeight: FontWeight.w300,
-              color: SolidColors.posterSubTitle,
-            ),
-            bodyText1: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 13,
-              fontWeight: FontWeight.w300,
-            ),
-            headline2: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-            ),
-            headline3: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: SolidColors.seeMore,
-              fontWeight: FontWeight.w700,
-            ),
-            headline4: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: Color.fromARGB(255, 70, 70, 70),
-              fontWeight: FontWeight.w700,
-            ),
-            headline5: TextStyle(
-              fontFamily: 'dana',
-              fontSize: 14,
-              color: SolidColors.hintText,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-        debugShowCheckedModeBanner: false,
-        home: const Single()
-        // home:  ArticleListScreen()
-        );
+
+              headline1: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: SolidColors.posterTitle),
+
+             subtitle1: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: SolidColors.posterSubTitle),
+
+              bodyText1: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w300),
+              headline2: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300),
+              headline3: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  color: SolidColors.seeMore,
+                  fontWeight: FontWeight.w700),
+              headline4: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  color: Color.fromARGB(255, 70, 70, 70),
+                  fontWeight: FontWeight.w700),
+              headline5: TextStyle(
+                  fontFamily: 'dana',
+                  fontSize: 14,
+                  color: SolidColors.hintText,
+                  fontWeight: FontWeight.w700),
+    
+                  
+                  
+                  )),
+      debugShowCheckedModeBanner: false,
+      // home: Single()
+      home:  ArticleListScreen()
+    );
+
   }
 }

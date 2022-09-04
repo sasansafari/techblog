@@ -13,16 +13,16 @@ class ArticleModel {
   String? createdAt;
 
   ArticleModel({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.catId,
-    required this.catName,
-    required this.author,
-    required this.view,
-    required this.status,
+     this.id,
+     this.title,
+     this.image,
+     this.catId,
+     this.catName,
+     this.author,
+     this.view,
+     this.status,
     // this.isFavorite,
-    required this.createdAt,
+     this.createdAt,
   });
 
   ArticleModel.fromJson(Map<String, dynamic> element) {
