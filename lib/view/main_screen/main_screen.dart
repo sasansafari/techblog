@@ -7,7 +7,6 @@ import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
- 
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -95,8 +94,7 @@ class _MainScreenState extends State<MainScreen> {
           automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: SolidColors.scafoldBg,
-          title: //appbar
-              Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               InkWell(
@@ -109,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               Image.asset(
-                  Assets.images.logo.path,
+                Assets.images.logo.path,
                 height: size.height / 13.6,
               ),
               const Icon(Icons.search, color: Colors.black),
@@ -166,10 +164,12 @@ class BottomNavigation extends StatelessWidget {
       child: Container(
         height: size.height / 10,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: GradiantColors.bottomNavBackgroand,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
+          gradient: LinearGradient(
+            colors: GradiantColors.bottomNavBackgroand,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
           padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
           child: Container(
@@ -184,25 +184,26 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                    onPressed: (() => changeScreen(0)),
-                    icon: ImageIcon(
-                       Image.asset( Assets.icons.home.path).image,
-                      color: Colors.white,
-                    )),
+                  onPressed: (() => changeScreen(0)),
+                  icon: ImageIcon(
+                    Image.asset(Assets.icons.home.path).image,
+                    color: Colors.white,
+                  ),
+                ),
                 IconButton(
-                    onPressed: (() {
-                     
-                    }),
-                    icon: ImageIcon(
-                       Image.asset( Assets.icons.write.path).image,
-                      color: Colors.white,
-                    )),
+                  onPressed: (() {}),
+                  icon: ImageIcon(
+                    Image.asset(Assets.icons.write.path).image,
+                    color: Colors.white,
+                  ),
+                ),
                 IconButton(
-                    onPressed: (() => changeScreen(1)),
-                    icon: ImageIcon(
-                       Image.asset( Assets.icons.user.path).image,
-                      color: Colors.white,
-                    )),
+                  onPressed: (() => changeScreen(1)),
+                  icon: ImageIcon(
+                    Image.asset(Assets.icons.user.path).image,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
