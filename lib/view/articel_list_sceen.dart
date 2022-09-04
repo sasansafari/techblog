@@ -34,7 +34,8 @@ class ArticleListScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: (() {
                       singleArcticleController.id.value =int.parse(listarcticleController.articleList[index].id!) ;
-                      Get.to(  const Single());
+                       
+                      Get.to(Single());
                     }),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -49,7 +50,7 @@ class ArticleListScreen extends StatelessWidget {
                               imageBuilder: (((context, imageProvider) {
                                 return Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                                      borderRadius: const BorderRadius.all(Radius.circular(16)),
                                       image: DecorationImage(
                                           image: imageProvider, fit: BoxFit.cover)),
                                 );
