@@ -13,28 +13,27 @@ class ArticleModel {
   String? createdAt;
 
   ArticleModel({
-     this.id,
-     this.title,
-     this.image,
-     this.catId,
-     this.catName,
-     this.author,
-     this.view,
-     this.status,
+    this.id,
+    this.title,
+    this.image,
+    this.catId,
+    this.catName,
+    this.author,
+    this.view,
+    this.status,
     // this.isFavorite,
-     this.createdAt,
+    this.createdAt,
   });
 
   ArticleModel.fromJson(Map<String, dynamic> element) {
-     id  = element["id"];
-     title=element["title"];
-     image=ApiConstant.hostDlUrl+element["image"];
-     catId=element["cat_id"];
-     catName=element["cat_name"];
-     author=element["author"];
-     view=element["view"];
-     status=element["status"];
-     createdAt=element["created_at"];
+    id = element["id"];
+    title = element["title"];
+    image = ApiConstant.hostDlUrl + element["image"];
+    catId = element["cat_id"];
+    catName = element["cat_name"];
+    author = element["author"];
+    view = element["view"];
+    status = element["status"];
+    createdAt = element["created_at"];
   }
 }
- 

@@ -6,7 +6,6 @@ import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
- 
 
 class MyCats extends StatefulWidget {
   const MyCats({Key? key}) : super(key: key);
@@ -81,20 +80,11 @@ class _MyCatsState extends State<MyCats> {
                         return InkWell(
                             onTap: (() {
                               setState(() {
-                                
-                             
-                                if(!selectedTags.contains(tagList[index])){
-
-                                     selectedTags.add(tagList[index]);
-
-
-                                }else{
-
+                                if (!selectedTags.contains(tagList[index])) {
+                                  selectedTags.add(tagList[index]);
+                                } else {
                                   print("${tagList[index].title} exist");
-
                                 }
-
-
                               });
                             }),
                             child:
@@ -130,15 +120,14 @@ class _MyCatsState extends State<MyCats> {
                         return Container(
                           height: 60,
                           decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                            color: SolidColors.surface
-                          ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(24)),
+                              color: SolidColors.surface),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                               
                                 const SizedBox(
                                   width: 8,
                                 ),
@@ -146,14 +135,17 @@ class _MyCatsState extends State<MyCats> {
                                   selectedTags[index].title,
                                   style: textTheme.headline4,
                                 ),
-                                  InkWell(
-                                   
-                                   onTap: (() {
-                                     setState(() {
-                                       selectedTags.removeAt(index);
-                                     });
-                                   }),
-                                   child: const Icon(CupertinoIcons.delete,color: Colors.grey,size: 20,)),
+                                InkWell(
+                                    onTap: (() {
+                                      setState(() {
+                                        selectedTags.removeAt(index);
+                                      });
+                                    }),
+                                    child: const Icon(
+                                      CupertinoIcons.delete,
+                                      color: Colors.grey,
+                                      size: 20,
+                                    )),
                               ],
                             ),
                           ),

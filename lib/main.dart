@@ -5,22 +5,17 @@ import 'package:get/get.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/view/articel_list_sceen.dart';
 import 'package:tec/view/single.dart';
-    
- 
+
 import 'package:tec/view/splash_screen.dart';
 
 import 'view/main_screen/main_screen.dart';
- 
-void main() {
 
+void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    
-    statusBarColor: SolidColors.statusBarColor,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: SolidColors.systemNavigationBarColor,
-    systemNavigationBarIconBrightness: Brightness.dark
-    
-  ));
+      statusBarColor: SolidColors.statusBarColor,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: SolidColors.systemNavigationBarColor,
+      systemNavigationBarIconBrightness: Brightness.dark));
 
   runApp(const MyApp());
 }
@@ -31,61 +26,48 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     var textTheme = Theme.of(context).textTheme;
 
-
     return GetMaterialApp(
-      locale: const Locale('fa'),
-      theme: ThemeData(
+        locale: const Locale('fa'),
+        theme: ThemeData(
+            inputDecorationTheme: InputDecorationTheme(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(width: 2),
+                ),
+                filled: true,
+                fillColor: Colors.white),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ButtonStyle(
+              textStyle: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return textTheme.headline1;
+                }
 
+                return textTheme.subtitle1;
+              }),
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return SolidColors.seeMore;
+                }
 
-          inputDecorationTheme: InputDecorationTheme(
-
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(width: 2),
-              
-              
-              ),
-              filled: true,
-              fillColor: Colors.white
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(style:  ButtonStyle(
-                  textStyle: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return textTheme.headline1;
-                    }
-
-                    return textTheme.subtitle1;
-                  }),
-                  backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return SolidColors.seeMore;
-                    }
-
-                    return SolidColors.primeryColor;
-                  }),
-                )),
-
-
-
-          fontFamily: 'dana',
-          brightness: Brightness.light,
-          textTheme: const TextTheme(
-
+                return SolidColors.primeryColor;
+              }),
+            )),
+            fontFamily: 'dana',
+            brightness: Brightness.light,
+            textTheme: const TextTheme(
               headline1: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: SolidColors.posterTitle),
-
-             subtitle1: TextStyle(
+              subtitle1: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   fontWeight: FontWeight.w300,
                   color: SolidColors.posterSubTitle),
-
               bodyText1: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 13,
@@ -110,14 +92,9 @@ class MyApp extends StatelessWidget {
                   fontSize: 14,
                   color: SolidColors.hintText,
                   fontWeight: FontWeight.w700),
-    
-                  
-                  
-                  )),
-      debugShowCheckedModeBanner: false,
-      // home: Single()
-      home:  ArticleListScreen()
-    );
+            )),
+        debugShowCheckedModeBanner: false,
+        // home: Single()
+        home: ArticleListScreen());
   }
 }
- 

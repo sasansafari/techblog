@@ -37,7 +37,7 @@ class _SingleState extends State<Single> {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Obx(
-           () => Column(children: [
+          () => Column(children: [
             Stack(
               children: [
                 CachedNetworkImage(

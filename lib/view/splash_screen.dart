@@ -1,5 +1,4 @@
- 
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tec/gen/assets.gen.dart';
 
@@ -18,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) =>   const MainScreen()));
+          MaterialPageRoute(builder: (context) => const MainScreen()));
     });
 
     super.initState();
@@ -30,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset( Assets.images.logo.path, height: 64),
+            Image.asset(Assets.images.logo.path, height: 64),
             const SizedBox(
               height: 32,
             ),
