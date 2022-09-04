@@ -6,7 +6,7 @@ import 'package:tec/view/my_cats.dart';
 import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({Key? key}) : super(key: key);
+  RegisterIntro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,12 @@ class RegisterIntro extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                      text: MyStrings.welcom, style: textTheme.headline4)),
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: MyStrings.welcom,
+                  style: textTheme.headline4,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 32),
@@ -47,53 +50,58 @@ class RegisterIntro extends StatelessWidget {
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
     return showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: ((context) {
-          return Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Container(
-              height: size.height / 2,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    MyStrings.insertYourEmail,
-                    style: textTheme.headline4,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: TextField(
-                      onChanged: (value) {
-                        print(
-                            value + " is Email : " + isEmail(value).toString());
-                      },
-                      style: textTheme.headline5,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: "techblog@gmail.com",
-                          hintStyle: textTheme.headline5),
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: ((context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Container(
+            height: size.height / 2,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  MyStrings.insertYourEmail,
+                  style: textTheme.headline4,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: TextField(
+                    onChanged: (value) {
+                      print(value + " is Email : " + isEmail(value).toString());
+                    },
+                    style: textTheme.headline5,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: "techblog@gmail.com",
+                      hintStyle: textTheme.headline5,
                     ),
                   ),
-                  ElevatedButton(
-                      onPressed: (() {
-                        Navigator.pop(context);
-                        _activateCodeBottomSheet(context, size, textTheme);
-                      }),
-                      child: const Text("ادامه"))
-                ],
-              )),
-            ),
-          );
-        }));
+                ),
+                ElevatedButton(
+                  onPressed: (() {
+                    Navigator.pop(context);
+                    _activateCodeBottomSheet(context, size, textTheme);
+                  }),
+                  child: const Text("ادامه"),
+                ),
+              ],
+            )),
+          ),
+        );
+      }),
+    );
   }
 
   Future<dynamic> _activateCodeBottomSheet(
@@ -109,39 +117,44 @@ class RegisterIntro extends StatelessWidget {
             child: Container(
               height: size.height / 2,
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
               child: Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    MyStrings.activateCode,
-                    style: textTheme.headline4,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: TextField(
-                      onChanged: (value) {
-                        print(
-                            value + " is Email : " + isEmail(value).toString());
-                      },
-                      style: textTheme.headline5,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: "******", hintStyle: textTheme.headline5),
-                    ),
-                  ),
-                  ElevatedButton(
-                      onPressed: (() {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const MyCats()));
-                      }),
-                      child: const Text("ادامه"))
-                ],
-              )),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        MyStrings.activateCode,
+                        style: textTheme.headline4,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: TextField(
+                          onChanged: (value) {
+                            print(value +
+                                " is Email : " +
+                                isEmail(value).toString());
+                          },
+                          style: textTheme.headline5,
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: "******",
+                              hintStyle: textTheme.headline5),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: (() {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => const MyCats()));
+                          }),
+                          child: const Text("ادامه"))
+                    ]),
+              ),
             ),
           );
         }));

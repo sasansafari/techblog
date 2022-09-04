@@ -1,11 +1,6 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:tec/component/my_colors.dart';
+import 'package:flutter/material.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/text_style.dart';
 import 'package:tec/controller/list_article_controller.dart';
@@ -14,23 +9,25 @@ import 'package:tec/view/single.dart';
 
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({Key? key}) : super(key: key);
+ 
   ListArcticleController listarcticleController =
       Get.put(ListArcticleController());
   SingleArcticleController singleArcticleController =
       Get.put(SingleArcticleController());
-  @override
+   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
 
     return SafeArea(
+ 
         child: Scaffold(
-      appBar: appBar("مقالات جدید"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          child: Obx(
-            () => ListView.builder(
-                scrollDirection: Axis.vertical,
+        appBar: appBar("مقالات جدید"),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            child: Obx(
+              () => ListView.builder(
+                 scrollDirection: Axis.vertical,
                 itemCount: listarcticleController.articleList.length,
                 itemBuilder: ((context, index) {
                   return GestureDetector(
@@ -61,9 +58,9 @@ class ArticleListScreen extends StatelessWidget {
                                           fit: BoxFit.cover)),
                                 );
                               })),
-                              placeholder: (((context, url) {
-                                return loading();
-                              })),
+                              placeholder: ((context, url) {
+                                return Loading();
+                              }),
                               errorWidget: ((context, url, error) {
                                 return Icon(Icons.image_not_supported_outlined,
                                     size: 50, color: Colors.grey);
@@ -114,10 +111,12 @@ class ArticleListScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                })),
+                }),
+              ),
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

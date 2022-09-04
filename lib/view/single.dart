@@ -45,7 +45,7 @@ class _SingleState extends State<Single> {
                       singleArcticleController.articleInfoModel.value.image!,
                   imageBuilder: ((context, imageProvider) =>
                       Image(image: imageProvider)),
-                  placeholder: ((context, url) => const loading()),
+                  placeholder: ((context, url) => const Loading()),
                   errorWidget: ((context, url, error) =>
                       Image.asset(Assets.images.singlePlaceHolder.path)),
                 ),
@@ -133,7 +133,7 @@ class _SingleState extends State<Single> {
                 textStyle: textheme.headline5,
                 enableCaching: true,
                 onLoadingBuilder: ((context, element, loadingProgress) =>
-                    const loading()),
+                    const Loading()),
               ),
             ),
             const SizedBox(
@@ -214,7 +214,7 @@ class _SingleState extends State<Single> {
                                           end: Alignment.topCenter,
                                           colors: GradiantColors.blogPost)),
                                 )),
-                            placeholder: ((context, url) => const loading()),
+                            placeholder: ((context, url) => const Loading()),
                             errorWidget: ((context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 50,
@@ -267,6 +267,7 @@ class _SingleState extends State<Single> {
               ),
             );
           })),
+
     );
   }
 }

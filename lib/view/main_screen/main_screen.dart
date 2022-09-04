@@ -94,8 +94,7 @@ class _MainScreenState extends State<MainScreen> {
           automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: SolidColors.scafoldBg,
-          title: //appbar
-              Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               InkWell(
@@ -165,10 +164,12 @@ class BottomNavigation extends StatelessWidget {
       child: Container(
         height: size.height / 10,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: GradiantColors.bottomNavBackgroand,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
+          gradient: LinearGradient(
+            colors: GradiantColors.bottomNavBackgroand,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
           padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
           child: Container(
@@ -183,6 +184,7 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
+ 
                     onPressed: (() => changeScreen(0)),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.home.path).image,
@@ -200,7 +202,22 @@ class BottomNavigation extends StatelessWidget {
                       Image.asset(Assets.icons.user.path).image,
                       color: Colors.white,
                     )),
-              ],
+ 
+                IconButton(
+                  onPressed: (() {}),
+                  icon: ImageIcon(
+                    Image.asset(Assets.icons.write.path).image,
+                    color: Colors.white,
+                  ),
+                ),
+                IconButton(
+                  onPressed: (() => changeScreen(1)),
+                  icon: ImageIcon(
+                    Image.asset(Assets.icons.user.path).image,
+                    color: Colors.white,
+                  ),
+                ),
+               ],
             ),
           ),
         ),

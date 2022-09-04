@@ -15,6 +15,7 @@ class ProfileScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
+ 
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(top: 24),
@@ -106,5 +107,6 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ));
+ 
   }
 }
