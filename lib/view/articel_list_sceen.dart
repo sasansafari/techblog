@@ -27,14 +27,16 @@ class ArticleListScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             child: Obx(
-              () => ListView.builder(
+              () => !singleArcticleController.loading.value ? ListView.builder(
                  scrollDirection: Axis.vertical,
                 itemCount: listarcticleController.articleList.length,
                 itemBuilder: ((context, index) {
                   return GestureDetector(
-                    onTap: (() {
+                    onTap: (() async{
                       singleArcticleController.id.value = int.parse(
                           listarcticleController.articleList[index].id!);
+
+                      await singleArcticleController.getArticleInfo();
 
                       Get.to(Single());
                     }),
@@ -113,7 +115,7 @@ class ArticleListScreen extends StatelessWidget {
                     ),
                   );
                 }),
-              ),
+              ) : const Loading(),
             ),
           ),
         ),

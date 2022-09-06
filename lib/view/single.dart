@@ -14,23 +14,11 @@ import 'package:tec/view/articel_list_sceen.dart';
 
 import '../controller/single_article_controller.dart';
 
-class Single extends StatefulWidget {
+
+class Single extends StatelessWidget {
   Single({Key? key}) : super(key: key);
-
-  @override
-  State<Single> createState() => _SingleState();
-}
-
-class _SingleState extends State<Single> {
   SingleArcticleController singleArcticleController =
-      Get.put(SingleArcticleController());
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    singleArcticleController.getArticleInfo();
-  }
+  Get.put(SingleArcticleController());
 
   @override
   Widget build(BuildContext context) {
@@ -284,3 +272,5 @@ class _SingleState extends State<Single> {
     );
   }
 }
+
+
