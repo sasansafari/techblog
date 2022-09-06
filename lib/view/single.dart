@@ -165,8 +165,8 @@ class _SingleState extends State<Single> {
                 var tagId = singleArcticleController.tagList[index].id!;
                 await Get.find<ListArcticleController>()
                     .getArticleListWithTagsId(tagId);
-
-                    Get.to(ArticleListScreen());
+                    String tagName = singleArcticleController.tagList[index].title!;
+                    Get.to(ArticleListScreen(title: tagName,));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),

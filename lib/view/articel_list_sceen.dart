@@ -8,7 +8,8 @@ import 'package:tec/controller/single_article_controller.dart';
 import 'package:tec/view/single.dart';
 
 class ArticleListScreen extends StatelessWidget {
-  ArticleListScreen({Key? key}) : super(key: key);
+  String title;
+  ArticleListScreen({required this.title,Key? key}) : super(key: key);
  
   ListArcticleController listarcticleController =
       Get.put(ListArcticleController());
@@ -21,7 +22,7 @@ class ArticleListScreen extends StatelessWidget {
     return SafeArea(
  
         child: Scaffold(
-        appBar: appBar("مقالات جدید"),
+        appBar: appBar(title),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(

@@ -100,6 +100,7 @@ class MyApp extends StatelessWidget {
              )),
         debugShowCheckedModeBanner: false,
         // home: Single()
-        home: ArticleListScreen()); 
+        home: ArticleListScreen(title: 'مقالات جدید',) //TODO replace title with correct one
+    );
   }
 }
