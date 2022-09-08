@@ -21,7 +21,7 @@ class ArticleListScreen extends StatelessWidget {
     return SafeArea(
  
         child: Scaffold(
-        appBar: appBar("مقالات جدید"),
+        appBar: appBar(listarcticleController.isTitleAppBar ? "براساس اخبار" : "مقالات جدید"),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(

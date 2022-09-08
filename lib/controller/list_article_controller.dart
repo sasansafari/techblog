@@ -6,7 +6,7 @@ import 'package:tec/services/dio_service.dart';
 class ListArcticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
   RxBool loading = false.obs;
-
+  bool isTitleAppBar = false;
   @override
   onInit() {
     super.onInit();
