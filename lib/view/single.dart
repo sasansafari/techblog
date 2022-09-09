@@ -15,6 +15,7 @@ import 'package:tec/view/articel_list_sceen.dart';
 import '../controller/single_article_controller.dart';
 
 
+// ignore: must_be_immutable
 class Single extends StatelessWidget {
   Single({Key? key}) : super(key: key);
   SingleArcticleController singleArcticleController =
