@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/view/articel_list_sceen.dart';
 import 'package:tec/view/single.dart';
@@ -10,15 +11,14 @@ import 'package:tec/view/splash_screen.dart';
 
 import 'view/main_screen/main_screen.dart';
  import 'package:tec/view/splash_screen.dart';
-
- 
-void main() {
+  
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: SolidColors.systemNavigationBarColor,
       systemNavigationBarIconBrightness: Brightness.dark));
-
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -100,6 +100,6 @@ class MyApp extends StatelessWidget {
              )),
         debugShowCheckedModeBanner: false,
         // home: Single()
-        home: ArticleListScreen()); 
+        home: SplashScreen()); 
   }
 }
