@@ -1,22 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/component/my_colors.dart';
-import 'package:tec/view/articel_list_sceen.dart';
-import 'package:tec/view/single.dart';
- 
 import 'package:tec/view/splash_screen.dart';
-
 import 'my_http_overrides.dart';
-import 'view/main_screen/main_screen.dart';
- import 'package:tec/view/splash_screen.dart';
+
 
  
-void main() {
+Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -106,7 +99,7 @@ class MyApp extends StatelessWidget {
              )),
         debugShowCheckedModeBanner: false,
         // home: Single()
-        home: ArticleListScreen(title: 'مقالات جدید',) //TODO replace title with correct one
+        home: const SplashScreen()
     );
   }
 }

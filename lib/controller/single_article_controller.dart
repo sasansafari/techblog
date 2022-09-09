@@ -1,5 +1,4 @@
- 
-
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/api_constant.dart';
 import 'package:tec/models/article_info_model.dart';
@@ -17,9 +16,11 @@ class SingleArcticleController extends GetxController {
 
   getArticleInfo(var id) async {
     articleInfoModel = ArticleInfoModel().obs;
+     Get.to(Single());
+
     loading.value = true;
     var userId = '';
-    print(ApiConstant.baseUrl +
+    debugPrint(ApiConstant.baseUrl +
         'article/get.php?command=info&id=$id&user_id=$userId');
     //TODO user id is hard code
 
@@ -28,7 +29,8 @@ class SingleArcticleController extends GetxController {
 
     if (response.statusCode == 200) {
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);
-      loading.value = false;
+       loading.value = false;
+
     }
 
     tagList.clear();
@@ -39,9 +41,9 @@ class SingleArcticleController extends GetxController {
     releatedList.clear();
     response.data['related'].forEach((element) {
       releatedList.add(ArticleModel.fromJson(element));
+
     });
 
-    Get.to(Single());
   }
 
 

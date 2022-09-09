@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/component/text_style.dart';
 import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/controller/single_article_controller.dart';
 import 'package:tec/view/single.dart';
 
+// ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
   String title;
   ArticleListScreen({required this.title,Key? key}) : super(key: key);
@@ -33,10 +33,9 @@ class ArticleListScreen extends StatelessWidget {
                 itemBuilder: ((context, index) {
                   return GestureDetector(
                     onTap: (() async{
-                      singleArcticleController.id.value = int.parse(
-                          listarcticleController.articleList[index].id!);
+                      
 
-                      await singleArcticleController.getArticleInfo();
+                      await singleArcticleController.getArticleInfo(listarcticleController.articleList[index].id);
 
                       Get.to(Single());
                     }),
