@@ -14,13 +14,12 @@ import 'package:tec/view/articel_list_sceen.dart';
 
 import '../controller/single_article_controller.dart';
 
- 
 
 class Single extends StatelessWidget {
+  Single({Key? key}) : super(key: key);
   SingleArcticleController singleArcticleController =
-      Get.put(SingleArcticleController());
+  Get.put(SingleArcticleController());
 
-  
   @override
   Widget build(BuildContext context) {
     var textheme = Theme.of(context).textTheme;
@@ -162,8 +161,8 @@ class Single extends StatelessWidget {
                 var tagId = singleArcticleController.tagList[index].id!;
                 await Get.find<ListArcticleController>()
                     .getArticleListWithTagsId(tagId);
-
-                Get.to(ArticleListScreen());
+                    String tagName = singleArcticleController.tagList[index].title!;
+                    Get.to(ArticleListScreen(title: tagName,));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -287,3 +286,5 @@ class Single extends StatelessWidget {
     );
   }
 }
+
+

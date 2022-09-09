@@ -8,8 +8,9 @@ import 'package:tec/controller/single_article_controller.dart';
 import 'package:tec/view/single.dart';
 
 class ArticleListScreen extends StatelessWidget {
-  ArticleListScreen({Key? key}) : super(key: key);
-
+  String title;
+  ArticleListScreen({required this.title,Key? key}) : super(key: key);
+ 
   ListArcticleController listarcticleController =
       Get.put(ListArcticleController());
   SingleArcticleController singleArcticleController =
@@ -19,20 +20,25 @@ class ArticleListScreen extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
 
     return SafeArea(
-      child: Scaffold(
-        appBar: appBar("مقالات جدید"),
+ 
+        child: Scaffold(
+        appBar: appBar(title),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             child: Obx(
-              () => ListView.builder(
-                scrollDirection: Axis.vertical,
+              () => !singleArcticleController.loading.value ? ListView.builder(
+                 scrollDirection: Axis.vertical,
                 itemCount: listarcticleController.articleList.length,
                 itemBuilder: ((context, index) {
                   return GestureDetector(
-                    onTap: (() {
-                      singleArcticleController.getArticleInfo(
-                          listarcticleController.articleList[index].id);
+                    onTap: (() async{
+                      singleArcticleController.id.value = int.parse(
+                          listarcticleController.articleList[index].id!);
+
+                      await singleArcticleController.getArticleInfo();
+
+                      Get.to(Single());
                     }),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -111,7 +117,7 @@ class ArticleListScreen extends StatelessWidget {
                     ),
                   );
                 }),
-              ),
+              ) : const Loading(),
             ),
           ),
         ),
