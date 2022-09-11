@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
+import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
@@ -145,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
+  BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,
@@ -155,6 +156,9 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double bodyMargin;
   final Function(int) changeScreen;
+
+  RegisterController _registerController =
+      Get.put(RegisterController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +189,6 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
- 
                     onPressed: (() => changeScreen(0)),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.home.path).image,
@@ -193,8 +196,7 @@ class BottomNavigation extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: (() {
-                      //TODO Check Login Tatus
-                      Get.to(RegisterIntro());
+                      _registerController.toggleLogin();
                     }),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.write.path).image,
@@ -206,8 +208,7 @@ class BottomNavigation extends StatelessWidget {
                       Image.asset(Assets.icons.user.path).image,
                       color: Colors.white,
                     )),
- 
-               ],
+              ],
             ),
           ),
         ),
