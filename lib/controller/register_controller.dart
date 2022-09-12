@@ -26,7 +26,7 @@ class RegisterController extends GetxController {
 
     email = emailTextEditingController.text;
     userId = response.data['user_id'];
-    debugPrint(response);
+    debugPrint(response.toString());
   }
 
   verify() async {
@@ -52,7 +52,7 @@ class RegisterController extends GetxController {
         debugPrint("read::: " + box.read(userId));
 
         Get.offAll(const MainScreen());
-
+ 
         break;
       case 'incorrect_code':
         Get.snackbar('خطا', 'کد فعالسازی غلط است');
@@ -65,9 +65,9 @@ class RegisterController extends GetxController {
   }
 
   toggleLogin() {
-    if (GetStorage().read(token)) {
+    if (GetStorage().read(token)==null) {
       Get.to(RegisterIntro());
-    } else {
+     } else {
       debugPrint('post screen');
     }
   }

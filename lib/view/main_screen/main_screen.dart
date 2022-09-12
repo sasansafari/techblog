@@ -157,8 +157,7 @@ class BottomNavigation extends StatelessWidget {
   final double bodyMargin;
   final Function(int) changeScreen;
 
-  RegisterController _registerController =
-      Get.put(RegisterController(), permanent: false);
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +195,7 @@ class BottomNavigation extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: (() {
-                      _registerController.toggleLogin();
+                      Get.find<RegisterController>().toggleLogin();
                     }),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.write.path).image,

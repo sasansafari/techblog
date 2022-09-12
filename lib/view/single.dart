@@ -7,7 +7,6 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/controller/article_controller.dart';
 import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/articel_list_sceen.dart';
