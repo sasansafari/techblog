@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:tec/binding.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/controller/single_article_controller.dart';
+import 'package:tec/main.dart';
 import 'package:tec/view/single.dart';
 
 // ignore: must_be_immutable
@@ -37,7 +39,7 @@ class ArticleListScreen extends StatelessWidget {
 
                       await singleArcticleController.getArticleInfo(listarcticleController.articleList[index].id);
 
-                      Get.to(Single());
+                      Get.toNamed(routeSingleArticle);
                     }),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

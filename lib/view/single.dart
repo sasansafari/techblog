@@ -13,12 +13,11 @@ import 'package:tec/view/articel_list_sceen.dart';
 
 import '../controller/single_article_controller.dart';
 
-
 // ignore: must_be_immutable
 class Single extends StatelessWidget {
   Single({Key? key}) : super(key: key);
-  SingleArcticleController singleArcticleController =
-  Get.put(SingleArcticleController());
+
+  var singleArcticleController = Get.find<SingleArcticleController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,7 @@ class Single extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Obx(
           () => singleArcticleController.articleInfoModel.value.title == null
-              ? SizedBox(
-                height: Get.height,
-                child: const Loading())
+              ? SizedBox(height: Get.height, child: const Loading())
               : Column(children: [
                   Stack(
                     children: [
@@ -161,8 +158,10 @@ class Single extends StatelessWidget {
                 var tagId = singleArcticleController.tagList[index].id!;
                 await Get.find<ListArcticleController>()
                     .getArticleListWithTagsId(tagId);
-                    String tagName = singleArcticleController.tagList[index].title!;
-                    Get.to(ArticleListScreen(title: tagName,));
+                String tagName = singleArcticleController.tagList[index].title!;
+                Get.to(ArticleListScreen(
+                  title: tagName,
+                ));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -194,11 +193,12 @@ class Single extends StatelessWidget {
             //blog item
             return GestureDetector(
               onTap: (() {
-               singleArcticleController.getArticleInfo(
-                singleArcticleController.releatedList[index].id);
+                singleArcticleController.getArticleInfo(
+                    singleArcticleController.releatedList[index].id);
               }),
               child: Padding(
-                padding: EdgeInsets.only(right: index == 0 ? Get.width / 15 : 15),
+                padding:
+                    EdgeInsets.only(right: index == 0 ? Get.width / 15 : 15),
                 child: Column(
                   children: [
                     Padding(
@@ -221,8 +221,8 @@ class Single extends StatelessWidget {
                                           fit: BoxFit.cover),
                                     ),
                                     foregroundDecoration: const BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(16)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(16)),
                                         gradient: LinearGradient(
                                             begin: Alignment.bottomCenter,
                                             end: Alignment.topCenter,
@@ -240,7 +240,8 @@ class Single extends StatelessWidget {
                               left: 0,
                               right: 0,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
                                     singleArcticleController
@@ -286,5 +287,3 @@ class Single extends StatelessWidget {
     );
   }
 }
-
-
