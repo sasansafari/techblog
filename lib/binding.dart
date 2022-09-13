@@ -7,7 +7,7 @@ class ArticleBinding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.put(ListArcticleController());
+    Get.put(ListArticleController());
 
     Get.lazyPut(() => SingleArcticleController());
   }

@@ -13,9 +13,9 @@ class ArticleListScreen extends StatelessWidget {
   String title;
   ArticleListScreen({required this.title,Key? key}) : super(key: key);
  
-  ListArcticleController listarcticleController =
-      Get.put(ListArcticleController());
-  SingleArcticleController singleArcticleController =
+  ListArticleController listArticleController =
+      Get.put(ListArticleController());
+  SingleArcticleController singleArticleController =
       Get.put(SingleArcticleController());
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,15 @@ class ArticleListScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             child: Obx(
-              () => !singleArcticleController.loading.value ? ListView.builder(
+              () => !singleArticleController.loading.value ? ListView.builder(
                  scrollDirection: Axis.vertical,
-                itemCount: listarcticleController.articleList.length,
+                itemCount: listArticleController.articleList.length,
                 itemBuilder: ((context, index) {
                   return GestureDetector(
                     onTap: (() async{
                       
 
-                      await singleArcticleController.getArticleInfo(listarcticleController.articleList[index].id);
+                      await singleArticleController.getArticleInfo(listArticleController.articleList[index].id);
 
                       Get.toNamed(routeSingleArticle);
                     }),
@@ -50,7 +50,7 @@ class ArticleListScreen extends StatelessWidget {
                             height: Get.height / 6,
                             width: Get.width / 3,
                             child: CachedNetworkImage(
-                              imageUrl: listarcticleController
+                              imageUrl: listArticleController
                                   .articleList[index].image!,
                               imageBuilder: (((context, imageProvider) {
                                 return Container(
@@ -82,7 +82,7 @@ class ArticleListScreen extends StatelessWidget {
                               SizedBox(
                                 width: Get.width / 2,
                                 child: Text(
-                                  listarcticleController
+                                  listArticleController
                                       .articleList[index].title!,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
@@ -96,7 +96,7 @@ class ArticleListScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    listarcticleController
+                                    listArticleController
                                         .articleList[index].author!,
                                     style: textTheme.caption,
                                   ),
@@ -104,7 +104,7 @@ class ArticleListScreen extends StatelessWidget {
                                     width: 20,
                                   ),
                                   Text(
-                                    listarcticleController
+                                    listArticleController
                                             .articleList[index].view! +
                                         " بازدید ",
                                     style: textTheme.caption,
