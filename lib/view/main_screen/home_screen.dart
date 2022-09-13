@@ -6,6 +6,7 @@ import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
+import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/controller/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
@@ -22,8 +23,10 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArcticleController singleArcticleController = Get.put(SingleArcticleController());
-
+  SingleArcticleController singleArcticleController =
+      Get.put(SingleArcticleController());
+  ListArcticleController listArcticleController =
+      Get.put(ListArcticleController());
 
   final Size size;
   final TextTheme textTheme;
@@ -47,8 +50,16 @@ class HomeScreen extends StatelessWidget {
                       height: 32,
                     ),
                     GestureDetector(
-                      onTap: () => Get.to(ArticleListScreen(title: "مقالات",)) ,
-                      child: SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme)),
+                        onTap: () {
+                          // when click on hastages list is full we need clear list and then getList
+                          listArcticleController.articleList.clear();
+                          listArcticleController.getList();
+                          Get.to(ArticleListScreen(
+                            title: "مقالات",
+                          ));
+                        },
+                        child: SeeMoreBlog(
+                            bodyMargin: bodyMargin, textTheme: textTheme)),
                     topVisited(),
                     const SizedBox(
                       height: 32,
@@ -61,9 +72,8 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 )
- 
               : const Center(child: Loading()),
-         ),
+        ),
       ),
     );
   }
@@ -79,9 +89,8 @@ class HomeScreen extends StatelessWidget {
               //blog item
               return GestureDetector(
                 onTap: (() {
-                
-              singleArcticleController.getArticleInfo(
-                homeScreenController.topVisitedList[index].id);
+                  singleArcticleController.getArticleInfo(
+                      homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(
                   padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
@@ -114,11 +123,10 @@ class HomeScreen extends StatelessWidget {
                                               end: Alignment.topCenter,
                                               colors: GradiantColors.blogPost)),
                                     )),
-               
-                
-                                placeholder: ((context, url) => const Loading()),
-               
-                                errorWidget: ((context, url, error) => const Icon(
+                                placeholder: ((context, url) =>
+                                    const Loading()),
+                                errorWidget: ((context, url, error) =>
+                                    const Icon(
                                       Icons.image_not_supported_outlined,
                                       size: 50,
                                       color: Colors.grey,
@@ -207,9 +215,8 @@ class HomeScreen extends StatelessWidget {
                                           image: imageProvider,
                                           fit: BoxFit.cover)),
                                 )),
- 
                             placeholder: ((context, url) => const Loading()),
-                             errorWidget: ((context, url, error) => const Icon(
+                            errorWidget: ((context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 50,
                                   color: Colors.grey,
@@ -287,12 +294,21 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: tagList.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding:
-                  EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
-              child: MainTags(
-                textTheme: textTheme,
-                index: index,
+            return GestureDetector(
+              onTap: () {
+                listArcticleController.getArticleListWithTagsId(
+                    homeScreenController.tagsList[index].id!);
+                Get.to(() => ArticleListScreen(
+                      title: homeScreenController.tagsList[index].title!,
+                    ));
+              },
+              child: Padding(
+                padding:
+                    EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+                child: MainTags(
+                  textTheme: textTheme,
+                  index: index,
+                ),
               ),
             );
           })),
