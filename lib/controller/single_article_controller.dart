@@ -7,7 +7,7 @@ import 'package:tec/models/tags_model.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/single.dart';
 
-class SingleArcticleController extends GetxController {
+class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel().obs;

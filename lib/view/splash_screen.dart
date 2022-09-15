@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:tec/gen/assets.gen.dart';
 
-import 'package:tec/component/my_colors.dart';
-import 'package:tec/main.dart';
-import 'package:tec/routes/app_routes.dart';
-import 'package:tec/view/main_screen/main_screen.dart';
+import 'package:tec/component/components.dart';
+import 'package:tec/gen/assets.gen.dart';
+import 'package:tec/routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

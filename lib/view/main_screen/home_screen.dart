@@ -1,16 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:tec/component/my_colors.dart';
-import 'package:tec/component/my_component.dart';
-import 'package:tec/component/my_strings.dart';
-import 'package:tec/controller/home_screen_controller.dart';
-import 'package:tec/controller/single_article_controller.dart';
+
+import 'package:tec/component/components.dart';
+import 'package:tec/controller/controller.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/models/fake_data.dart';
-import 'package:tec/view/articel_list_sceen.dart';
-import 'package:tec/view/single.dart';
+import 'package:tec/models/modles.dart';
+import 'package:tec/view/view.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -22,8 +20,8 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArcticleController singleArcticleController = Get.put(SingleArcticleController());
-
+  SingleArticleController singleArcticleController =
+      Get.put(SingleArticleController());
 
   final Size size;
   final TextTheme textTheme;
@@ -47,8 +45,11 @@ class HomeScreen extends StatelessWidget {
                       height: 32,
                     ),
                     GestureDetector(
-                      onTap: () => Get.to(ArticleListScreen(title: "مقالات",)) ,
-                      child: SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme)),
+                        onTap: () => Get.to(ArticleListScreen(
+                              title: "مقالات",
+                            )),
+                        child: SeeMoreBlog(
+                            bodyMargin: bodyMargin, textTheme: textTheme)),
                     topVisited(),
                     const SizedBox(
                       height: 32,
@@ -61,9 +62,8 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 )
- 
               : const Center(child: Loading()),
-         ),
+        ),
       ),
     );
   }
@@ -79,9 +79,8 @@ class HomeScreen extends StatelessWidget {
               //blog item
               return GestureDetector(
                 onTap: (() {
-                
-              singleArcticleController.getArticleInfo(
-                homeScreenController.topVisitedList[index].id);
+                  singleArcticleController.getArticleInfo(
+                      homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(
                   padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
@@ -114,11 +113,10 @@ class HomeScreen extends StatelessWidget {
                                               end: Alignment.topCenter,
                                               colors: GradiantColors.blogPost)),
                                     )),
-               
-                
-                                placeholder: ((context, url) => const Loading()),
-               
-                                errorWidget: ((context, url, error) => const Icon(
+                                placeholder: ((context, url) =>
+                                    const Loading()),
+                                errorWidget: ((context, url, error) =>
+                                    const Icon(
                                       Icons.image_not_supported_outlined,
                                       size: 50,
                                       color: Colors.grey,
@@ -207,9 +205,8 @@ class HomeScreen extends StatelessWidget {
                                           image: imageProvider,
                                           fit: BoxFit.cover)),
                                 )),
- 
                             placeholder: ((context, url) => const Loading()),
-                             errorWidget: ((context, url, error) => const Icon(
+                            errorWidget: ((context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 50,
                                   color: Colors.grey,
