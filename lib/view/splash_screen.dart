@@ -5,6 +5,7 @@ import 'package:tec/gen/assets.gen.dart';
 
 import 'package:tec/component/my_colors.dart';
 import 'package:tec/main.dart';
+import 'package:tec/routes/app_routes.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
       
-      Get.offAndToNamed(routeMainScreen);
+      Get.offAndToNamed(TechBlogRoutes.homeScreen);
     });
     super.initState();
   }

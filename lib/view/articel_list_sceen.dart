@@ -6,6 +6,7 @@ import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/list_article_controller.dart';
 import 'package:tec/controller/single_article_controller.dart';
 import 'package:tec/main.dart';
+import 'package:tec/routes/app_routes.dart';
 import 'package:tec/view/single.dart';
 
 // ignore: must_be_immutable
@@ -39,7 +40,7 @@ class ArticleListScreen extends StatelessWidget {
 
                       await singleArcticleController.getArticleInfo(listarcticleController.articleList[index].id);
 
-                      Get.toNamed(routeSingleArticle);
+                      Get.toNamed(TechBlogRoutes.articleSingleScreen);
                     }),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
