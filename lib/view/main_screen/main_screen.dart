@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:tec/component/my_colors.dart';
-import 'package:tec/component/my_component.dart';
-import 'package:tec/component/my_strings.dart';
-import 'package:tec/controller/register_controller.dart';
+
+import 'package:tec/component/components.dart';
+import 'package:tec/controller/controller.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/view/main_screen/home_screen.dart';
-import 'package:tec/view/main_screen/profile_screen.dart';
-import 'package:tec/view/register/register_intro.dart';
+import 'package:tec/view/view.dart';
+
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -156,8 +155,6 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double bodyMargin;
   final Function(int) changeScreen;
-
- 
 
   @override
   Widget build(BuildContext context) {

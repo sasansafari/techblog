@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:tec/binding.dart';
-import 'package:tec/component/my_component.dart';
-import 'package:tec/controller/list_article_controller.dart';
-import 'package:tec/controller/single_article_controller.dart';
-import 'package:tec/main.dart';
-import 'package:tec/view/single.dart';
+
+import 'package:tec/component/components.dart';
+import 'package:tec/controller/controller.dart';
+import 'package:tec/routes/routes.dart';
+
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
@@ -15,8 +15,8 @@ class ArticleListScreen extends StatelessWidget {
  
   ListArcticleController listarcticleController =
       Get.put(ListArcticleController());
-  SingleArcticleController singleArcticleController =
-      Get.put(SingleArcticleController());
+  SingleArticleController singleArcticleController =
+      Get.put(SingleArticleController());
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -39,7 +39,7 @@ class ArticleListScreen extends StatelessWidget {
 
                       await singleArcticleController.getArticleInfo(listarcticleController.articleList[index].id);
 
-                      Get.toNamed(routeSingleArticle);
+                      Get.toNamed(TechBlogRoutes.articleSingleScreen);
                     }),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
