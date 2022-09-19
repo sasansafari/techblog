@@ -158,10 +158,9 @@ class Single extends StatelessWidget {
                 var tagId = singleArcticleController.tagList[index].id!;
                 await Get.find<ListArcticleController>()
                     .getArticleListWithTagsId(tagId);
-                String tagName = singleArcticleController.tagList[index].title!;
-                Get.to(ArticleListScreen(
-                  title: tagName,
-                ));
+                Get.find<ListArticleController>().screenTitle.value =
+                    'بر اساس ' + singleArticleController.tagsList[index].title!;
+                Get.to(ArticleListScreen( ));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
