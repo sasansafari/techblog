@@ -10,7 +10,7 @@ import 'package:tec/view/single.dart';
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
-  String title;
+  
   ArticleListScreen({required this.title,Key? key}) : super(key: key);
  
   ListArcticleController listarcticleController =
@@ -24,7 +24,7 @@ class ArticleListScreen extends StatelessWidget {
     return SafeArea(
  
         child: Scaffold(
-        appBar: appBar(title),
+        appBar: appBar(listarcticleController.screenTitle.value),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
