@@ -6,7 +6,8 @@ import 'package:tec/services/dio_service.dart';
 class ListArcticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
   RxBool loading = false.obs;
-
+   RxString screenTitle = ''.obs;
+  
   @override
   onInit() {
     super.onInit();
@@ -14,6 +15,7 @@ class ListArcticleController extends GetxController {
   }
 
   getList() async {
+    screenTitle.value = 'مقالات جدید';
     loading.value = true;
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
     var response = await DioSevice().getMethod(ApiConstant.getArticleList);
