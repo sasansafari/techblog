@@ -146,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({
+  const BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,

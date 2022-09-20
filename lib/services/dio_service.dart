@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_service;
  
 
-class DioSevice {
+class DioService {
   Dio dio = Dio();
 
   Future<dynamic> getMethod(String url) async {

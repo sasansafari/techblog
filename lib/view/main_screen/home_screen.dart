@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArcticleController singleArcticleController = Get.put(SingleArcticleController());
+  SingleArcticleController singleArticleController = Get.put(SingleArcticleController());
 
 
   final Size size;
@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
               return GestureDetector(
                 onTap: (() {
                 
-              singleArcticleController.getArticleInfo(
+              singleArticleController.getArticleInfo(
                 homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(

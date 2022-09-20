@@ -146,7 +146,7 @@ class Single extends StatelessWidget {
     ));
   }
 
-  Widget tags(textheme) {
+  Widget tags(textTheme) {
     return SizedBox(
       height: 35,
       child: ListView.builder(
@@ -156,7 +156,7 @@ class Single extends StatelessWidget {
             return GestureDetector(
               onTap: () async {
                 var tagId = singleArcticleController.tagList[index].id!;
-                await Get.find<ListArcticleController>()
+                await Get.find<ListArticleController>()
                     .getArticleListWithTagsId(tagId);
                 String tagName = singleArcticleController.tagList[index].title!;
                 Get.to(ArticleListScreen(
@@ -174,7 +174,7 @@ class Single extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                       child: Text(
                         singleArcticleController.tagList[index].title!,
-                        style: textheme.headline2,
+                        style: textTheme.headline2,
                       )),
                 ),
               ),
@@ -183,7 +183,7 @@ class Single extends StatelessWidget {
     );
   }
 
-  Widget simmilar(textheme) {
+  Widget simmilar(textTheme) {
     return SizedBox(
       height: Get.height / 3.5,
       child: ListView.builder(
@@ -246,14 +246,14 @@ class Single extends StatelessWidget {
                                   Text(
                                     singleArcticleController
                                         .releatedList[index].author!,
-                                    style: textheme.subtitle1,
+                                    style: textTheme.subtitle1,
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         singleArcticleController
                                             .releatedList[index].view!,
-                                        style: textheme.subtitle1,
+                                        style: textTheme.subtitle1,
                                       ),
                                       const SizedBox(
                                         width: 8,
