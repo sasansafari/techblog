@@ -37,6 +37,14 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/write.png
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
+
+  /// File path: assets/icons/write_article_icon.png
+  AssetGenImage get writeArticleIcon =>
+      const AssetGenImage('assets/icons/write_article_icon.png');
+
+  /// File path: assets/icons/write_podcast_icon.png
+  AssetGenImage get writePodcastIcon =>
+      const AssetGenImage('assets/icons/write_podcast_icon.png');
 }
 
 class $AssetsImagesGen {

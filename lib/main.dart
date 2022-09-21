@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/binding.dart';
 import 'package:tec/component/my_colors.dart';
+import 'package:tec/view/articles/single.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
-import 'package:tec/view/single.dart';
-import 'package:tec/view/splash_screen.dart';
+ import 'package:tec/view/splash_screen.dart';
 import 'my_http_overrides.dart';
 
 Future<void> main() async {

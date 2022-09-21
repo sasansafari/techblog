@@ -6,11 +6,11 @@ import 'package:tec/component/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
-import 'package:tec/controller/single_article_controller.dart';
+import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
-import 'package:tec/view/articel_list_sceen.dart';
-import 'package:tec/view/single.dart';
+import 'package:tec/view/articles/articel_list_sceen.dart';
+ 
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
