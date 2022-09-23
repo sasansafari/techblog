@@ -1,4 +1,4 @@
-import 'package:tec/component/api_constant.dart';
+import 'package:tec/constant/api_constant.dart';
 
 class PodcastModel {
   String? id;

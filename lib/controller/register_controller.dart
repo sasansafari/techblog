@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:tec/component/api_constant.dart';
+import 'package:tec/constant/api_constant.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/gen/assets.gen.dart';
+import 'package:tec/main.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 import 'package:tec/view/register/register_intro.dart';
 
-import '../component/storage_const.dart';
+import '../constant/storage_const.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailTextEditingController = TextEditingController();
@@ -49,11 +50,11 @@ class RegisterController extends GetxController {
     switch (status) {
       case 'verified':
         var box = GetStorage();
-        box.write(token, response.data['token']);
-        box.write(userId, response.data['user_id']);
+        box.write(StorageKey.token, response.data['token']);
+        box.write(StorageKey.userId, response.data['user_id']);
 
-        debugPrint("read::: " + box.read(token));
-        debugPrint("read::: " + box.read(userId));
+        debugPrint("read::: " + box.read(StorageKey.token));
+        debugPrint("read::: " + box.read(StorageKey.userId));
 
         Get.offAll(const MainScreen());
 
@@ -69,7 +70,7 @@ class RegisterController extends GetxController {
   }
 
   toggleLogin() {
-    if (GetStorage().read(token) == null) {
+    if (GetStorage().read(StorageKey.token) == null) {
       Get.to(RegisterIntro());
     } else {
       routeToWriteBottomSheet();
@@ -110,7 +111,8 @@ class RegisterController extends GetxController {
             children: [
               GestureDetector(
                 onTap: (() {
-                  debugPrint("write article");
+                  // debugPrint("write article");
+                  Get.toNamed(NamedRoute.manageArticle);
                 }),
                 child: Container(
                   color: Colors.white,

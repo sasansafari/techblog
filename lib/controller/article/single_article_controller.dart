@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:tec/component/api_constant.dart';
+import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/article_info_model.dart';
 import 'package:tec/models/article_model.dart';
 import 'package:tec/models/tags_model.dart';
@@ -10,12 +10,12 @@ import 'package:tec/view/articles/single.dart';
 class SingleArcticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
-  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel().obs;
+  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> releatedList = RxList();
 
   getArticleInfo(var id) async {
-    articleInfoModel = ArticleInfoModel().obs;
+    articleInfoModel = ArticleInfoModel(null,null,null).obs;
      Get.to(Single());
 
     loading.value = true;

@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'my_colors.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
@@ -112,19 +112,60 @@ PreferredSize appBar(String title) {
             )),
           ),
         ],
-        leading: Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: SolidColors.primeryColor.withBlue(100),
-              shape: BoxShape.circle,
+        leading: GestureDetector(
+          onTap: () {
+           Get.back();
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: SolidColors.primeryColor.withBlue(100),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.keyboard_arrow_right_rounded),
             ),
-            child: const Icon(Icons.keyboard_arrow_right_rounded),
           ),
         ),
       ),
     ),
   );
+}
+
+
+class SeeMoreBlog extends StatelessWidget {
+  const SeeMoreBlog({
+    Key? key,
+    required this.bodyMargin,
+    required this.textTheme,
+    required this.title,
+  }) : super(key: key);
+
+  final double bodyMargin;
+  final TextTheme textTheme;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+      child: Row(
+        children: [
+          ImageIcon(
+            Image.asset(Assets.icons.bluePen.path).image,
+            color: SolidColors.seeMore,
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Text(
+            title,
+            style: textTheme.headline3,
+          )
+        ],
+      ),
+    );
+  }
 }

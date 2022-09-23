@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:tec/component/my_colors.dart';
+import 'package:tec/component/dimens.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/component/my_strings.dart';
+import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
@@ -26,15 +27,14 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
-    double bodyMargin = size.width / 10;
-
+ 
     return SafeArea(
       child: Scaffold(
         key: _key,
         drawer: Drawer(
           backgroundColor: SolidColors.scafoldBg,
           child: Padding(
-            padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+            padding: EdgeInsets.only(right: Dimens.bodyMargin, left: Dimens.bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
@@ -126,14 +126,14 @@ class _MainScreenState extends State<MainScreen> {
                   HomeScreen(
                       size: size,
                       textTheme: textTheme,
-                      bodyMargin: bodyMargin), //0
+                      bodyMargin: Dimens.bodyMargin), //0
                   const ProfileScreen() //1
                 ],
               ),
             )),
             BottomNavigation(
               size: size,
-              bodyMargin: bodyMargin,
+              bodyMargin: Dimens.bodyMargin,
               changeScreen: (int value) {
                 selectedPageIndex.value = value;
               },

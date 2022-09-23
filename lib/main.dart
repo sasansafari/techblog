@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/binding.dart';
-import 'package:tec/component/my_colors.dart';
+import 'package:tec/constant/my_colors.dart';
+import 'package:tec/view/articles/manage_article.dart';
 import 'package:tec/view/articles/single.dart';
+import 'package:tec/view/articles/single_manage_article.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
  import 'package:tec/view/splash_screen.dart';
 import 'my_http_overrides.dart';
@@ -36,13 +38,21 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(
-              name: routeMainScreen,
+              name: NamedRoute.routeMainScreen,
               page: () => const MainScreen(),
               binding: RegisterBinding()),
           GetPage(
-              name: routeSingleArticle,
+              name: NamedRoute.routeSingleArticle,
               page: () => Single(),
-              binding: ArticleBinding())
+              binding: ArticleBinding()),
+          GetPage(
+              name: NamedRoute.manageArticle,
+              page: () => ManageArticle(),
+              binding: ArticleManagerBinding()),
+          GetPage(
+              name: NamedRoute.singleManageArticle,
+              page: () => SingleManageArticle(),
+              binding: ArticleManagerBinding()),
         ],
         // home: Single()
         home: SplashScreen());
@@ -113,5 +123,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-const String routeMainScreen = "/MainScreen";
-const String routeSingleArticle = "/SingleArticle";
+
+
+class NamedRoute{
+static String routeMainScreen = "/MainScreen";
+static String routeSingleArticle = "/SingleArticle";
+static String manageArticle = "/ManageArticle";
+static String singleManageArticle = "/SingleManageArticle";
+
+
+}

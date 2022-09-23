@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:tec/component/my_colors.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/component/my_strings.dart';
+import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () => Get.to(ArticleListScreen(title: "مقالات",)) ,
-                      child: SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme)),
+                      child: SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme, title: 'مشاهده داغ ترین نوشته ها ',)),
                     topVisited(),
                     const SizedBox(
                       height: 32,
@@ -333,35 +333,3 @@ class SeeMorePodcast extends StatelessWidget {
   }
 }
 
-class SeeMoreBlog extends StatelessWidget {
-  const SeeMoreBlog({
-    Key? key,
-    required this.bodyMargin,
-    required this.textTheme,
-  }) : super(key: key);
-
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
-      child: Row(
-        children: [
-          ImageIcon(
-            Image.asset(Assets.icons.bluePen.path).image,
-            color: SolidColors.seeMore,
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Text(
-            MyStrings.viewHotestBlog,
-            style: textTheme.headline3,
-          )
-        ],
-      ),
-    );
-  }
-}

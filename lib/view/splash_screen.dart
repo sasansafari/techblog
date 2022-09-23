@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tec/gen/assets.gen.dart';
 
-import 'package:tec/component/my_colors.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/main.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
       
-      Get.offAndToNamed(routeMainScreen);
+      Get.offAndToNamed(NamedRoute.routeMainScreen);
     });
     super.initState();
   }

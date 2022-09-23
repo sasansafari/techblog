@@ -38,9 +38,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/write.png
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
 
+  /// File path: assets/icons/write_article.png
+  AssetGenImage get writeArticle =>
+      const AssetGenImage('assets/icons/write_article.png');
+
   /// File path: assets/icons/write_article_icon.png
   AssetGenImage get writeArticleIcon =>
       const AssetGenImage('assets/icons/write_article_icon.png');
+
+  /// File path: assets/icons/write_microphone.png
+  AssetGenImage get writeMicrophone =>
+      const AssetGenImage('assets/icons/write_microphone.png');
 
   /// File path: assets/icons/write_podcast_icon.png
   AssetGenImage get writePodcastIcon =>
@@ -49,6 +57,10 @@ class $AssetsIconsGen {
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/empty_state.png
+  AssetGenImage get emptyState =>
+      const AssetGenImage('assets/images/empty_state.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');

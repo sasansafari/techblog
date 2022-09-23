@@ -5,7 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
-import 'package:tec/component/my_colors.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
@@ -55,30 +55,33 @@ class Single extends StatelessWidget {
                                         GradiantColors.singleAppbarGradiant)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                SizedBox(
+                              children:   [
+                                const SizedBox(
                                   width: 20,
                                 ),
-                                Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
-                                  size: 24,
+                                GestureDetector(
+                                  onTap: (() => Get.back()),
+                                  child: const Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
                                 ),
-                                Expanded(child: SizedBox()),
-                                Icon(
+                                const Expanded(child: const SizedBox()),
+                                const Icon(
                                   Icons.bookmark_border_rounded,
                                   color: Colors.white,
                                   size: 24,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 20,
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.share,
                                   color: Colors.white,
                                   size: 24,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 20,
                                 ),
                               ],
