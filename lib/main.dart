@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
               binding: ArticleManagerBinding()),
         ],
         // home: Single()
-        home: SplashScreen());
+        home: const SplashScreen());
   }
 
   ThemeData lightTheme(TextTheme textTheme) {
@@ -69,21 +69,18 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.white,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            textStyle: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
-                return textTheme.headline1;
-              }
-              return textTheme.subtitle1;
-            }),
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) {
               if (states.contains(MaterialState.pressed)) {
                 return SolidColors.seeMore;
               }
               return SolidColors.primeryColor;
-            }),
+            },
           ),
         ),
+      ),
         fontFamily: 'dana',
         brightness: Brightness.light,
         textTheme: const TextTheme(
