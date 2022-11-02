@@ -13,6 +13,7 @@ class ManageArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList.empty();
   RxList<TagsModel> tagList = RxList.empty();
   RxBool Loading = false.obs;
+  TextEditingController titleTextEditingController = TextEditingController();
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(
           'اینجا عنوان مقاله قرار میگیره ، یه عنوان جذاب انتخاب کن',
           """
@@ -25,6 +26,7 @@ class ManageArticleController extends GetxController {
     super.onInit();
     getManagedArticle();
   }
+
 
   getManagedArticle() async {
     Loading.value = true;
@@ -39,5 +41,12 @@ class ManageArticleController extends GetxController {
       articleList.clear();
       Loading.value = false;
     }
+  }
+
+
+  updateTitle(){
+      articleInfoModel.update((val) {
+        val!.title = titleTextEditingController.text;
+      });
   }
 }

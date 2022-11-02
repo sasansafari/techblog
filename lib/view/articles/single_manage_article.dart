@@ -26,6 +26,35 @@ class SingleManageArticle extends StatelessWidget {
   FilePickerController filePickerController = Get.put(FilePickerController());
 
 
+  getTitle(){
+
+    Get.defaultDialog(
+      title: "عنوان مقاله",
+      titleStyle: const TextStyle(
+          color: SolidColors.scafoldBg
+        ),
+      content:  TextField(
+        controller: manageArticleController.titleTextEditingController,
+        keyboardType: TextInputType.text,
+          style: const TextStyle(
+          color: SolidColors.colorTitle
+        ),
+        decoration:   const InputDecoration(
+
+          hintText: 'اینجا بنویس'
+        ),
+      ),
+       backgroundColor: SolidColors.primeryColor,
+        radius: 8,
+        confirm: ElevatedButton(onPressed: (() {
+          manageArticleController.updateTitle();
+          Get.back();
+
+        }), child: const Text('ثبت'))
+    
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,10 +157,16 @@ class SingleManageArticle extends StatelessWidget {
               height: 24,
             ),
 
-            SeeMoreBlog(
-              bodyMargin: Dimens.halfBodyMargin,
-              textTheme: textheme,
-              title: 'ویرایش عنوان مقاله',
+            GestureDetector(
+              onTap: (){
+
+                getTitle();
+              },
+              child: SeeMoreBlog(
+                bodyMargin: Dimens.halfBodyMargin,
+                textTheme: textheme,
+                title: 'ویرایش عنوان مقاله',
+              ),
             ),
 
             Padding(
