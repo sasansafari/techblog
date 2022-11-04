@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/binding.dart';
 import 'package:tec/constant/my_colors.dart';
+import 'package:tec/view/articles/html_content_editor.dart';
 import 'package:tec/view/articles/manage_article.dart';
 import 'package:tec/view/articles/single.dart';
 import 'package:tec/view/articles/single_manage_article.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
               binding: ArticleManagerBinding()),
         ],
         // home: Single()
-        home: SplashScreen());
+        home: HtmlEditorExample(title: 'content',));
   }
 
   ThemeData lightTheme(TextTheme textTheme) {
