@@ -18,6 +18,8 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/services/pick_file.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
 
+import 'article_content_editor.dart';
+
 // ignore: must_be_immutable
 class SingleManageArticle extends StatelessWidget {
   SingleManageArticle({Key? key}) : super(key: key);
@@ -177,10 +179,13 @@ class SingleManageArticle extends StatelessWidget {
                 style: textheme.titleLarge,
               ),
             ),
-            SeeMoreBlog(
-              bodyMargin: Dimens.halfBodyMargin,
-              textTheme: textheme,
-              title: 'ویرایش متن اصلی مقاله',
+            GestureDetector(
+              onTap: () => Get.to(()=>ArticleContentEditor()),
+              child: SeeMoreBlog(
+                bodyMargin: Dimens.halfBodyMargin,
+                textTheme: textheme,
+                title: 'ویرایش متن اصلی مقاله',
+              ),
             ),
 
             Padding(
