@@ -61,7 +61,7 @@ class MainTags extends StatelessWidget {
               width: 8,
             ),
             Text(
-              Get.find<HomeScreenController>().tagsList[index].title!,
+              Get.find<HomeScreenController>().tagList[index].title!,
               style: textTheme.headline2,
             )
           ],
