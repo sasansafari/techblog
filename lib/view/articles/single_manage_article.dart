@@ -14,6 +14,7 @@ import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/controller/file_controller.dart';
+import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/services/pick_file.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
@@ -201,10 +202,15 @@ class SingleManageArticle extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            SeeMoreBlog(
-              bodyMargin: Dimens.halfBodyMargin,
-              textTheme: textheme,
-              title: 'انتخاب دسته بندی ',
+            GestureDetector(
+              onTap: () {
+                chooseCatsBottomSheet(textheme);
+              },
+              child: SeeMoreBlog(
+                bodyMargin: Dimens.halfBodyMargin,
+                textTheme: textheme,
+                title: 'انتخاب دسته بندی ',
+              ),
             ),
 
             // tags(textheme),
@@ -214,19 +220,21 @@ class SingleManageArticle extends StatelessWidget {
     ));
   }
 
-  Widget tags(textheme) {
+  Widget cats(textheme) {
+
+    var homeScreenController = Get.find<HomeScreenController>();
     return SizedBox(
-      height: 35,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: manageArticleController.tagList.length,
+      height: Get.height/1.7,
+      child: GridView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: homeScreenController.tagsList.length,
           itemBuilder: ((context, index) {
             return GestureDetector(
               onTap: () async {
-                var tagId = manageArticleController.tagList[index].id!;
+                var tagId = homeScreenController.tagsList[index].id!;
                 await Get.find<ListArcticleController>()
                     .getArticleListWithTagsId(tagId);
-                String tagName = manageArticleController.tagList[index].title!;
+                String tagName = homeScreenController.tagsList[index].title!;
                 Get.to(ArticleListScreen(
                   title: tagName,
                 ));
@@ -237,17 +245,57 @@ class SingleManageArticle extends StatelessWidget {
                   height: 30,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
-                      color: Colors.grey),
+                      color: SolidColors.primeryColor),
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                      child: Text(
-                        manageArticleController.tagList[index].title!,
-                        style: textheme.headline2,
+                      child: Center(
+                        child: Text(
+                          homeScreenController.tagsList[index].title!,
+                          style: textheme.headline2,
+                        ),
                       )),
                 ),
               ),
             );
-          })),
+        }),
+        gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 5),
+      ),
     );
   }
+
+
+  chooseCatsBottomSheet(TextTheme textTheme){
+
+
+    Get.bottomSheet(
+
+        Container(
+          height: Get.height/1.5,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20)
+            ),
+            
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(children:   [
+              const Text("انتخاب دسته بندی"),
+              const SizedBox(height: 8,)
+              ,cats(textTheme)
+            ]),
+          ),
+        ),
+        isScrollControlled: true,
+        persistent: true
+
+    );
+
+
+  }
+
+
 }
