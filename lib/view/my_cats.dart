@@ -85,7 +85,7 @@ class _MyCatsState extends State<MyCats> {
                                   if (!selectedTags.contains(tagList[index])) {
                                     selectedTags.add(tagList[index]);
                                   } else {
-                                    print("${tagList[index].title} exist");
+                                    debugPrint("${tagList[index].title} exist");
                                   }
                                 });
                               }),

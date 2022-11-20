@@ -9,7 +9,6 @@ import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
-import 'package:tec/view/register/register_intro.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -146,7 +145,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({
+  const BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,

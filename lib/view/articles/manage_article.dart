@@ -1,13 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
-import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
  import 'package:tec/main.dart';
-import 'package:validators/validators.dart';
 
 import '../../constant/my_strings.dart';
 
@@ -20,12 +17,11 @@ class ManageArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
-    return SafeArea(
+     return SafeArea(
         child: Scaffold(
           appBar: appBar("مدیریت مقاله ها"),
           body:  Obx(
-              () => articleManageController.Loading.value?Loading(): articleManageController.articleList.isNotEmpty ? ListView.builder(
+              () => articleManageController.loading.value?const Loading(): articleManageController.articleList.isNotEmpty ? ListView.builder(
                  scrollDirection: Axis.vertical,
                 itemCount: articleManageController.articleList.length,
                 itemBuilder: ((context, index) {

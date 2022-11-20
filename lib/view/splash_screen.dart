@@ -5,7 +5,6 @@ import 'package:tec/gen/assets.gen.dart';
 
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/main.dart';
-import 'package:tec/view/main_screen/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

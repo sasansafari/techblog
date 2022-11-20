@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:tec/binding.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';

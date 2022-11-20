@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/api_constant.dart';
-import 'package:tec/constant/storage_const.dart';
 import 'package:tec/models/article_info_model.dart';
 import 'package:tec/models/article_model.dart';
 import 'package:tec/models/tags_model.dart';
@@ -12,7 +10,7 @@ import '../../services/dio_service.dart';
 class ManageArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList.empty();
   RxList<TagsModel> tagList = RxList.empty();
-  RxBool Loading = false.obs;
+  RxBool loading = false.obs;
   TextEditingController titleTextEditingController = TextEditingController();
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(
           'اینجا عنوان مقاله قرار میگیره ، یه عنوان جذاب انتخاب کن',
@@ -29,7 +27,8 @@ class ManageArticleController extends GetxController {
 
 
   getManagedArticle() async {
-    Loading.value = true;
+    loading.value = true;
+    // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
     // var response = await DioSevice().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
     var response = await DioSevice().getMethod(ApiConstant.publishedByMe + "1");
@@ -39,7 +38,7 @@ class ManageArticleController extends GetxController {
         articleList.add(ArticleModel.fromJson(element));
       });
       articleList.clear();
-      Loading.value = false;
+      loading.value = false;
     }
   }
 

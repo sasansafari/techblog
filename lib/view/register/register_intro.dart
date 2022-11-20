@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/constant/my_strings.dart';
-import 'package:tec/view/my_cats.dart';
 import 'package:validators/validators.dart';
 
+// ignore: must_be_immutable
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({Key? key}) : super(key: key);
 
@@ -84,7 +84,7 @@ class RegisterIntro extends StatelessWidget {
                   child: TextField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
-                      print(value + " is Email : " + isEmail(value).toString());
+                      debugPrint(value + " is Email : " + isEmail(value).toString());
                     },
                     style: textTheme.headline5,
                     textAlign: TextAlign.center,
@@ -145,7 +145,7 @@ class RegisterIntro extends StatelessWidget {
                           controller:
                               registerController.activeCodeTextEditingController,
                           onChanged: (value) {
-                            print(value +
+                            debugPrint(value +
                                 " is Email : " +
                                 isEmail(value).toString());
                           },

@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
@@ -12,7 +9,6 @@ import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
-import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/controller/file_controller.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/gen/assets.gen.dart';

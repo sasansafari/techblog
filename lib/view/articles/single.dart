@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/constant/my_colors.dart';
@@ -67,7 +64,7 @@ class Single extends StatelessWidget {
                                     size: 24,
                                   ),
                                 ),
-                                const Expanded(child: const SizedBox()),
+                                const Expanded(child: SizedBox()),
                                 const Icon(
                                   Icons.bookmark_border_rounded,
                                   color: Colors.white,

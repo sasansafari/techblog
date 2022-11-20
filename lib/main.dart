@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
               binding: ArticleManagerBinding()),
         ],
         // home: Single()
-        home: SplashScreen());
+        home: const SplashScreen());
   }
 
   ThemeData lightTheme(TextTheme textTheme) {

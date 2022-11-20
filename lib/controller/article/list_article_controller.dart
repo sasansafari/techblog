@@ -15,6 +15,7 @@ class ListArcticleController extends GetxController {
 
   getList() async {
     loading.value = true;
+    // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
     var response = await DioSevice().getMethod(ApiConstant.getArticleList);
 
@@ -30,6 +31,7 @@ class ListArcticleController extends GetxController {
   getArticleListWithTagsId(String id) async {
     articleList.clear();
     loading.value = true;
+    // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
     var response = await DioSevice().getMethod(ApiConstant.baseUrl +
         'article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');

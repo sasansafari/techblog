@@ -1,15 +1,13 @@
 
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 
+// ignore: must_be_immutable
 class ArticleContentEditor extends StatelessWidget {
   ArticleContentEditor({Key? key}) : super(key: key);
   
