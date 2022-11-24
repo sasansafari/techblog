@@ -222,6 +222,8 @@ class SingleManageArticle extends StatelessWidget {
     return SizedBox(
       height: Get.height/1.7,
       child: GridView.builder(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
           scrollDirection: Axis.vertical,
           itemCount: homeScreenController.tagsList.length,
           itemBuilder: ((context, index) {
