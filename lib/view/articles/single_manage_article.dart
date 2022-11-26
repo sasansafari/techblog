@@ -208,7 +208,29 @@ class SingleManageArticle extends StatelessWidget {
                 title: 'انتخاب دسته بندی ',
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(Dimens.halfBodyMargin),
+              child: Text(
+                manageArticleController.articleInfoModel.value.catName==null?
+                 "هیچ دسته بندی انتخاب نشده"
+                 :manageArticleController.articleInfoModel.value.catName!,
+                maxLines: 2,
+                style: textheme.titleLarge,
+              ),
+            ),
 
+            ElevatedButton(
+              onPressed: (() async => await manageArticleController.storeArticle() ),
+            
+            
+             child: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Text(
+                manageArticleController.loading.value?
+                "ٌصبر کنید ..."
+                :
+                "ارسال مطلب"),
+             ))
             // tags(textheme),
           ]),
         ),
@@ -227,13 +249,13 @@ class SingleManageArticle extends StatelessWidget {
           itemBuilder: ((context, index) {
             return GestureDetector(
               onTap: () async {
-                var tagId = homeScreenController.tagsList[index].id!;
-                await Get.find<ListArcticleController>()
-                    .getArticleListWithTagsId(tagId);
-                String tagName = homeScreenController.tagsList[index].title!;
-                Get.to(ArticleListScreen(
-                  title: tagName,
-                ));
+ 
+                manageArticleController.articleInfoModel.update((val) {
+                  val?.catId =homeScreenController.tagsList[index].id!;
+                  val?.catName=homeScreenController.tagsList[index].title!;
+                });
+                
+                Get.back();
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),

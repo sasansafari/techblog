@@ -20,12 +20,12 @@ class SingleArcticleController extends GetxController {
 
     loading.value = true;
     var userId = '';
-    debugPrint(ApiConstant.baseUrl +
+    debugPrint(ApiUrlConstant.baseUrl +
         'article/get.php?command=info&id=$id&user_id=$userId');
     // ignore: todo
     //TODO user id is hard code
 
-    var response = await DioSevice().getMethod(ApiConstant.baseUrl +
+    var response = await DioSevice().getMethod(ApiUrlConstant.baseUrl +
         'article/get.php?command=info&id=$id&user_id=$userId');
 
     if (response.statusCode == 200) {
