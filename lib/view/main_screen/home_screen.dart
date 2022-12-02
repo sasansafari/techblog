@@ -10,7 +10,6 @@ import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
- 
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -22,8 +21,8 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArcticleController singleArcticleController = Get.put(SingleArcticleController());
-
+  SingleArcticleController singleArcticleController =
+      Get.put(SingleArcticleController());
 
   final Size size;
   final TextTheme textTheme;
@@ -47,8 +46,14 @@ class HomeScreen extends StatelessWidget {
                       height: 32,
                     ),
                     GestureDetector(
-                      onTap: () => Get.to(ArticleListScreen(title: "مقالات",)) ,
-                      child: SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme, title: 'مشاهده داغ ترین نوشته ها ',)),
+                        onTap: () => Get.to(ArticleListScreen(
+                              title: "مقالات",
+                            )),
+                        child: SeeMoreBlog(
+                          bodyMargin: bodyMargin,
+                          textTheme: textTheme,
+                          title: 'مشاهده داغ ترین نوشته ها ',
+                        )),
                     topVisited(),
                     const SizedBox(
                       height: 32,
@@ -61,9 +66,8 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 )
- 
               : const Center(child: Loading()),
-         ),
+        ),
       ),
     );
   }
@@ -79,9 +83,8 @@ class HomeScreen extends StatelessWidget {
               //blog item
               return GestureDetector(
                 onTap: (() {
-                
-              singleArcticleController.getArticleInfo(
-                homeScreenController.topVisitedList[index].id);
+                  singleArcticleController.getArticleInfo(
+                      homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(
                   padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
@@ -114,11 +117,10 @@ class HomeScreen extends StatelessWidget {
                                               end: Alignment.topCenter,
                                               colors: GradiantColors.blogPost)),
                                     )),
-               
-                
-                                placeholder: ((context, url) => const Loading()),
-               
-                                errorWidget: ((context, url, error) => const Icon(
+                                placeholder: ((context, url) =>
+                                    const Loading()),
+                                errorWidget: ((context, url, error) =>
+                                    const Icon(
                                       Icons.image_not_supported_outlined,
                                       size: 50,
                                       color: Colors.grey,
@@ -207,9 +209,8 @@ class HomeScreen extends StatelessWidget {
                                           image: imageProvider,
                                           fit: BoxFit.cover)),
                                 )),
- 
                             placeholder: ((context, url) => const Loading()),
-                             errorWidget: ((context, url, error) => const Icon(
+                            errorWidget: ((context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 50,
                                   color: Colors.grey,
@@ -332,4 +333,3 @@ class SeeMorePodcast extends StatelessWidget {
     );
   }
 }
-

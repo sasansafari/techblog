@@ -47,6 +47,7 @@ dependencies:
   get_storage: ^2.0.3
   file_picker: ^4.6.0
   html_editor_enhanced: ^2.5.0
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:

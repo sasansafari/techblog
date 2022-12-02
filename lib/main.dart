@@ -10,7 +10,8 @@ import 'package:tec/view/articles/manage_article.dart';
 import 'package:tec/view/articles/single.dart';
 import 'package:tec/view/articles/single_manage_article.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
- import 'package:tec/view/splash_screen.dart';
+import 'package:tec/view/podcast/single_podcast.dart';
+   import 'package:tec/view/splash_screen.dart';
 import 'my_http_overrides.dart';
 
 Future<void> main() async {
@@ -56,7 +57,10 @@ class MyApp extends StatelessWidget {
               binding: ArticleManagerBinding()),
         ],
         // home: Single()
-        home: const SplashScreen());
+        // home: const SplashScreen());
+        home: const PodcastSingle());
+       
+        
   }
 
   ThemeData lightTheme(TextTheme textTheme) {
