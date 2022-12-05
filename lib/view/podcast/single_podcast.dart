@@ -41,14 +41,18 @@ class PodcastSingle extends StatelessWidget {
               child: Column(children: [
                 Stack(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl:
-                          "https://digiato.com/wp-content/uploads/2022/12/5G-910x600.jpg",
-                      imageBuilder: ((context, imageProvider) =>
-                          Image(image: imageProvider)),
-                      placeholder: ((context, url) => const Loading()),
-                      errorWidget: ((context, url, error) =>
-                          Image.asset(Assets.images.singlePlaceHolder.path)),
+                    SizedBox(
+                      height: Get.height/3,
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            podcastModel.poster!,
+                        imageBuilder: ((context, imageProvider) =>
+                            Image(image: imageProvider,fit: BoxFit.fill,)),
+                        placeholder: ((context, url) => const Loading()),
+                        errorWidget: ((context, url, error) =>
+                            Image.asset(Assets.images.singlePlaceHolder.path)),
+                      ),
                     ),
                     Positioned(
                         top: 0,
@@ -99,7 +103,7 @@ class PodcastSingle extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      "رادیو کدیاد",
+                     podcastModel.title!,
                       maxLines: 2,
                       textAlign: TextAlign.start,
                       style: textheme.titleLarge,
@@ -121,7 +125,7 @@ class PodcastSingle extends StatelessWidget {
                         width: 16,
                       ),
                       Text(
-                        "ساسان صفری",
+                        podcastModel.publisher!,
                         style: textheme.headline4,
                       ),
                       const SizedBox(
@@ -134,36 +138,43 @@ class PodcastSingle extends StatelessWidget {
                 //file list
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                      itemCount: 4,
-                      shrinkWrap: true,
-                      itemBuilder: ((context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  ImageIcon(
-                                    Image.asset(Assets.icons.microphon.path)
-                                        .image,
-                                    color: SolidColors.seeMore,
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    "عناون پادکست",
-                                    style: textheme.headline4,
-                                  ),
-                                ],
-                              ),
-                              const Text("22:00")
-                            ],
-                          ),
-                        );
-                      })),
+                  child: Obx(
+                    ()=> ListView.builder(
+                        itemCount: singlePodcastController.podcastFileList.length,
+                        shrinkWrap: true,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    ImageIcon(
+                                      Image.asset(Assets.icons.microphon.path)
+                                          .image,
+                                      color: SolidColors.seeMore,
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    SizedBox(
+                                      width: Get.width/1.5,
+                                      child: Text(
+                                        singlePodcastController.podcastFileList[index].title!,
+                                        style: textheme.headline4,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(singlePodcastController.podcastFileList[index].lenght!+":00")
+                  
+                  
+                              ],
+                            ),
+                          );
+                        })),
+                  ),
                 )
               ]),
             ),

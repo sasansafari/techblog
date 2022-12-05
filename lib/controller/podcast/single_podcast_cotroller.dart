@@ -28,7 +28,7 @@ class SinglePodcastController extends GetxController{
 
     var response = await DioSevice().getMethod(ApiUrlConstant.podcastFiles+id);
 
-    if (response.statuCode==200) {
+    if (response.statusCode==200) {
 
       for (var element in response.data["files"]) {
         podcastFileList.add(PodcastsFileModel.fromJson(element));
