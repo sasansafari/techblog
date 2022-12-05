@@ -15,6 +15,14 @@ class SinglePodcastController extends GetxController{
   RxBool loading  = false.obs;
   RxList<PodcastsFileModel> podcastFileList = RxList();
 
+  @override
+  onInit(){
+    super.onInit();
+  
+    getPodcastFiles();
+
+  }
+
   getPodcastFiles() async {
     loading.value = true;
 

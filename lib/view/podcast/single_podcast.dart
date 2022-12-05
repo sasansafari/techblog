@@ -6,17 +6,27 @@ import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
+import 'package:tec/controller/podcast/single_podcast_cotroller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:tec/models/podcast_model.dart';
 
 import '../../component/decrations.dart';
 
 // ignore: must_be_immutable
 class PodcastSingle extends StatelessWidget {
-  const PodcastSingle({Key? key}) : super(key: key);
+
+  late SinglePodcastController singlePodcastController;
+  late PodcastModel podcastModel;
+  PodcastSingle(){
+    podcastModel = Get.arguments;
+    singlePodcastController = Get.put(SinglePodcastController(id: podcastModel.id ));
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(singlePodcastController.id);
+    
     var textheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(

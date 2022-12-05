@@ -55,10 +55,15 @@ class MyApp extends StatelessWidget {
               name: NamedRoute.singleManageArticle,
               page: () => SingleManageArticle(),
               binding: ArticleManagerBinding()),
+          GetPage(
+              name: NamedRoute.singlePodcast,
+              page: () => PodcastSingle(),
+              ),
+
         ],
         // home: Single()
-        // home: const SplashScreen());
-        home: const PodcastSingle());
+        home: const SplashScreen());
+        // home: const PodcastSingle());
        
         
   }
@@ -131,10 +136,13 @@ class MyApp extends StatelessWidget {
 
 
 class NamedRoute{
+
+NamedRoute._();
+
 static String routeMainScreen = "/MainScreen";
 static String routeSingleArticle = "/SingleArticle";
 static String manageArticle = "/ManageArticle";
 static String singleManageArticle = "/SingleManageArticle";
-
+static String singlePodcast = "/singlePodcast";
 
 }
