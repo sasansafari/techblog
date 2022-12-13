@@ -139,41 +139,94 @@ class PodcastSingle extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(
-                    ()=> ListView.builder(
-                        itemCount: singlePodcastController.podcastFileList.length,
-                        shrinkWrap: true,
-                        itemBuilder: ((context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
+                    ()=>             ListView.builder(
+                          itemCount:
+                              singlePodcastController.podcastFileList.length,
+                          shrinkWrap: true,
+                          itemBuilder: ((context, index) {
+                            return index <
+                                    singlePodcastController
+                                            .podcastFileList.length -
+                                        1
+                                ? Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            ImageIcon(
+                                              Image.asset(Assets
+                                                      .icons.microphon.path)
+                                                  .image,
+                                              color: SolidColors.seeMore,
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            SizedBox(
+                                              width: Get.width / 1.5,
+                                              child: Text(
+                                                singlePodcastController
+                                                    .podcastFileList[index]
+                                                    .title!,
+                                                style: textheme.headline4,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(singlePodcastController
+                                                .podcastFileList[index]
+                                                .lenght! +
+                                            ":00")
+                                      ],
+                                    ),
+                                  )
+                                : Column(
                                   children: [
-                                    ImageIcon(
-                                      Image.asset(Assets.icons.microphon.path)
-                                          .image,
-                                      color: SolidColors.seeMore,
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    SizedBox(
-                                      width: Get.width/1.5,
-                                      child: Text(
-                                        singlePodcastController.podcastFileList[index].title!,
-                                        style: textheme.headline4,
+                                    Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                ImageIcon(
+                                                  Image.asset(Assets
+                                                          .icons.microphon.path)
+                                                      .image,
+                                                  color: SolidColors.seeMore,
+                                                ),
+                                                const SizedBox(
+                                                  width: 8,
+                                                ),
+                                                SizedBox(
+                                                  width: Get.width / 1.5,
+                                                  child: Text(
+                                                    singlePodcastController
+                                                        .podcastFileList[index]
+                                                        .title!,
+                                                    style: textheme.headline4,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Text(singlePodcastController
+                                                    .podcastFileList[index]
+                                                    .lenght! +
+                                                ":00")
+                                          ],
+                                        ),
                                       ),
-                                    ),
+
+                                      SizedBox(height: Get.height/1.4,)
                                   ],
-                                ),
-                                Text(singlePodcastController.podcastFileList[index].lenght!+":00")
-                  
-                  
-                              ],
-                            ),
-                          );
-                        })),
+                                );
+                          })),
+                    
+                    //singlePodcastController.podcastFileList
                   ),
                 )
               ]),
