@@ -1,5 +1,8 @@
 
 
+
+import 'package:tec/constant/api_constant.dart';
+
 class PodcastsFileModel{
 
   String? id;
@@ -14,7 +17,7 @@ class PodcastsFileModel{
 
    id = element["id"];
    podcastId = element["podcast_id"];
-   file = element["file"];
+   file = ApiUrlConstant.hostDlUrl+ element["file"];
    title = element["title"];
    lenght = element["length"];
 

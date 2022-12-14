@@ -48,6 +48,7 @@ dependencies:
   file_picker: ^4.6.0
   html_editor_enhanced: ^2.5.0
   percent_indicator: ^4.2.2
+  just_audio: ^0.9.30
 
 dev_dependencies:
   flutter_test:

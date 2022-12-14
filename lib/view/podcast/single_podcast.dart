@@ -16,16 +16,16 @@ import '../../component/decrations.dart';
 // ignore: must_be_immutable
 class PodcastSingle extends StatelessWidget {
 
-  late SinglePodcastController singlePodcastController;
+  late SinglePodcastController controller;
   late PodcastModel podcastModel;
   PodcastSingle(){
     podcastModel = Get.arguments;
-    singlePodcastController = Get.put(SinglePodcastController(id: podcastModel.id ));
+    controller = Get.put(SinglePodcastController(id: podcastModel.id ));
   }
 
   @override
   Widget build(BuildContext context) {
-    print(singlePodcastController.id);
+    print(controller.id);
     
     var textheme = Theme.of(context).textTheme;
     return SafeArea(
@@ -140,7 +140,7 @@ class PodcastSingle extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(
                     ()=> ListView.builder(
-                        itemCount: singlePodcastController.podcastFileList.length,
+                        itemCount: controller.podcastFileList.length,
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
                           return Padding(
@@ -161,13 +161,13 @@ class PodcastSingle extends StatelessWidget {
                                     SizedBox(
                                       width: Get.width/1.5,
                                       child: Text(
-                                        singlePodcastController.podcastFileList[index].title!,
+                                        controller.podcastFileList[index].title!,
                                         style: textheme.headline4,
                                       ),
                                     ),
                                   ],
                                 ),
-                                Text(singlePodcastController.podcastFileList[index].lenght!+":00")
+                                Text(controller.podcastFileList[index].lenght!+":00")
                   
                   
                               ],
@@ -199,15 +199,29 @@ class PodcastSingle extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
+                          children:   [
                             Icon(
                               Icons.skip_next,
                               color: Colors.white,
                             ),
-                            Icon(
-                              Icons.play_circle_fill,
-                              color: Colors.white,
-                              size: 48,
+                            GestureDetector(
+                              onTap: () {
+                                controller.playState.value = controller.player.playing;
+
+                                controller.player.playing?
+                                controller.player.pause():
+                                controller.player.play();
+                              },
+                              child:  Obx(
+                                ()=> Icon(
+                                  controller.playState.value ?
+                                  Icons.play_circle_fill:
+                                  Icons.pause_circle_filled
+                                 ,
+                                  color: Colors.white,
+                                  size: 48,
+                                ),
+                              ),
                             ),
                             Icon(
                               Icons.skip_previous,

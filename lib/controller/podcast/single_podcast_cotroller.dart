@@ -1,7 +1,7 @@
 
 
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/podcasts_file_model.dart';
 import 'package:tec/services/dio_service.dart';
@@ -9,18 +9,23 @@ import 'package:tec/services/dio_service.dart';
 class SinglePodcastController extends GetxController{
 
   var id;
-
+  
   SinglePodcastController({this.id});
 
   RxBool loading  = false.obs;
   RxList<PodcastsFileModel> podcastFileList = RxList();
-
+  final player = AudioPlayer();
+  late var playList;
+  RxBool playState = false.obs;
   @override
-  onInit(){
+  onInit() async {
     super.onInit();
-  
-    getPodcastFiles();
+    playList  = ConcatenatingAudioSource(
+      useLazyPreparation: true,
+      children: []);
 
+    await getPodcastFiles();
+    await player.setAudioSource(playList,initialIndex: 0,initialPosition: Duration.zero);
   }
 
   getPodcastFiles() async {
@@ -31,7 +36,9 @@ class SinglePodcastController extends GetxController{
     if (response.statusCode==200) {
 
       for (var element in response.data["files"]) {
-        podcastFileList.add(PodcastsFileModel.fromJson(element));
+        var podcastFileModel = PodcastsFileModel.fromJson(element);
+        podcastFileList.add(podcastFileModel);
+        playList.add(AudioSource.uri(Uri.parse(podcastFileModel.file!)));
       }
       loading.value =false;  
     }
