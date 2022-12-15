@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:html_editor_enhanced/utils/shims/dart_ui_real.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
@@ -139,7 +140,7 @@ class PodcastSingle extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(
-                    ()=> ListView.builder(
+                    ()=>controller.loading.value==false? ListView.builder(
                         itemCount: controller.podcastFileList.length,
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
@@ -168,12 +169,12 @@ class PodcastSingle extends StatelessWidget {
                                   ],
                                 ),
                                 Text(controller.podcastFileList[index].lenght!+":00")
-                  
+                   
                   
                               ],
                             ),
                           );
-                        })),
+                        })):Loading(),
                   ),
                 )
               ]),
