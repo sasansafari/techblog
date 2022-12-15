@@ -145,34 +145,43 @@ class PodcastSingle extends StatelessWidget {
                         itemCount: controller.podcastFileList.length,
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    ImageIcon(
-                                      Image.asset(Assets.icons.microphon.path)
-                                          .image,
-                                      color: SolidColors.seeMore,
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    SizedBox(
-                                      width: Get.width/1.5,
-                                      child: Text(
-                                        controller.podcastFileList[index].title!,
-                                        style: textheme.headline4,
+                          return GestureDetector(
+                            onTap: () async {
+                              await controller.player.seek(Duration.zero,index: index);
+                              controller.currentFileIndex.value = controller.player.currentIndex!;
+
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      ImageIcon(
+                                        Image.asset(Assets.icons.microphon.path)
+                                            .image,
+                                        color: SolidColors.seeMore,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Text(controller.podcastFileList[index].lenght!+":00")
-                  
-                  
-                              ],
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      SizedBox(
+                                        width: Get.width/1.5,
+                                        child: Obx(
+                                          ()=> Text(
+                                            controller.podcastFileList[index].title!,
+                                            style:controller.currentFileIndex.value==index? textheme.headline3:textheme.headline4,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(controller.podcastFileList[index].lenght!+":00")
+                                            
+                                            
+                                ],
+                              ),
                             ),
                           );
                         })),
@@ -205,6 +214,8 @@ class PodcastSingle extends StatelessWidget {
                             GestureDetector(
                               onTap: () async {
                                 await controller.player.seekToNext();
+                               controller.currentFileIndex.value = controller.player.currentIndex!;
+
                               },
                               child: const Icon(
                                 Icons.skip_next,
@@ -219,7 +230,7 @@ class PodcastSingle extends StatelessWidget {
                                 controller.player.play();
 
                                 controller.playState.value = controller.player.playing;
-
+                                controller.currentFileIndex.value = controller.player.currentIndex!;
 
                               },
                               child:  Obx(
@@ -236,6 +247,8 @@ class PodcastSingle extends StatelessWidget {
                             GestureDetector(
                               onTap: () async {
                                await controller.player.seekToPrevious();
+                               controller.currentFileIndex.value = controller.player.currentIndex!;
+
                               },
                               child: const Icon(
                                 Icons.skip_previous,

@@ -17,6 +17,7 @@ class SinglePodcastController extends GetxController{
   final player = AudioPlayer();
   late ConcatenatingAudioSource playList;
   RxBool playState = false.obs;
+  RxInt currentFileIndex = 0.obs;
   @override
   onInit() async {
     super.onInit();
