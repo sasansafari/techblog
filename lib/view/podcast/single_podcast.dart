@@ -1,8 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
@@ -200,35 +202,48 @@ class PodcastSingle extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children:   [
-                            Icon(
-                              Icons.skip_next,
-                              color: Colors.white,
+                            GestureDetector(
+                              onTap: () async {
+                                await controller.player.seekToNext();
+                              },
+                              child: const Icon(
+                                Icons.skip_next,
+                                color: Colors.white,
+                              ),
                             ),
                             GestureDetector(
                               onTap: () {
-                                controller.playState.value = controller.player.playing;
 
                                 controller.player.playing?
                                 controller.player.pause():
                                 controller.player.play();
+
+                                controller.playState.value = controller.player.playing;
+
+
                               },
                               child:  Obx(
                                 ()=> Icon(
                                   controller.playState.value ?
-                                  Icons.play_circle_fill:
-                                  Icons.pause_circle_filled
-                                 ,
+                                  Icons.pause_circle_filled:
+                                  Icons.play_circle_fill
+ ,
                                   color: Colors.white,
                                   size: 48,
                                 ),
                               ),
                             ),
-                            Icon(
-                              Icons.skip_previous,
-                              color: Colors.white,
+                            GestureDetector(
+                              onTap: () async {
+                               await controller.player.seekToPrevious();
+                              },
+                              child: const Icon(
+                                Icons.skip_previous,
+                                color: Colors.white,
+                              ),
                             ),
-                            SizedBox(),
-                            Icon(
+                            const SizedBox(),
+                            const Icon(
                               Icons.repeat,
                               color: Colors.white,
                             ),
