@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:tec/component/dimens.dart';
@@ -203,11 +205,24 @@ class PodcastSingle extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        LinearPercentIndicator(
-                          percent: 1.0,
-                          backgroundColor: Colors.white,
-                          progressColor: Colors.orange,
-                        ),
+                          Obx(
+                            ()=> ProgressBar(
+                            timeLabelTextStyle: TextStyle(color: Colors.white),
+                            thumbColor: Colors.yellow,
+                            baseBarColor: Colors.white,
+                            progressBarColor: Colors.orange,
+                            buffered: controller.bufferedValue.value,
+                            progress: controller.progressValue.value,
+                            total:controller.player.duration??const Duration(seconds: 0),
+                            onSeek: (position) {
+                              controller.player.seek(position);
+                              controller.player.playing?
+                              controller.startProgress():
+                              controller.timer!.cancel();
+                            },
+                            
+                            ),
+                          ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children:   [
@@ -225,9 +240,18 @@ class PodcastSingle extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
 
+
+                               controller.player.playing?
+                                controller.timer!.cancel():
+                                controller.startProgress();
+                                
+
                                 controller.player.playing?
                                 controller.player.pause():
                                 controller.player.play();
+                                
+
+
 
                                 controller.playState.value = controller.player.playing;
                                 controller.currentFileIndex.value = controller.player.currentIndex!;
