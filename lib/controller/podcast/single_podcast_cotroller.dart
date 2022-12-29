@@ -19,7 +19,10 @@ class SinglePodcastController extends GetxController{
   final player = AudioPlayer();
   late ConcatenatingAudioSource playList;
   RxBool playState = false.obs;
+  RxBool isLoopAll = false.obs;
   RxInt currentFileIndex = 0.obs;
+
+
   @override
   onInit() async {
     super.onInit();
@@ -85,5 +88,21 @@ class SinglePodcastController extends GetxController{
 
   }
 
+
+
+  setLoopMode(){
+
+    if (isLoopAll.value) {
+      
+
+      isLoopAll.value = false;
+      player.setLoopMode(LoopMode.off);
+    } else {
+      
+
+      isLoopAll.value = true;
+      player.setLoopMode(LoopMode.all);
+    }
+  }
 
 }
