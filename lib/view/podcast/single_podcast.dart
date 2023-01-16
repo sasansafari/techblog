@@ -36,6 +36,7 @@ class PodcastSingle extends StatelessWidget {
       child: Scaffold(
           body: Stack(
         children: [
+          
           Positioned(
             top: 0,
             left: 0,
@@ -151,7 +152,7 @@ class PodcastSingle extends StatelessWidget {
                             onTap: () async {
                               await controller.player.seek(Duration.zero,index: index);
                               controller.currentFileIndex.value = controller.player.currentIndex!;
-
+                              controller.timerCheck();
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -192,6 +193,8 @@ class PodcastSingle extends StatelessWidget {
               ]),
             ),
           ),
+          
+          //player manager
           Positioned(
               bottom: 8,
               right: Dimens.bodyMargin,
@@ -205,7 +208,7 @@ class PodcastSingle extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                          Obx(
+                        Obx(
                             ()=> ProgressBar(
                             timeLabelTextStyle: TextStyle(color: Colors.white),
                             thumbColor: Colors.yellow,
@@ -214,11 +217,20 @@ class PodcastSingle extends StatelessWidget {
                             buffered: controller.bufferedValue.value,
                             progress: controller.progressValue.value,
                             total:controller.player.duration??const Duration(seconds: 0),
-                            onSeek: (position) {
+                            onSeek: (position) async {
                               controller.player.seek(position);
-                              controller.player.playing?
-                              controller.startProgress():
-                              controller.timer!.cancel();
+
+
+
+                              if (controller.player.playing) {
+                                controller.startProgress();
+                              } else if(position<=const Duration(seconds: 0)) {
+                               await controller.player.seekToNext();
+                               controller.currentFileIndex.value = controller.player.currentIndex!;
+                               controller.timerCheck();
+                               
+
+                              }
                             },
                             
                             ),
@@ -230,7 +242,7 @@ class PodcastSingle extends StatelessWidget {
                               onTap: () async {
                                 await controller.player.seekToNext();
                                controller.currentFileIndex.value = controller.player.currentIndex!;
-
+                                controller.timerCheck();
                               },
                               child: const Icon(
                                 Icons.skip_next,
@@ -272,7 +284,7 @@ class PodcastSingle extends StatelessWidget {
                               onTap: () async {
                                await controller.player.seekToPrevious();
                                controller.currentFileIndex.value = controller.player.currentIndex!;
-
+                              controller.timerCheck();
                               },
                               child: const Icon(
                                 Icons.skip_previous,

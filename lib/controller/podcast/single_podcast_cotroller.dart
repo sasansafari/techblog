@@ -1,6 +1,7 @@
 
 
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -60,7 +61,7 @@ class SinglePodcastController extends GetxController{
 
   Timer? timer;
 
-
+ 
   startProgress(){
     const tick = Duration(seconds: 1);
     int duration = player.duration!.inSeconds - player.position.inSeconds ;
@@ -75,6 +76,7 @@ class SinglePodcastController extends GetxController{
     timer = Timer.periodic(tick, (timer) {
       
       duration--;
+      log("duration: $duration  ====> index: ${player.currentIndex}");
       progressValue.value = player.position;
       bufferedValue.value = player.bufferedPosition;
       if (duration<=0) {
@@ -85,9 +87,21 @@ class SinglePodcastController extends GetxController{
 
     });
 
-
   }
 
+
+  timerCheck(){
+
+    if (player.playing) {
+      startProgress();
+    }else{
+        timer!.cancel();
+        progressValue.value = Duration(seconds: 0);
+        bufferedValue.value = Duration(seconds: 0);
+
+    }
+
+  }
 
 
   setLoopMode(){
