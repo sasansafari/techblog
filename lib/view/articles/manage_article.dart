@@ -5,6 +5,7 @@ import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
  import 'package:tec/main.dart';
+import 'package:tec/route_manager/names.dart';
 
 import '../../constant/my_strings.dart';
 

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:tec/binding.dart';
 import 'package:tec/constant/my_colors.dart';
 
 import 'package:tec/view/articles/manage_article.dart';
@@ -13,6 +12,8 @@ import 'package:tec/view/main_screen/main_screen.dart';
 import 'package:tec/view/podcast/single_podcast.dart';
    import 'package:tec/view/splash_screen.dart';
 import 'my_http_overrides.dart';
+import 'route_manager/names.dart';
+import 'route_manager/pages.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
@@ -35,35 +36,11 @@ class MyApp extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
 
     return GetMaterialApp(
+        initialRoute: NamedRoute.initialRoute,
         locale: const Locale('fa'),
         theme: lightTheme(textTheme),
         debugShowCheckedModeBanner: false,
-        getPages: [
-          GetPage(
-              name: NamedRoute.routeMainScreen,
-              page: () => const MainScreen(),
-              binding: RegisterBinding()),
-          GetPage(
-              name: NamedRoute.routeSingleArticle,
-              page: () => Single(),
-              binding: ArticleBinding()),
-          GetPage(
-              name: NamedRoute.manageArticle,
-              page: () => ManageArticle(),
-              binding: ArticleManagerBinding()),
-          GetPage(
-              name: NamedRoute.singleManageArticle,
-              page: () => SingleManageArticle(),
-              binding: ArticleManagerBinding()),
-          GetPage(
-              name: NamedRoute.singlePodcast,
-              page: () => PodcastSingle(),
-              ),
-
-        ],
-        // home: Single()
-        home: const SplashScreen());
-        // home: const PodcastSingle());
+        getPages: Pages.pages); 
        
         
   }
@@ -135,14 +112,4 @@ class MyApp extends StatelessWidget {
 
 
 
-class NamedRoute{
-
-NamedRoute._();
-
-static String routeMainScreen = "/MainScreen";
-static String routeSingleArticle = "/SingleArticle";
-static String manageArticle = "/ManageArticle";
-static String singleManageArticle = "/SingleManageArticle";
-static String singlePodcast = "/singlePodcast";
-
-}
+ 

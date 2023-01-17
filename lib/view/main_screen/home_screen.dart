@@ -10,6 +10,7 @@ import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/main.dart';
 import 'package:tec/models/fake_data.dart';
+import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
 import 'package:tec/view/podcast/single_podcast.dart';
 
