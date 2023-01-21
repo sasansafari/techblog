@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         key: _key,
         drawer: Drawer(
-          backgroundColor: SolidColors.scafoldBg,
+          backgroundColor: SolidColors.scaffoldBg,
           child: Padding(
             padding: EdgeInsets.only(right: Dimens.bodyMargin, left: Dimens.bodyMargin),
             child: ListView(
@@ -95,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: SolidColors.scafoldBg,
+          backgroundColor: SolidColors.scaffoldBg,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -169,7 +169,7 @@ class BottomNavigation extends StatelessWidget {
         height: size.height / 10,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: GradiantColors.bottomNavBackgroand,
+            colors: GradiantColors.bottomNavBackground,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/main.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
@@ -25,7 +24,7 @@ class RegisterController extends GetxController {
       'command': 'register'
     };
 
-    var response = await DioSevice().postMethod(map, ApiUrlConstant.postRsgister);
+    var response = await DioService().postMethod(map, ApiUrlConstant.postRegister);
 
     email = emailTextEditingController.text;
     userId = response.data['user_id'];
@@ -41,7 +40,7 @@ class RegisterController extends GetxController {
     };
 
     debugPrint(map.toString());
-    var response = await DioSevice().postMethod(map, ApiUrlConstant.postRsgister);
+    var response = await DioService().postMethod(map, ApiUrlConstant.postRegister);
     debugPrint(response.data.toString());
     var status = response.data['response'];
 

@@ -1,12 +1,11 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_service;
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/storage_const.dart';
  
 
-class DioSevice {
+class DioService {
   Dio dio = Dio();
 
   Future<dynamic> getMethod(String url) async {

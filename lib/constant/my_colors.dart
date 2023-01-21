@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 class SolidColors {
   static const Color posterSubTitle = Color.fromARGB(200, 255, 255, 255);
   static const Color posterTitle = Color.fromARGB(255, 255, 255, 255);
-  static const Color primeryColor = Color.fromARGB(255, 68, 4, 87);
+  static const Color primaryColor = Color.fromARGB(255, 68, 4, 87);
   static const Color colorTitle = Color.fromARGB(255, 40, 107, 184);
   static const Color textTitle = Color.fromARGB(255, 0, 0, 0);
-  static const Color scafoldBg = Color.fromARGB(255, 255, 255, 255);
+  static const Color scaffoldBg = Color.fromARGB(255, 255, 255, 255);
   static const Color statusBarColor = Color.fromARGB(255, 255, 255, 255);
   static const Color systemNavigationBarColor =
       Color.fromARGB(255, 255, 255, 255);
@@ -28,7 +28,7 @@ class GradiantColors {
     Color.fromARGB(255, 68, 4, 87)
  
   ];
-  static const List<Color> bottomNavBackgroand = [
+  static const List<Color> bottomNavBackground = [
     Color.fromARGB(0, 255, 255, 255),
     Color.fromARGB(255, 255, 255, 255)
   ];

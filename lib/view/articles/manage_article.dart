@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
- import 'package:tec/main.dart';
 import 'package:tec/route_manager/names.dart';
 
 import '../../constant/my_strings.dart';
@@ -141,7 +140,7 @@ class ManageArticle extends StatelessWidget {
             child: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: MyStrings.articelEmpty,
+                text: MyStrings.articleEmpty,
                 style: textTheme.headline4,
               ),
             ),

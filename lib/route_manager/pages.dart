@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:tec/route_manager/binding.dart';
-import 'package:tec/main.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/manage_article.dart';
 import 'package:tec/view/articles/single.dart';

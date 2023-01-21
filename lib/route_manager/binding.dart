@@ -10,9 +10,9 @@ class ArticleBinding implements Bindings {
   void dependencies() {
     // ignore: todo
     // TODO: implement dependencies
-    Get.put(ListArcticleController());
+    Get.put(ListArticleController());
 
-    Get.lazyPut(() => SingleArcticleController());
+    Get.lazyPut(() => SingleArticleController());
   }
 }
 
