@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/main.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 import 'package:tec/view/register/register_intro.dart';
 
+import '../constant/my_colors.dart';
 import '../constant/storage_const.dart';
 
 class RegisterController extends GetxController {
@@ -47,12 +47,12 @@ class RegisterController extends GetxController {
 
     switch (status) {
       case 'verified':
-        var box = GetStorage();
-        box.write(StorageKey.token, response.data['token']);
-        box.write(StorageKey.userId, response.data['user_id']);
+        // var box = GetStorage();
+        BoxStorage.box.write(StorageKey.token, response.data['token']);
+        BoxStorage.box.write(StorageKey.userId, response.data['user_id']);
 
-        debugPrint("read::: " + box.read(StorageKey.token));
-        debugPrint("read::: " + box.read(StorageKey.userId));
+        debugPrint("read::: " + BoxStorage.box.read(StorageKey.token));
+        debugPrint("read::: " + BoxStorage.box.read(StorageKey.userId));
 
         Get.offAll(const MainScreen());
 
@@ -153,5 +153,35 @@ class RegisterController extends GetxController {
         ]),
       ),
     ));
+  }
+
+  logOut () {
+    Get.defaultDialog(
+        title: "فاطمه امیری",
+        titleStyle:  const TextStyle(
+            color: SolidColors.scafoldBg
+        ),
+        backgroundColor: SolidColors.primeryColor,
+        content: const Text("آیا از خروج خود مطمئن هستید ؟",style: TextStyle(color: SolidColors.scafoldBg)),
+        radius: 8,
+        cancel: ElevatedButton(
+            onPressed: (){
+              Get.back();
+            },
+            child: const Text("لغو")
+        ),
+        confirm: ElevatedButton(
+            onPressed: (){
+              if(GetStorage().read(StorageKey.token) == null) {
+                Get.back();
+                Get.snackbar("خطا","قبلا خارج شدی !!");
+              }else{
+                BoxStorage.box.erase();
+                Get.offNamed(NamedRoute.profileScreen);
+              }
+            },
+            child: const Text("خروج")
+        ),
+    );
   }
 }

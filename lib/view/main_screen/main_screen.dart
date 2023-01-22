@@ -146,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
+   BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,
@@ -157,7 +157,8 @@ class BottomNavigation extends StatelessWidget {
   final double bodyMargin;
   final Function(int) changeScreen;
 
- 
+  RegisterController registerController = Get.put(RegisterController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +191,7 @@ class BottomNavigation extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: (() {
-                      Get.find<RegisterController>().toggleLogin();
+                      registerController.toggleLogin();
                     }),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.write.path).image,
