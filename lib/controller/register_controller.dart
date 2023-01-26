@@ -25,7 +25,8 @@ class RegisterController extends GetxController {
       'command': 'register'
     };
 
-    var response = await DioService().postMethod(map, ApiUrlConstant.postRegister);
+    var response =
+        await DioService().postMethod(map, ApiUrlConstant.postRegister);
 
     email = emailTextEditingController.text;
     userId = response.data['user_id'];
@@ -41,7 +42,8 @@ class RegisterController extends GetxController {
     };
 
     debugPrint(map.toString());
-    var response = await DioService().postMethod(map, ApiUrlConstant.postRegister);
+    var response =
+        await DioService().postMethod(map, ApiUrlConstant.postRegister);
     debugPrint(response.data.toString());
     var status = response.data['response'];
 
@@ -155,33 +157,32 @@ class RegisterController extends GetxController {
     ));
   }
 
-  logOut () {
+  logOut() {
     Get.defaultDialog(
-        title: "فاطمه امیری",
-        titleStyle:  const TextStyle(
-            color: SolidColors.scafoldBg
-        ),
-        backgroundColor: SolidColors.primeryColor,
-        content: const Text("آیا از خروج خود مطمئن هستید ؟",style: TextStyle(color: SolidColors.scafoldBg)),
-        radius: 8,
-        cancel: ElevatedButton(
-            onPressed: (){
+      title: "فاطمه امیری",
+      titleStyle: TextStyle(color: SolidColors.scaffoldBg),
+      backgroundColor: SolidColors.primaryColor,
+      content: Text(
+        "آیا از خروج خود مطمئن هستید ؟",
+        style: TextStyle(color: SolidColors.scaffoldBg),
+      ),
+      radius: 8,
+      cancel: ElevatedButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: const Text("لغو")),
+      confirm: ElevatedButton(
+          onPressed: () {
+            if (GetStorage().read(StorageKey.token) == null) {
               Get.back();
-            },
-            child: const Text("لغو")
-        ),
-        confirm: ElevatedButton(
-            onPressed: (){
-              if(GetStorage().read(StorageKey.token) == null) {
-                Get.back();
-                Get.snackbar("خطا","قبلا خارج شدی !!");
-              }else{
-                BoxStorage.box.erase();
-                Get.offNamed(NamedRoute.profileScreen);
-              }
-            },
-            child: const Text("خروج")
-        ),
+              Get.snackbar("خطا", "قبلا خارج شدی !!");
+            } else {
+              BoxStorage.box.erase();
+              Get.offNamed(NamedRoute.profileScreen);
+            }
+          },
+          child: const Text("خروج")),
     );
   }
 }
