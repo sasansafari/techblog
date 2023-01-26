@@ -4,13 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/my_colors.dart';
-
-import 'package:tec/view/articles/manage_article.dart';
-import 'package:tec/view/articles/single.dart';
-import 'package:tec/view/articles/single_manage_article.dart';
-import 'package:tec/view/main_screen/main_screen.dart';
-import 'package:tec/view/podcast/single_podcast.dart';
-   import 'package:tec/view/splash_screen.dart';
 import 'my_http_overrides.dart';
 import 'route_manager/names.dart';
 import 'route_manager/pages.dart';
