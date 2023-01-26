@@ -3,7 +3,7 @@ import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/article_model.dart';
 import 'package:tec/services/dio_service.dart';
 
-class ListArcticleController extends GetxController {
+class ListArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
   RxBool loading = false.obs;
 
@@ -17,7 +17,7 @@ class ListArcticleController extends GetxController {
     loading.value = true;
     // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    var response = await DioSevice().getMethod(ApiUrlConstant.getArticleList);
+    var response = await DioService().getMethod(ApiUrlConstant.getArticleList);
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {
@@ -41,7 +41,7 @@ class ListArcticleController extends GetxController {
     };
 
     final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?',queryParam);
-    var response = await DioSevice().getMethod(uri.toString());
+    var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {

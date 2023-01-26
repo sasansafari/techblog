@@ -88,7 +88,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SpinKitFadingCube(
-      color: SolidColors.primeryColor,
+      color: SolidColors.primaryColor,
       size: 32.0,
     );
   }
@@ -122,7 +122,7 @@ PreferredSize appBar(String title) {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                color: SolidColors.primeryColor.withBlue(100),
+                color: SolidColors.primaryColor.withBlue(100),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.keyboard_arrow_right_rounded),

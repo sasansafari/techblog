@@ -24,8 +24,8 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArcticleController singleArcticleController =
-      Get.put(SingleArcticleController());
+  SingleArticleController singleArcticleController =
+      Get.put(SingleArticleController());
 
   final Size size;
   final TextTheme textTheme;
@@ -255,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                           image: imageProvider, fit: BoxFit.cover)),
                 )),
             placeholder: ((context, url) => const SpinKitFadingCube(
-                  color: SolidColors.primeryColor,
+                  color: SolidColors.primaryColor,
                   size: 32.0,
                 )),
             errorWidget: ((context, url, error) => const Icon(

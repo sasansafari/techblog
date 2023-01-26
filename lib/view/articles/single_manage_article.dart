@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -7,14 +6,11 @@ import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/controller/file_controller.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/services/pick_file.dart';
-import 'package:tec/view/articles/articel_list_sceen.dart';
-
 import 'article_content_editor.dart';
 
 // ignore: must_be_immutable
@@ -30,7 +26,7 @@ class SingleManageArticle extends StatelessWidget {
     Get.defaultDialog(
       title: "عنوان مقاله",
       titleStyle: const TextStyle(
-          color: SolidColors.scafoldBg
+          color: SolidColors.scaffoldBg
         ),
       content:  TextField(
         controller: manageArticleController.titleTextEditingController,
@@ -43,7 +39,7 @@ class SingleManageArticle extends StatelessWidget {
           hintText: 'اینجا بنویس'
         ),
       ),
-       backgroundColor: SolidColors.primeryColor,
+       backgroundColor: SolidColors.primaryColor,
         radius: 8,
         confirm: ElevatedButton(onPressed: (() {
           manageArticleController.updateTitle();
@@ -129,7 +125,7 @@ class SingleManageArticle extends StatelessWidget {
                           height: 30,
                           width: Get.width / 3,
                           decoration: const BoxDecoration(
-                              color: SolidColors.primeryColor,
+                              color: SolidColors.primaryColor,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(12),
                                 topRight: Radius.circular(12),
@@ -265,7 +261,7 @@ class SingleManageArticle extends StatelessWidget {
                   height: 30,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
-                      color: SolidColors.primeryColor),
+                      color: SolidColors.primaryColor),
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                       child: Center(

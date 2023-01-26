@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
               if (states.contains(MaterialState.pressed)) {
                 return SolidColors.seeMore;
               }
-              return SolidColors.primeryColor;
+              return SolidColors.primaryColor;
             }),
           ),
         ),

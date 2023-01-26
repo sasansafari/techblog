@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: (() {
                   //یه چیزی اجرا بشه
                 }),
-                splashColor: SolidColors.primeryColor,
+                splashColor: SolidColors.primaryColor,
                 child: SizedBox(
                     height: 45,
                     child: Center(
@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: (() {
                   //یه چیزی اجرا بشه
                 }),
-                splashColor: SolidColors.primeryColor,
+                splashColor: SolidColors.primaryColor,
                 child: SizedBox(
                     height: 45,
                     child: Center(
@@ -94,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: (() {
                   Get.find<RegisterController>().logOut();
                 }),
-                splashColor: SolidColors.primeryColor,
+                splashColor: SolidColors.primaryColor,
                 child: SizedBox(
                     height: 45,
                     child: Center(
