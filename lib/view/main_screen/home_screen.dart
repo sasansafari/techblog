@@ -32,47 +32,46 @@ class HomeScreen extends StatelessWidget {
   final double bodyMargin;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Obx(
-        () => Padding(
-          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-          child: homeScreenController.loading.value == false
-              ? Column(
-                  children: [
-                    poster(),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    tags(),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(ArticleListScreen(
-                              title: "مقالات",
-                            )),
-                        child: SeeMoreBlog(
-                          bodyMargin: bodyMargin,
-                          textTheme: textTheme,
-                          title: 'مشاهده داغ ترین نوشته ها ',
-                        )),
-                    topVisited(),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    SeeMorePodcast(
-                        bodyMargin: bodyMargin, textTheme: textTheme),
-                    topPodcasts(),
-                    const SizedBox(
-                      height: 100,
-                    )
-                  ],
-                )
-              : const Center(child: Loading()),
-        ),
-      ),
-    );
+    return homeScreenController.loading.value == false
+        ? SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Obx(
+              () => Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  child: Column(
+                    children: [
+                      poster(),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      tags(),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      GestureDetector(
+                          onTap: () => Get.to(ArticleListScreen(
+                                title: "مقالات",
+                              )),
+                          child: SeeMoreBlog(
+                            bodyMargin: bodyMargin,
+                            textTheme: textTheme,
+                            title: 'مشاهده داغ ترین نوشته ها ',
+                          )),
+                      topVisited(),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      SeeMorePodcast(
+                          bodyMargin: bodyMargin, textTheme: textTheme),
+                      topPodcasts(),
+                      const SizedBox(
+                        height: 100,
+                      )
+                    ],
+                  )),
+            ),
+          )
+        : const Loading();
   }
 
   Widget topVisited() {
@@ -193,7 +192,8 @@ class HomeScreen extends StatelessWidget {
               //podcast item
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(NamedRoute.singlePodcast,arguments: homeScreenController.topPodcasts[index] );
+                  Get.toNamed(NamedRoute.singlePodcast,
+                      arguments: homeScreenController.topPodcasts[index]);
                 },
                 child: Padding(
                   padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
@@ -205,8 +205,8 @@ class HomeScreen extends StatelessWidget {
                             height: size.height / 5.3,
                             width: size.width / 2.4,
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  homeScreenController.topPodcasts[index].poster!,
+                              imageUrl: homeScreenController
+                                  .topPodcasts[index].poster!,
                               imageBuilder: ((context, imageProvider) =>
                                   Container(
                                     decoration: BoxDecoration(
