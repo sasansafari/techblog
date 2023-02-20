@@ -8,8 +8,7 @@ import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
- 
- 
+
 // ignore: must_be_immutable
 class Single extends StatelessWidget {
   Single({Key? key}) : super(key: key);
@@ -52,7 +51,7 @@ class Single extends StatelessWidget {
                                         GradiantColors.singleAppbarGradiant)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              children:   [
+                              children: [
                                 const SizedBox(
                                   width: 20,
                                 ),
@@ -109,7 +108,7 @@ class Single extends StatelessWidget {
                         Text(
                           singleArticleController
                               .articleInfoModel.value.author!,
-                          style: textheme.headline4,
+                          style: textheme.headlineMedium,
                         ),
                         const SizedBox(
                           width: 16,
@@ -117,7 +116,7 @@ class Single extends StatelessWidget {
                         Text(
                           singleArticleController
                               .articleInfoModel.value.createdAt!,
-                          style: textheme.caption,
+                          style: textheme.bodySmall,
                         ),
                       ],
                     ),
@@ -126,7 +125,7 @@ class Single extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: HtmlWidget(
                       singleArticleController.articleInfoModel.value.content!,
-                      textStyle: textheme.headline5,
+                      textStyle: textheme.headlineSmall,
                       enableCaching: true,
                       onLoadingBuilder: ((context, element, loadingProgress) =>
                           const Loading()),
