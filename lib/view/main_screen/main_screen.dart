@@ -163,7 +163,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 8,
+      bottom: 0,
       right: 0,
       left: 0,
       child: Container(
@@ -176,7 +176,8 @@ class BottomNavigation extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+          padding:
+              EdgeInsets.only(right: bodyMargin, left: bodyMargin, bottom: 10),
           child: Container(
             height: size.height / 8,
             decoration: MyDecorations.mainGradiant,
