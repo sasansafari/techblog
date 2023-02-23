@@ -160,9 +160,9 @@ class RegisterController extends GetxController {
   logOut() {
     Get.defaultDialog(
       title: "فاطمه امیری",
-      titleStyle: TextStyle(color: SolidColors.scaffoldBg),
+      titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
       backgroundColor: SolidColors.primaryColor,
-      content: Text(
+      content: const Text(
         "آیا از خروج خود مطمئن هستید ؟",
         style: TextStyle(color: SolidColors.scaffoldBg),
       ),

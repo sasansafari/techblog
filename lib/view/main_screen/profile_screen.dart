@@ -17,7 +17,6 @@ class ProfileScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
- 
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(top: 24),
@@ -43,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Text(
                     MyStrings.imageProfileEdit,
-                    style: textTheme.headline3,
+                    style: textTheme.displaySmall,
                   )
                 ],
               ),
@@ -52,11 +51,11 @@ class ProfileScreen extends StatelessWidget {
               ),
               Text(
                 "فاطمه امیری",
-                style: textTheme.headline4,
+                style: textTheme.headlineMedium,
               ),
               Text(
                 "fatemeamiri@gmail.com",
-                style: textTheme.headline4,
+                style: textTheme.headlineMedium,
               ),
               const SizedBox(
                 height: 40,
@@ -72,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Center(
                         child: Text(
                       MyStrings.myFavBlog,
-                      style: textTheme.headline4,
+                      style: textTheme.headlineMedium,
                     ))),
               ),
               TechDivider(size: size),
@@ -86,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Center(
                         child: Text(
                       MyStrings.myFavPodcast,
-                      style: textTheme.headline4,
+                      style: textTheme.headlineMedium,
                     ))),
               ),
               TechDivider(size: size),
@@ -100,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Center(
                         child: Text(
                       MyStrings.logOut,
-                      style: textTheme.headline4,
+                      style: textTheme.headlineMedium,
                     ))),
               ),
               const SizedBox(
@@ -109,6 +108,5 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ));
- 
   }
 }

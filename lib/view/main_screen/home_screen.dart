@@ -8,11 +8,9 @@ import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/main.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
-import 'package:tec/view/podcast/single_podcast.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -139,14 +137,14 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       homeScreenController
                                           .topVisitedList[index].author!,
-                                      style: textTheme.subtitle1,
+                                      style: textTheme.titleMedium,
                                     ),
                                     Row(
                                       children: [
                                         Text(
                                           homeScreenController
                                               .topVisitedList[index].view!,
-                                          style: textTheme.subtitle1,
+                                          style: textTheme.titleMedium,
                                         ),
                                         const SizedBox(
                                           width: 8,
@@ -280,7 +278,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Text(
                 homeScreenController.poster.value.title!,
-                style: textTheme.headline1,
+                style: textTheme.displayLarge,
               ),
             ],
           ),
@@ -334,7 +332,7 @@ class SeeMorePodcast extends StatelessWidget {
           ),
           Text(
             MyStrings.viewHotestPodCasts,
-            style: textTheme.headline3,
+            style: textTheme.displaySmall,
           )
         ],
       ),

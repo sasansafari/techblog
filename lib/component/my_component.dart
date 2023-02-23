@@ -62,7 +62,7 @@ class MainTags extends StatelessWidget {
             ),
             Text(
               Get.find<HomeScreenController>().tagsList[index].title!,
-              style: textTheme.headline2,
+              style: textTheme.displayMedium,
             )
           ],
         ),
@@ -114,7 +114,7 @@ PreferredSize appBar(String title) {
         ],
         leading: GestureDetector(
           onTap: () {
-           Get.back();
+            Get.back();
           },
           child: Padding(
             padding: const EdgeInsets.only(right: 16),
@@ -133,7 +133,6 @@ PreferredSize appBar(String title) {
     ),
   );
 }
-
 
 class SeeMoreBlog extends StatelessWidget {
   const SeeMoreBlog({
@@ -162,7 +161,7 @@ class SeeMoreBlog extends StatelessWidget {
           ),
           Text(
             title,
-            style: textTheme.headline3,
+            style: textTheme.displaySmall,
           )
         ],
       ),

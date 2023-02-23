@@ -33,9 +33,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('fa'),
         theme: lightTheme(textTheme),
         debugShowCheckedModeBanner: false,
-        getPages: Pages.pages); 
-       
-        
+        getPages: Pages.pages);
   }
 
   ThemeData lightTheme(TextTheme textTheme) {
@@ -52,9 +50,9 @@ class MyApp extends StatelessWidget {
           style: ButtonStyle(
             textStyle: MaterialStateProperty.resolveWith((states) {
               if (states.contains(MaterialState.pressed)) {
-                return textTheme.headline1;
+                return textTheme.displayLarge;
               }
-              return textTheme.subtitle1;
+              return textTheme.titleMedium;
             }),
             backgroundColor: MaterialStateProperty.resolveWith((states) {
               if (states.contains(MaterialState.pressed)) {
@@ -67,34 +65,34 @@ class MyApp extends StatelessWidget {
         fontFamily: 'dana',
         brightness: Brightness.light,
         textTheme: const TextTheme(
-          headline1: TextStyle(
+          displayLarge: TextStyle(
               fontFamily: 'dana',
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: SolidColors.posterTitle),
-          subtitle1: TextStyle(
+          titleMedium: TextStyle(
               fontFamily: 'dana',
               fontSize: 14,
               fontWeight: FontWeight.w300,
               color: SolidColors.posterSubTitle),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
               fontFamily: 'dana', fontSize: 13, fontWeight: FontWeight.w300),
-          headline2: TextStyle(
+          displayMedium: TextStyle(
               fontFamily: 'dana',
               fontSize: 14,
               color: Colors.white,
               fontWeight: FontWeight.w300),
-          headline3: TextStyle(
+          displaySmall: TextStyle(
               fontFamily: 'dana',
               fontSize: 14,
               color: SolidColors.seeMore,
               fontWeight: FontWeight.w700),
-          headline4: TextStyle(
+          headlineMedium: TextStyle(
               fontFamily: 'dana',
               fontSize: 14,
               color: Color.fromARGB(255, 70, 70, 70),
               fontWeight: FontWeight.w700),
-          headline5: TextStyle(
+          headlineSmall: TextStyle(
               fontFamily: 'dana',
               fontSize: 14,
               color: SolidColors.hintText,
@@ -102,7 +100,3 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
-
-
-
- 

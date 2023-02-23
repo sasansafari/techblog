@@ -13,116 +13,119 @@ class ManageArticle extends StatelessWidget {
   ManageArticle({Key? key}) : super(key: key);
 
   var articleManageController = Get.find<ManageArticleController>();
-  
+
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-     return SafeArea(
+    return SafeArea(
         child: Scaffold(
-          appBar: appBar("مدیریت مقاله ها"),
-          body:  Obx(
-              () => articleManageController.loading.value?const Loading(): articleManageController.articleList.isNotEmpty ? ListView.builder(
-                 scrollDirection: Axis.vertical,
-                itemCount: articleManageController.articleList.length,
-                itemBuilder: ((context, index) {
-                  return GestureDetector(
-                    onTap: (() async{
-                      
-                        //route to single manage
-                    }),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: Get.height / 6,
-                            width: Get.width / 3,
-                            child: CachedNetworkImage(
-                              imageUrl: articleManageController
-                                  .articleList[index].image!,
-                              imageBuilder: (((context, imageProvider) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(16)),
-                                      image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover)),
-                                );
-                              })),
-                              placeholder: ((context, url) {
-                                return const Loading();
-                              }),
-                              errorWidget: ((context, url, error) {
-                                return const Icon(
-                                    Icons.image_not_supported_outlined,
-                                    size: 50,
-                                    color: Colors.grey);
-                              }),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Column(
+      appBar: appBar("مدیریت مقاله ها"),
+      body: Obx(
+        () => articleManageController.loading.value
+            ? const Loading()
+            : articleManageController.articleList.isNotEmpty
+                ? ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: articleManageController.articleList.length,
+                    itemBuilder: ((context, index) {
+                      return GestureDetector(
+                        onTap: (() async {
+                          //route to single manage
+                        }),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: Get.width / 2,
-                                child: Text(
-                                  articleManageController
-                                      .articleList[index].title!,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                height: Get.height / 6,
+                                width: Get.width / 3,
+                                child: CachedNetworkImage(
+                                  imageUrl: articleManageController
+                                      .articleList[index].image!,
+                                  imageBuilder: (((context, imageProvider) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(16)),
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover)),
+                                    );
+                                  })),
+                                  placeholder: ((context, url) {
+                                    return const Loading();
+                                  }),
+                                  errorWidget: ((context, url, error) {
+                                    return const Icon(
+                                        Icons.image_not_supported_outlined,
+                                        size: 50,
+                                        color: Colors.grey);
+                                  }),
                                 ),
                               ),
                               const SizedBox(
-                                height: 16,
+                                width: 16,
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    articleManageController
-                                        .articleList[index].author!,
-                                    style: textTheme.caption,
+                                  SizedBox(
+                                    width: Get.width / 2,
+                                    child: Text(
+                                      articleManageController
+                                          .articleList[index].title!,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
                                   ),
                                   const SizedBox(
-                                    width: 20,
+                                    height: 16,
                                   ),
-                                  Text(
-                                    articleManageController
-                                            .articleList[index].view! +
-                                        " بازدید ",
-                                    style: textTheme.caption,
-                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        articleManageController
+                                            .articleList[index].author!,
+                                        style: textTheme.bodySmall,
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        articleManageController
+                                                .articleList[index].view! +
+                                            " بازدید ",
+                                        style: textTheme.bodySmall,
+                                      ),
+                                    ],
+                                  )
                                 ],
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ) : articleEmptyState(textTheme),
-            ),
-          bottomNavigationBar:  Padding(
-            padding: const EdgeInsets.only(top: 32),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                style: ButtonStyle(fixedSize:MaterialStateProperty.all(Size(Get.width/3,56))  ),
-                onPressed: () {
-                    Get.toNamed(NamedRoute.singleManageArticle);
-                },
-                child: const Text("بریم برای نوشتن یه مقاله باحال"),
-              ),
-            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  )
+                : articleEmptyState(textTheme),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(top: 32),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(Size(Get.width / 3, 56))),
+            onPressed: () {
+              Get.toNamed(NamedRoute.singleManageArticle);
+            },
+            child: const Text("بریم برای نوشتن یه مقاله باحال"),
           ),
-   
+        ),
+      ),
     ));
   }
 
@@ -141,15 +144,12 @@ class ManageArticle extends StatelessWidget {
               textAlign: TextAlign.center,
               text: TextSpan(
                 text: MyStrings.articleEmpty,
-                style: textTheme.headline4,
+                style: textTheme.headlineMedium,
               ),
             ),
           ),
-         
         ],
       ),
     );
   }
-
- 
 }
