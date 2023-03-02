@@ -10,6 +10,7 @@ import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -50,7 +51,10 @@ class _MainScreenState extends State<MainScreen> {
                     "پروفایل کاربری",
                     style: textTheme.headlineMedium,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    _key.currentState!.closeDrawer();
+                    selectedPageIndex.value = 1;
+                  },
                 ),
                 const Divider(
                   color: SolidColors.dividerColor,
@@ -138,6 +142,7 @@ class _MainScreenState extends State<MainScreen> {
               changeScreen: (int value) {
                 selectedPageIndex.value = value;
               },
+              selectedScreen: selectedPageIndex,
             ),
           ],
         ),
@@ -152,11 +157,13 @@ class BottomNavigation extends StatelessWidget {
     required this.size,
     required this.bodyMargin,
     required this.changeScreen,
+    required this.selectedScreen,
   }) : super(key: key);
 
   final Size size;
   final double bodyMargin;
   final Function(int) changeScreen;
+  final RxInt selectedScreen;
 
   RegisterController registerController = Get.put(RegisterController());
 
@@ -170,7 +177,7 @@ class BottomNavigation extends StatelessWidget {
         height: size.height / 10,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: GradiantColors.bottomNavBackground,
+            colors: GradientColors.bottomNavBackground,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -180,31 +187,41 @@ class BottomNavigation extends StatelessWidget {
               EdgeInsets.only(right: bodyMargin, left: bodyMargin, bottom: 10),
           child: Container(
             height: size.height / 8,
-            decoration: MyDecorations.mainGradiant,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                    onPressed: (() => changeScreen(0)),
-                    icon: ImageIcon(
+            decoration: MyDecorations.mainGradient,
+            child: Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () => changeScreen(0),
+                    child: ImageIcon(
                       Image.asset(Assets.icons.home.path).image,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    onPressed: (() {
-                      registerController.toggleLogin();
-                    }),
-                    icon: ImageIcon(
-                      Image.asset(Assets.icons.write.path).image,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    onPressed: (() => changeScreen(1)),
-                    icon: ImageIcon(
-                      Image.asset(Assets.icons.user.path).image,
-                      color: Colors.white,
-                    )),
-              ],
+                      size: selectedScreen.value == 0 ? 26 : 24,
+                      color: selectedScreen.value == 0
+                          ? Colors.white
+                          : Colors.grey[400],
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: (() {
+                        registerController.toggleLogin();
+                      }),
+                      icon: ImageIcon(
+                        Image.asset(Assets.icons.write.path).image,
+                        color: Colors.white,
+                        size: 35,
+                      )),
+                  ZoomTapAnimation(
+                      onTap: () => changeScreen(1),
+                      child: ImageIcon(
+                        Image.asset(Assets.icons.user.path).image,
+                        size: selectedScreen.value == 1 ? 26 : 24,
+                        color: selectedScreen.value == 1
+                            ? Colors.white
+                            : Colors.grey[400],
+                      )),
+                ],
+              ),
             ),
           ),
         ),

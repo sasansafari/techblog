@@ -44,7 +44,7 @@ class MainTags extends StatelessWidget {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(24)),
         gradient: LinearGradient(
-            colors: GradiantColors.tags,
+            colors: GradientColors.tags,
             begin: Alignment.centerRight,
             end: Alignment.centerLeft),
       ),

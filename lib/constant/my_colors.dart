@@ -22,7 +22,7 @@ class SolidColors {
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
 }
 
-class GradiantColors {
+class GradientColors {
   static const List<Color> bottomNav = [
     Color.fromARGB(255, 25, 0, 94),
     Color.fromARGB(255, 68, 4, 87)

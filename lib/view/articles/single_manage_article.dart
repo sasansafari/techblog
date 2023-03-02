@@ -81,7 +81,7 @@ class SingleManageArticle extends StatelessWidget {
                           gradient: LinearGradient(
                               end: Alignment.bottomCenter,
                               begin: Alignment.topCenter,
-                              colors: GradiantColors.singleAppbarGradiant)),
+                              colors: GradientColors.singleAppbarGradiant)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
