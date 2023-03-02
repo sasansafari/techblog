@@ -62,7 +62,7 @@ class MainTags extends StatelessWidget {
             ),
             Text(
               Get.find<HomeScreenController>().tagsList[index].title!,
-              style: textTheme.headline2,
+              style: textTheme.displayMedium,
             )
           ],
         ),
@@ -88,7 +88,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SpinKitFadingCube(
-      color: SolidColors.primeryColor,
+      color: SolidColors.primaryColor,
       size: 32.0,
     );
   }
@@ -114,7 +114,7 @@ PreferredSize appBar(String title) {
         ],
         leading: GestureDetector(
           onTap: () {
-           Get.back();
+            Get.back();
           },
           child: Padding(
             padding: const EdgeInsets.only(right: 16),
@@ -122,7 +122,7 @@ PreferredSize appBar(String title) {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                color: SolidColors.primeryColor.withBlue(100),
+                color: SolidColors.primaryColor.withBlue(100),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.keyboard_arrow_right_rounded),
@@ -133,7 +133,6 @@ PreferredSize appBar(String title) {
     ),
   );
 }
-
 
 class SeeMoreBlog extends StatelessWidget {
   const SeeMoreBlog({
@@ -162,7 +161,7 @@ class SeeMoreBlog extends StatelessWidget {
           ),
           Text(
             title,
-            style: textTheme.headline3,
+            style: textTheme.displaySmall,
           )
         ],
       ),

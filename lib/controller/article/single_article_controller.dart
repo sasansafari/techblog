@@ -7,7 +7,7 @@ import 'package:tec/models/tags_model.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/articles/single.dart';
  
-class SingleArcticleController extends GetxController {
+class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
@@ -20,12 +20,12 @@ class SingleArcticleController extends GetxController {
 
     loading.value = true;
     var userId = '';
-    debugPrint(ApiConstant.baseUrl +
+    debugPrint(ApiUrlConstant.baseUrl +
         'article/get.php?command=info&id=$id&user_id=$userId');
     // ignore: todo
     //TODO user id is hard code
 
-    var response = await DioSevice().getMethod(ApiConstant.baseUrl +
+    var response = await DioService().getMethod(ApiUrlConstant.baseUrl +
         'article/get.php?command=info&id=$id&user_id=$userId');
 
     if (response.statusCode == 200) {

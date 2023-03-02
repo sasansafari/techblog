@@ -1,11 +1,17 @@
+import 'dart:developer';
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/api_constant.dart';
+import 'package:tec/constant/commands.dart';
+import 'package:tec/constant/storage_const.dart';
 import 'package:tec/models/article_info_model.dart';
 import 'package:tec/models/article_model.dart';
 import 'package:tec/models/tags_model.dart';
 
 import '../../services/dio_service.dart';
+import '../file_controller.dart';
 
 class ManageArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList.empty();
@@ -30,14 +36,14 @@ class ManageArticleController extends GetxController {
     loading.value = true;
     // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    // var response = await DioSevice().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
-    var response = await DioSevice().getMethod(ApiConstant.publishedByMe + "1");
+    // var response = await DioService().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
+    var response = await DioService().getMethod(ApiUrlConstant.publishedByMe + "1");
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromJson(element));
       });
-      articleList.clear();
+
       loading.value = false;
     }
   }
@@ -48,4 +54,28 @@ class ManageArticleController extends GetxController {
         val!.title = titleTextEditingController.text;
       });
   }
+
+
+
+storeArticle() async {
+  
+
+  var fileController = Get.find<FilePickerController>();
+  loading.value = true;
+  Map<String, dynamic> map = {
+      ApiArticleKeyConstant.title : articleInfoModel.value.title,
+      ApiArticleKeyConstant.content : articleInfoModel.value.content,
+      ApiArticleKeyConstant.catId :articleInfoModel.value.catId,
+      ApiArticleKeyConstant.userId : GetStorage().read(StorageKey.userId),
+      ApiArticleKeyConstant.image : await dio.MultipartFile.fromFile(fileController.file.value.path!),
+      ApiArticleKeyConstant.command : Commands.store,
+      ApiArticleKeyConstant.tagList : "[]"
+ 
+  };
+  var response = await DioService().postMethod(map, ApiUrlConstant.articlePost);
+  log(response.data.toString());
+  loading.value = false;
+
+}
+
 }
