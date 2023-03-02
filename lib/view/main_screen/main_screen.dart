@@ -27,14 +27,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
- 
+
     return SafeArea(
       child: Scaffold(
         key: _key,
         drawer: Drawer(
-          backgroundColor: SolidColors.scafoldBg,
+          backgroundColor: SolidColors.scaffoldBg,
           child: Padding(
-            padding: EdgeInsets.only(right: Dimens.bodyMargin, left: Dimens.bodyMargin),
+            padding: EdgeInsets.only(
+                right: Dimens.bodyMargin, left: Dimens.bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
@@ -47,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "پروفایل کاربری",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () {},
                 ),
@@ -57,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "درباره تک‌بلاگ",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () {},
                 ),
@@ -67,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "اشتراک گذاری تک بلاگ",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () async {
                     await Share.share(MyStrings.shareText);
@@ -79,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "تک‌بلاگ در گیت هاب",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () {
                     myLaunchUrl(MyStrings.techBlogGithubUrl);
@@ -95,7 +96,7 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: SolidColors.scafoldBg,
+          backgroundColor: SolidColors.scaffoldBg,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -146,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
+  BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,
@@ -157,25 +158,26 @@ class BottomNavigation extends StatelessWidget {
   final double bodyMargin;
   final Function(int) changeScreen;
 
- 
+  RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 8,
+      bottom: 0,
       right: 0,
       left: 0,
       child: Container(
         height: size.height / 10,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: GradiantColors.bottomNavBackgroand,
+            colors: GradiantColors.bottomNavBackground,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+          padding:
+              EdgeInsets.only(right: bodyMargin, left: bodyMargin, bottom: 10),
           child: Container(
             height: size.height / 8,
             decoration: MyDecorations.mainGradiant,
@@ -190,7 +192,7 @@ class BottomNavigation extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: (() {
-                      Get.find<RegisterController>().toggleLogin();
+                      registerController.toggleLogin();
                     }),
                     icon: ImageIcon(
                       Image.asset(Assets.icons.write.path).image,
@@ -209,6 +211,4 @@ class BottomNavigation extends StatelessWidget {
       ),
     );
   }
-
-
 }

@@ -21,7 +21,6 @@ class _MyCatsState extends State<MyCats> {
     var textTheme = Theme.of(context).textTheme;
     double bodyMargin = size.width / 10;
     return SafeArea(
-  
       child: Scaffold(
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -44,14 +43,14 @@ class _MyCatsState extends State<MyCats> {
                   ),
                   Text(
                     MyStrings.successfulRegistration,
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   TextField(
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       alignLabelWithHint: true,
                       hintText: "نام و نام خانوادگی",
-                      hintStyle: textTheme.headline4,
+                      hintStyle: textTheme.headlineMedium,
                     ),
                   ),
                   const SizedBox(
@@ -59,7 +58,7 @@ class _MyCatsState extends State<MyCats> {
                   ),
                   Text(
                     MyStrings.chooseCats,
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   //taglist
                   Padding(
@@ -127,7 +126,7 @@ class _MyCatsState extends State<MyCats> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24)),
                               color: SolidColors.surface,
-                             ),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
                               child: Row(
@@ -139,7 +138,7 @@ class _MyCatsState extends State<MyCats> {
                                   ),
                                   Text(
                                     selectedTags[index].title,
-                                    style: textTheme.headline4,
+                                    style: textTheme.headlineMedium,
                                   ),
                                   InkWell(
                                     onTap: (() {

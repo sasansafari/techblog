@@ -8,13 +8,12 @@ import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
- 
- 
+
 // ignore: must_be_immutable
 class Single extends StatelessWidget {
   Single({Key? key}) : super(key: key);
 
-  var singleArcticleController = Get.find<SingleArcticleController>();
+  var singleArticleController = Get.find<SingleArticleController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +23,13 @@ class Single extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Obx(
-          () => singleArcticleController.articleInfoModel.value.title == null
+          () => singleArticleController.articleInfoModel.value.title == null
               ? SizedBox(height: Get.height, child: const Loading())
               : Column(children: [
                   Stack(
                     children: [
                       CachedNetworkImage(
-                        imageUrl: singleArcticleController
+                        imageUrl: singleArticleController
                             .articleInfoModel.value.image!,
                         imageBuilder: ((context, imageProvider) =>
                             Image(image: imageProvider)),
@@ -52,7 +51,7 @@ class Single extends StatelessWidget {
                                         GradiantColors.singleAppbarGradiant)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              children:   [
+                              children: [
                                 const SizedBox(
                                   width: 20,
                                 ),
@@ -89,7 +88,7 @@ class Single extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      singleArcticleController.articleInfoModel.value.title!,
+                      singleArticleController.articleInfoModel.value.title!,
                       maxLines: 2,
                       style: textheme.titleLarge,
                     ),
@@ -107,17 +106,17 @@ class Single extends StatelessWidget {
                           width: 16,
                         ),
                         Text(
-                          singleArcticleController
+                          singleArticleController
                               .articleInfoModel.value.author!,
-                          style: textheme.headline4,
+                          style: textheme.headlineMedium,
                         ),
                         const SizedBox(
                           width: 16,
                         ),
                         Text(
-                          singleArcticleController
+                          singleArticleController
                               .articleInfoModel.value.createdAt!,
-                          style: textheme.caption,
+                          style: textheme.bodySmall,
                         ),
                       ],
                     ),
@@ -125,8 +124,8 @@ class Single extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: HtmlWidget(
-                      singleArcticleController.articleInfoModel.value.content!,
-                      textStyle: textheme.headline5,
+                      singleArticleController.articleInfoModel.value.content!,
+                      textStyle: textheme.headlineSmall,
                       enableCaching: true,
                       onLoadingBuilder: ((context, element, loadingProgress) =>
                           const Loading()),
@@ -151,14 +150,14 @@ class Single extends StatelessWidget {
       height: 35,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: singleArcticleController.tagList.length,
+          itemCount: singleArticleController.tagList.length,
           itemBuilder: ((context, index) {
             return GestureDetector(
               onTap: () async {
-                var tagId = singleArcticleController.tagList[index].id!;
-                await Get.find<ListArcticleController>()
+                var tagId = singleArticleController.tagList[index].id!;
+                await Get.find<ListArticleController>()
                     .getArticleListWithTagsId(tagId);
-                String tagName = singleArcticleController.tagList[index].title!;
+                String tagName = singleArticleController.tagList[index].title!;
                 Get.to(ArticleListScreen(
                   title: tagName,
                 ));
@@ -173,7 +172,7 @@ class Single extends StatelessWidget {
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                       child: Text(
-                        singleArcticleController.tagList[index].title!,
+                        singleArticleController.tagList[index].title!,
                         style: textheme.headline2,
                       )),
                 ),
@@ -187,14 +186,14 @@ class Single extends StatelessWidget {
     return SizedBox(
       height: Get.height / 3.5,
       child: ListView.builder(
-          itemCount: singleArcticleController.releatedList.length,
+          itemCount: singleArticleController.releatedList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: ((context, index) {
             //blog item
             return GestureDetector(
               onTap: (() {
-                singleArcticleController.getArticleInfo(
-                    singleArcticleController.releatedList[index].id);
+                singleArticleController.getArticleInfo(
+                    singleArticleController.releatedList[index].id);
               }),
               child: Padding(
                 padding:
@@ -209,7 +208,7 @@ class Single extends StatelessWidget {
                         child: Stack(
                           children: [
                             CachedNetworkImage(
-                              imageUrl: singleArcticleController
+                              imageUrl: singleArticleController
                                   .releatedList[index].image!,
                               imageBuilder: ((context, imageProvider) =>
                                   Container(
@@ -244,14 +243,14 @@ class Single extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    singleArcticleController
+                                    singleArticleController
                                         .releatedList[index].author!,
                                     style: textheme.subtitle1,
                                   ),
                                   Row(
                                     children: [
                                       Text(
-                                        singleArcticleController
+                                        singleArticleController
                                             .releatedList[index].view!,
                                         style: textheme.subtitle1,
                                       ),
@@ -275,7 +274,7 @@ class Single extends StatelessWidget {
                     SizedBox(
                         width: Get.width / 2.4,
                         child: Text(
-                          singleArcticleController.releatedList[index].title!,
+                          singleArticleController.releatedList[index].title!,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ))

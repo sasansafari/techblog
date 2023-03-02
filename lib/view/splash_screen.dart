@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:tec/gen/assets.gen.dart';
 
 import 'package:tec/constant/my_colors.dart';
-import 'package:tec/main.dart';
+import 'package:tec/route_manager/names.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 32,
             ),
             const SpinKitFadingCube(
-              color: SolidColors.primeryColor,
+              color: SolidColors.primaryColor,
               size: 32.0,
             )
           ]),

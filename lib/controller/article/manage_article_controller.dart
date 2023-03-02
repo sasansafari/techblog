@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
-
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -38,8 +36,8 @@ class ManageArticleController extends GetxController {
     loading.value = true;
     // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    // var response = await DioSevice().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
-    var response = await DioSevice().getMethod(ApiUrlConstant.publishedByMe + "1");
+    // var response = await DioService().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
+    var response = await DioService().getMethod(ApiUrlConstant.publishedByMe + "1");
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {
@@ -62,19 +60,19 @@ class ManageArticleController extends GetxController {
 storeArticle() async {
   
 
-  var fileContollrt = Get.find<FilePickerController>();
+  var fileController = Get.find<FilePickerController>();
   loading.value = true;
   Map<String, dynamic> map = {
       ApiArticleKeyConstant.title : articleInfoModel.value.title,
       ApiArticleKeyConstant.content : articleInfoModel.value.content,
       ApiArticleKeyConstant.catId :articleInfoModel.value.catId,
       ApiArticleKeyConstant.userId : GetStorage().read(StorageKey.userId),
-      ApiArticleKeyConstant.image : await dio.MultipartFile.fromFile(fileContollrt.file.value.path!),
+      ApiArticleKeyConstant.image : await dio.MultipartFile.fromFile(fileController.file.value.path!),
       ApiArticleKeyConstant.command : Commands.store,
       ApiArticleKeyConstant.tagList : "[]"
  
   };
-  var response = await DioSevice().postMethod(map, ApiUrlConstant.articlePost);
+  var response = await DioService().postMethod(map, ApiUrlConstant.articlePost);
   log(response.data.toString());
   loading.value = false;
 

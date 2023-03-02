@@ -5,14 +5,14 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tec/constant/storage_const.dart';
  
 
-class DioSevice {
+class DioService {
   Dio dio = Dio();
 
   Future<dynamic> getMethod(String url) async {
-    dio.options.headers['content-Type'] = 'application/json';
     return await dio
         .get(url,
-            options: Options(responseType: ResponseType.json, method: 'GET'))
+            options: Options(
+              responseType: ResponseType.json, method: 'GET'))
         .then((response) {
       log(response.toString());
       return response;
