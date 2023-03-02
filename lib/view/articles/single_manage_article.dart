@@ -265,10 +265,15 @@ class SingleManageArticle extends StatelessWidget {
     );
   }
 
-  chooseCatsBottomSheet(TextTheme textTheme) {
-    Get.bottomSheet(
-        Container(
-          height: Get.height / 1.5,
+
+  chooseCatsBottomSheet(TextTheme textTheme){
+
+
+   Get.bottomSheet(
+
+      Container(
+          height: Get.height/1.5,
+
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -276,16 +281,20 @@ class SingleManageArticle extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(children: [
-              const Text("انتخاب دسته بندی"),
-              const SizedBox(
-                height: 8,
-              ),
-              cats(textTheme)
-            ]),
+
+            child: SingleChildScrollView(
+              child: Column(children:   [
+                const Text("انتخاب دسته بندی"),
+                const SizedBox(height: 8,)
+                ,cats(textTheme)
+              ]),
+            ),
           ),
         ),
         isScrollControlled: true,
-        persistent: true);
+        persistent: true
+    );
+
+
   }
 }
