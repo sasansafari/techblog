@@ -65,7 +65,7 @@ class PodcastSingle extends StatelessWidget {
                               gradient: LinearGradient(
                                   end: Alignment.bottomCenter,
                                   begin: Alignment.topCenter,
-                                  colors: GradiantColors.singleAppbarGradiant)),
+                                  colors: GradientColors.singleAppbarGradiant)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -241,7 +241,7 @@ class PodcastSingle extends StatelessWidget {
               left: Dimens.bodyMargin,
               child: Container(
                 height: Get.height / 7,
-                decoration: MyDecorations.mainGradiant,
+                decoration: MyDecorations.mainGradient,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

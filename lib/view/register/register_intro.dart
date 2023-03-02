@@ -1,9 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/constant/my_strings.dart';
+
 import 'package:validators/validators.dart';
 
 // ignore: must_be_immutable
@@ -53,6 +55,7 @@ class RegisterIntro extends StatelessWidget {
 
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
+    var isValidate;
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -81,11 +84,13 @@ class RegisterIntro extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(24),
-                  child: TextField(
+                  child: TextFormField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
                       debugPrint(
                           value + " is Email : " + isEmail(value).toString());
+                      isValidate = EmailValidator.validate(
+                          registerController.emailTextEditingController.text);
                     },
                     style: textTheme.headlineSmall,
                     textAlign: TextAlign.center,
@@ -97,9 +102,19 @@ class RegisterIntro extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: (() async {
-                    registerController.register();
-                    Navigator.pop(context);
-                    _activateCodeBottomSheet(context, size, textTheme);
+                    if (registerController
+                        .emailTextEditingController.text.isEmpty) {
+                      Get.snackbar(
+                          "خطا", "لطفا ایمیل خود را به درستی وارد کنید");
+                    } else {
+                      if (isValidate) {
+                        registerController.register();
+                        Navigator.pop(context);
+                        _activateCodeBottomSheet(context, size, textTheme);
+                      } else {
+                        Get.snackbar("خطا", "فرمت ایمیل درست نمیباشد, لطفا ایمیل خود را به درستی وارد کنید");
+                      }
+                    }
                   }),
                   child: const Text("ادامه"),
                 ),

@@ -50,6 +50,8 @@ dependencies:
   percent_indicator: ^4.2.2
   just_audio: ^0.9.30
   audio_video_progress_bar: ^0.11.0
+  zoom_tap_animation: ^1.1.0
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

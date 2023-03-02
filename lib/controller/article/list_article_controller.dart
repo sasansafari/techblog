@@ -47,8 +47,9 @@ class ListArticleController extends GetxController {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromJson(element));
       });
-
       loading.value = false;
+
+      
     }
   }
 }

@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArticleController singleArcticleController =
+  SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
 
   final Size size;
@@ -30,11 +30,16 @@ class HomeScreen extends StatelessWidget {
   final double bodyMargin;
   @override
   Widget build(BuildContext context) {
-    return homeScreenController.loading.value == false
-        ? SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Obx(
-              () => Padding(
+    return Obx(() => homeScreenController.loading.value == false
+        ? RefreshIndicator(
+          // ignore: deprecated_member_use
+          color: Theme.of(context).accentColor,
+          onRefresh: (){
+            return homeScreenController.getHomeItems();
+          },
+          child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: Column(
                     children: [
@@ -68,8 +73,8 @@ class HomeScreen extends StatelessWidget {
                     ],
                   )),
             ),
-          )
-        : const Loading();
+        )
+        : const Loading());
   }
 
   Widget topVisited() {
@@ -83,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               //blog item
               return GestureDetector(
                 onTap: (() {
-                  singleArcticleController.getArticleInfo(
+                  singleArticleController.getArticleInfo(
                       homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(
@@ -115,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                                           gradient: LinearGradient(
                                               begin: Alignment.bottomCenter,
                                               end: Alignment.topCenter,
-                                              colors: GradiantColors.blogPost)),
+                                              colors: GradientColors.blogPost)),
                                     )),
                                 placeholder: ((context, url) =>
                                     const Loading()),
@@ -265,7 +270,7 @@ class HomeScreen extends StatelessWidget {
           foregroundDecoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(16)),
               gradient: LinearGradient(
-                colors: GradiantColors.homePosterCoverGradiant,
+                colors: GradientColors.homePosterCoverGradiant,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               )),

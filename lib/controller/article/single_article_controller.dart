@@ -12,7 +12,7 @@ class SingleArticleController extends GetxController {
   RxInt id = RxInt(0);
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
   RxList<TagsModel> tagList = RxList();
-  RxList<ArticleModel> releatedList = RxList();
+  RxList<ArticleModel> relatedList = RxList();
 
   getArticleInfo(var id) async {
     articleInfoModel = ArticleInfoModel(null,null,null).obs;
@@ -39,9 +39,9 @@ class SingleArticleController extends GetxController {
       tagList.add(TagsModel.fromJson(element));
     });
 
-    releatedList.clear();
+    relatedList.clear();
     response.data['related'].forEach((element) {
-      releatedList.add(ArticleModel.fromJson(element));
+      relatedList.add(ArticleModel.fromJson(element));
 
     });
 
