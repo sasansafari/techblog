@@ -7,3 +7,4 @@ TextStyle appBarTextStyle = const TextStyle(
   color: SolidColors.primaryColor,
   fontWeight: FontWeight.w300,
 );
+ TextStyle subTextPodcastList = const TextStyle(color:SolidColors.subText,fontSize: 11);
