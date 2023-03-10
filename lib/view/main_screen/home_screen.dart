@@ -8,11 +8,9 @@ import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/main.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
-import 'package:tec/view/podcast/single_podcast.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -24,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  SingleArticleController singleArcticleController =
+  SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
 
   final Size size;
@@ -32,47 +30,51 @@ class HomeScreen extends StatelessWidget {
   final double bodyMargin;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Obx(
-        () => Padding(
-          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-          child: homeScreenController.loading.value == false
-              ? Column(
-                  children: [
-                    poster(),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    tags(),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(ArticleListScreen(
-                              title: "مقالات",
-                            )),
-                        child: SeeMoreBlog(
-                          bodyMargin: bodyMargin,
-                          textTheme: textTheme,
-                          title: 'مشاهده داغ ترین نوشته ها ',
-                        )),
-                    topVisited(),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    SeeMorePodcast(
-                        bodyMargin: bodyMargin, textTheme: textTheme),
-                    topPodcasts(),
-                    const SizedBox(
-                      height: 100,
-                    )
-                  ],
-                )
-              : const Center(child: Loading()),
-        ),
-      ),
-    );
+    return Obx(() => homeScreenController.loading.value == false
+        ? RefreshIndicator(
+          // ignore: deprecated_member_use
+          color: Theme.of(context).accentColor,
+          onRefresh: (){
+            return homeScreenController.getHomeItems();
+          },
+          child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  child: Column(
+                    children: [
+                      poster(),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      tags(),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      GestureDetector(
+                          onTap: () => Get.to(ArticleListScreen(
+                                title: "مقالات",
+                              )),
+                          child: SeeMoreBlog(
+                            bodyMargin: bodyMargin,
+                            textTheme: textTheme,
+                            title: 'مشاهده داغ ترین نوشته ها ',
+                          )),
+                      topVisited(),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      SeeMorePodcast(
+                          bodyMargin: bodyMargin, textTheme: textTheme),
+                      topPodcasts(),
+                      const SizedBox(
+                        height: 100,
+                      )
+                    ],
+                  )),
+            ),
+        )
+        : const Loading());
   }
 
   Widget topVisited() {
@@ -86,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               //blog item
               return GestureDetector(
                 onTap: (() {
-                  singleArcticleController.getArticleInfo(
+                  singleArticleController.getArticleInfo(
                       homeScreenController.topVisitedList[index].id);
                 }),
                 child: Padding(
@@ -118,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                                           gradient: LinearGradient(
                                               begin: Alignment.bottomCenter,
                                               end: Alignment.topCenter,
-                                              colors: GradiantColors.blogPost)),
+                                              colors: GradientColors.blogPost)),
                                     )),
                                 placeholder: ((context, url) =>
                                     const Loading()),
@@ -140,14 +142,14 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       homeScreenController
                                           .topVisitedList[index].author!,
-                                      style: textTheme.subtitle1,
+                                      style: textTheme.titleMedium,
                                     ),
                                     Row(
                                       children: [
                                         Text(
                                           homeScreenController
                                               .topVisitedList[index].view!,
-                                          style: textTheme.subtitle1,
+                                          style: textTheme.titleMedium,
                                         ),
                                         const SizedBox(
                                           width: 8,
@@ -193,7 +195,8 @@ class HomeScreen extends StatelessWidget {
               //podcast item
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(NamedRoute.singlePodcast,arguments: homeScreenController.topPodcasts[index] );
+                  Get.toNamed(NamedRoute.singlePodcast,
+                      arguments: homeScreenController.topPodcasts[index]);
                 },
                 child: Padding(
                   padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 15),
@@ -205,8 +208,8 @@ class HomeScreen extends StatelessWidget {
                             height: size.height / 5.3,
                             width: size.width / 2.4,
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  homeScreenController.topPodcasts[index].poster!,
+                              imageUrl: homeScreenController
+                                  .topPodcasts[index].poster!,
                               imageBuilder: ((context, imageProvider) =>
                                   Container(
                                     decoration: BoxDecoration(
@@ -267,7 +270,7 @@ class HomeScreen extends StatelessWidget {
           foregroundDecoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(16)),
               gradient: LinearGradient(
-                colors: GradiantColors.homePosterCoverGradiant,
+                colors: GradientColors.homePosterCoverGradiant,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               )),
@@ -280,7 +283,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Text(
                 homeScreenController.poster.value.title!,
-                style: textTheme.headline1,
+                style: textTheme.displayLarge,
               ),
             ],
           ),
@@ -334,7 +337,7 @@ class SeeMorePodcast extends StatelessWidget {
           ),
           Text(
             MyStrings.viewHotestPodCasts,
-            style: textTheme.headline3,
+            style: textTheme.displaySmall,
           )
         ],
       ),

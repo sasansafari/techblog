@@ -1,9 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/constant/my_strings.dart';
+
 import 'package:validators/validators.dart';
 
 // ignore: must_be_immutable
@@ -11,7 +13,7 @@ class RegisterIntro extends StatelessWidget {
   RegisterIntro({Key? key}) : super(key: key);
 
   var registerController = Get.find<RegisterController>();
-  
+
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -32,7 +34,7 @@ class RegisterIntro extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: MyStrings.welcom,
-                  style: textTheme.headline4,
+                  style: textTheme.headlineMedium,
                 ),
               ),
             ),
@@ -53,6 +55,7 @@ class RegisterIntro extends StatelessWidget {
 
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
+    var isValidate;
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -77,30 +80,41 @@ class RegisterIntro extends StatelessWidget {
               children: [
                 Text(
                   MyStrings.insertYourEmail,
-                  style: textTheme.headline4,
+                  style: textTheme.headlineMedium,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(24),
-                  child: TextField(
+                  child: TextFormField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
-                      debugPrint(value + " is Email : " + isEmail(value).toString());
+                      debugPrint(
+                          value + " is Email : " + isEmail(value).toString());
+                      isValidate = EmailValidator.validate(
+                          registerController.emailTextEditingController.text);
                     },
-                    style: textTheme.headline5,
+                    style: textTheme.headlineSmall,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       hintText: "techblog@gmail.com",
-                      hintStyle: textTheme.headline5,
+                      hintStyle: textTheme.headlineSmall,
                     ),
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: (() async{
-                    registerController.register();
-                     Navigator.pop(context);
-                   _activateCodeBottomSheet(context, size, textTheme);
-
-
+                  onPressed: (() async {
+                    if (registerController
+                        .emailTextEditingController.text.isEmpty) {
+                      Get.snackbar(
+                          "خطا", "لطفا ایمیل خود را به درستی وارد کنید");
+                    } else {
+                      if (isValidate) {
+                        registerController.register();
+                        Navigator.pop(context);
+                        _activateCodeBottomSheet(context, size, textTheme);
+                      } else {
+                        Get.snackbar("خطا", "فرمت ایمیل درست نمیباشد, لطفا ایمیل خود را به درستی وارد کنید");
+                      }
+                    }
                   }),
                   child: const Text("ادامه"),
                 ),
@@ -137,29 +151,28 @@ class RegisterIntro extends StatelessWidget {
                     children: [
                       Text(
                         MyStrings.activateCode,
-                        style: textTheme.headline4,
+                        style: textTheme.headlineMedium,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: TextField(
-                          controller:
-                              registerController.activeCodeTextEditingController,
+                          controller: registerController
+                              .activeCodeTextEditingController,
                           onChanged: (value) {
                             debugPrint(value +
                                 " is Email : " +
                                 isEmail(value).toString());
                           },
-                          style: textTheme.headline5,
+                          style: textTheme.headlineSmall,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: "******",
-                              hintStyle: textTheme.headline5),
+                              hintStyle: textTheme.headlineSmall),
                         ),
                       ),
                       ElevatedButton(
                           onPressed: (() {
                             registerController.verify();
-                       
                           }),
                           child: const Text("ادامه"))
                     ]),

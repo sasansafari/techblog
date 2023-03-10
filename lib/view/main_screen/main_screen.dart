@@ -10,6 +10,7 @@ import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import '../../component/searchBar.dart';
 
@@ -29,14 +30,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
- 
+
     return SafeArea(
       child: Scaffold(
         key: _key,
         drawer: Drawer(
           backgroundColor: SolidColors.scaffoldBg,
           child: Padding(
-            padding: EdgeInsets.only(right: Dimens.bodyMargin, left: Dimens.bodyMargin),
+            padding: EdgeInsets.only(
+                right: Dimens.bodyMargin, left: Dimens.bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
@@ -49,9 +51,12 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "پروفایل کاربری",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    _key.currentState!.closeDrawer();
+                    selectedPageIndex.value = 1;
+                  },
                 ),
                 const Divider(
                   color: SolidColors.dividerColor,
@@ -59,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "درباره تک‌بلاگ",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () {},
                 ),
@@ -69,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "اشتراک گذاری تک بلاگ",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () async {
                     await Share.share(MyStrings.shareText);
@@ -81,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
                 ListTile(
                   title: Text(
                     "تک‌بلاگ در گیت هاب",
-                    style: textTheme.headline4,
+                    style: textTheme.headlineMedium,
                   ),
                   onTap: () {
                     myLaunchUrl(MyStrings.techBlogGithubUrl);
@@ -155,6 +160,7 @@ class _MainScreenState extends State<MainScreen> {
               changeScreen: (int value) {
                 selectedPageIndex.value = value;
               },
+              selectedScreen: selectedPageIndex,
             ),
           ],
         ),
@@ -164,69 +170,80 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
+  BottomNavigation({
     Key? key,
     required this.size,
     required this.bodyMargin,
     required this.changeScreen,
+    required this.selectedScreen,
   }) : super(key: key);
 
   final Size size;
   final double bodyMargin;
   final Function(int) changeScreen;
+  final RxInt selectedScreen;
 
- 
+  RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 8,
+      bottom: 0,
       right: 0,
       left: 0,
       child: Container(
         height: size.height / 10,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: GradiantColors.bottomNavBackground,
+            colors: GradientColors.bottomNavBackground,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+          padding:
+              EdgeInsets.only(right: bodyMargin, left: bodyMargin, bottom: 10),
           child: Container(
             height: size.height / 8,
-            decoration: MyDecorations.mainGradiant,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                    onPressed: (() => changeScreen(0)),
-                    icon: ImageIcon(
+            decoration: MyDecorations.mainGradient,
+            child: Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () => changeScreen(0),
+                    child: ImageIcon(
                       Image.asset(Assets.icons.home.path).image,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    onPressed: (() {
-                      Get.find<RegisterController>().toggleLogin();
-                    }),
-                    icon: ImageIcon(
-                      Image.asset(Assets.icons.write.path).image,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    onPressed: (() => changeScreen(1)),
-                    icon: ImageIcon(
-                      Image.asset(Assets.icons.user.path).image,
-                      color: Colors.white,
-                    )),
-              ],
+                      size: selectedScreen.value == 0 ? 26 : 24,
+                      color: selectedScreen.value == 0
+                          ? Colors.white
+                          : Colors.grey[400],
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: (() {
+                        registerController.toggleLogin();
+                      }),
+                      icon: ImageIcon(
+                        Image.asset(Assets.icons.write.path).image,
+                        color: Colors.white,
+                        size: 35,
+                      )),
+                  ZoomTapAnimation(
+                      onTap: () => changeScreen(1),
+                      child: ImageIcon(
+                        Image.asset(Assets.icons.user.path).image,
+                        size: selectedScreen.value == 1 ? 26 : 24,
+                        color: selectedScreen.value == 1
+                            ? Colors.white
+                            : Colors.grey[400],
+                      )),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-
 }
