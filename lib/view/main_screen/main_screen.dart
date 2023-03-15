@@ -12,6 +12,8 @@ import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../../component/searchBar.dart';
+
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class MainScreen extends StatefulWidget {
@@ -117,7 +119,23 @@ class _MainScreenState extends State<MainScreen> {
                 Assets.images.logo.path,
                 height: size.height / 13.6,
               ),
-              const Icon(Icons.search, color: Colors.black),
+               // IconButton(
+               //  icon: Icon(Icons.search , color: Colors.black,),
+               //  onPressed: (){
+               //    showSearch(context: context, delegate:CustomSearchDelegate());
+               //  },
+               //   ),
+              IconButton(
+                onPressed: () {
+                  // method to show the search bar
+                  showSearch(
+                      context: context,
+                      // delegate to customize the search bar
+                      delegate: CustomSearchDelegate()
+                  );
+                },
+                icon: const Icon(Icons.search , color: Colors.black,),
+              )
             ],
           ),
         ),
