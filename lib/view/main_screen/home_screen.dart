@@ -12,6 +12,8 @@ import 'package:tec/models/fake_data.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
 
+import '../podcast/hot_podcast_list.dart';
+
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -335,9 +337,15 @@ class SeeMorePodcast extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Text(
-            MyStrings.viewHotestPodCasts,
-            style: textTheme.displaySmall,
+           Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+            child: GestureDetector(
+              onTap: () => Get.to(HotPodcastList(title: "پادکست های مورد علاقه",)),
+              child: Text(
+                MyStrings.viewHotestPodCasts,
+                style: textTheme.headline3,
+              ),
+            ),
           )
         ],
       ),

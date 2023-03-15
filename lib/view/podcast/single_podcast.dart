@@ -143,11 +143,11 @@ class PodcastSingle extends StatelessWidget {
 
                     ()=>             ListView.builder(
                           itemCount:
-                              singlePodcastController.podcastFileList.length,
+                              controller.podcastFileList.length,
                           shrinkWrap: true,
                           itemBuilder: ((context, index) {
                             return index <
-                                    singlePodcastController
+                                    controller
                                             .podcastFileList.length -
                                         1
                                 ? Padding(
@@ -170,7 +170,7 @@ class PodcastSingle extends StatelessWidget {
                                             SizedBox(
                                               width: Get.width / 1.5,
                                               child: Text(
-                                                singlePodcastController
+                                                controller
                                                     .podcastFileList[index]
                                                     .title!,
                                                 style: textheme.headline4,
@@ -178,7 +178,7 @@ class PodcastSingle extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Text(singlePodcastController
+                                        Text(controller
                                                 .podcastFileList[index]
                                                 .lenght! +
                                             ":00")
@@ -207,7 +207,7 @@ class PodcastSingle extends StatelessWidget {
                                                 SizedBox(
                                                   width: Get.width / 1.5,
                                                   child: Text(
-                                                    singlePodcastController
+                                                    controller
                                                         .podcastFileList[index]
                                                         .title!,
                                                     style: textheme.headline4,
@@ -215,7 +215,7 @@ class PodcastSingle extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            Text(singlePodcastController
+                                            Text(controller
                                                     .podcastFileList[index]
                                                     .lenght! +
                                                 ":00")
