@@ -8,16 +8,16 @@ class PodcastModel {
   String? view;
   String? createdAt;
 
-  PodcastModel( );
+  PodcastModel();
 
   PodcastModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    poster = ApiUrlConstant.hostDlUrl + element["poster"];
+    poster = element["poster"] != null
+        ? ApiUrlConstant.hostDlUrl + element["poster"]
+        : '';
     publisher = element["author"];
     view = element["view"];
     createdAt = element["created_at"];
   }
 }
-
-
