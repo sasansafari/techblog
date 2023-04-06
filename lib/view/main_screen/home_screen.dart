@@ -26,6 +26,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
   SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
+  ListArticleController listArticleController =
+      Get.put(ListArticleController());
 
   final Size size;
   final TextTheme textTheme;
@@ -307,8 +309,7 @@ class HomeScreen extends StatelessWidget {
                   EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
               child: GestureDetector(
                 onTap: () async {
-                  await Get.find<ListArticleController>()
-                      .getArticleListWithTagsId(tag.id!);
+                  await listArticleController.getArticleListWithTagsId(tag.id!);
                   Get.to(ArticleListScreen(title: tag.title!));
                 },
                 child: MainTags(
