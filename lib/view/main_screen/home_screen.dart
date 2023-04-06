@@ -11,7 +11,7 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
-
+import '../../controller/article/list_article_controller.dart';
 import '../podcast/hot_podcast_list.dart';
 
 // ignore: must_be_immutable
@@ -34,12 +34,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => homeScreenController.loading.value == false
         ? RefreshIndicator(
-          // ignore: deprecated_member_use
-          color: Theme.of(context).accentColor,
-          onRefresh: (){
-            return homeScreenController.getHomeItems();
-          },
-          child: SingleChildScrollView(
+            // ignore: deprecated_member_use
+            color: Theme.of(context).accentColor,
+            onRefresh: () {
+              return homeScreenController.getHomeItems();
+            },
+            child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   )),
             ),
-        )
+          )
         : const Loading());
   }
 
@@ -299,14 +299,22 @@ class HomeScreen extends StatelessWidget {
       height: 60,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: tagList.length,
+          itemCount: homeScreenController.tagsList.length,
           itemBuilder: ((context, index) {
+            final tag = homeScreenController.tagsList[index];
             return Padding(
               padding:
                   EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
-              child: MainTags(
-                textTheme: textTheme,
-                index: index,
+              child: GestureDetector(
+                onTap: () async {
+                  await Get.find<ListArticleController>()
+                      .getArticleListWithTagsId(tag.id!);
+                  Get.to(ArticleListScreen(title: tag.title!));
+                },
+                child: MainTags(
+                  textTheme: textTheme,
+                  index: index,
+                ),
               ),
             );
           })),
@@ -337,10 +345,12 @@ class SeeMorePodcast extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
             child: GestureDetector(
-              onTap: () => Get.to(HotPodcastList(title: "پادکست های مورد علاقه",)),
+              onTap: () => Get.to(HotPodcastList(
+                title: "پادکست های مورد علاقه",
+              )),
               child: Text(
                 MyStrings.viewHotestPodCasts,
                 style: textTheme.headline3,
