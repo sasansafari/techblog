@@ -40,7 +40,7 @@ Widget topPodcasts(
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(Dimens.small),
                       child: SizedBox(
                           height: size.height / 5.3,
                           width: size.width / 2.4,

@@ -67,13 +67,7 @@ class BottomNavigation extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: (() {
-                         toggleLogin() {
-                         if (GetStorage().read(StorageKey.token) == null) {
-                         Get.to(RegisterIntro());
-                             } else {
-                         routeToWriteBottomSheet();
-                           }
-                         }
+                        registerController.toggleLogin();
                       }),
                       icon: ImageIcon(
                         Image.asset(Assets.icons.write.path).image,

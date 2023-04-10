@@ -7,6 +7,7 @@ import 'package:tec/constant/api_constant.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/services/dio_service.dart';
+import 'package:tec/view/main_screen/bottom_navigation.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 import 'package:tec/view/register/register_intro.dart';
 
@@ -65,8 +66,14 @@ class RegisterController extends GetxController {
         break;
       case 'expired':
         Get.snackbar('خطا', 'کد فعالسازی منقضی شده است');
-
         break;
     }
   }
+    toggleLogin() {
+   if (GetStorage().read(StorageKey.token) == null) {
+    Get.to(RegisterIntro());
+       } else {
+       routeToWriteBottomSheet();
+        }
+     }
 }
