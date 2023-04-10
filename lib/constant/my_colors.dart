@@ -20,13 +20,20 @@ class SolidColors {
   static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
   static const Color hintText = Color.fromARGB(255, 133, 133, 133);
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
+  static const Color greyColor = Color.fromARGB(255, 156, 156, 156);
+  static const Color lightIcon = Color.fromARGB(255, 255, 255, 255);
+  static const Color blackColor = Color.fromARGB(255, 4, 4, 4);
+  static const Color yelowColor = Color.fromARGB(255, 255, 235, 59);
+  static const Color erorColor = Color.fromARGB(255, 227, 10, 10);
+  static const Color lightBackColor = Color.fromARGB(255, 255, 255, 255);
+  static const Color minutesColorColor =  Color.fromARGB(255, 203, 202, 202);
+  
 }
 
 class GradientColors {
   static const List<Color> bottomNav = [
     Color.fromARGB(255, 25, 0, 94),
     Color.fromARGB(255, 68, 4, 87)
- 
   ];
   static const List<Color> bottomNavBackground = [
     Color.fromARGB(0, 255, 255, 255),

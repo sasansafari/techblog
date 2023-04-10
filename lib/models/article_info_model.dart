@@ -19,8 +19,6 @@ class ArticleInfoModel {
    this.content,
    this.image,
    
-
-
   );
 
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {

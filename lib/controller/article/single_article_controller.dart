@@ -6,17 +6,18 @@ import 'package:tec/models/article_model.dart';
 import 'package:tec/models/tags_model.dart';
 import 'package:tec/services/dio_service.dart';
 import 'package:tec/view/articles/single.dart';
- 
+
 class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
-  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
+  Rx<ArticleInfoModel> articleInfoModel =
+      ArticleInfoModel(null, null, null).obs;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
 
   getArticleInfo(var id) async {
-    articleInfoModel = ArticleInfoModel(null,null,null).obs;
-     Get.to(Single());
+    articleInfoModel = ArticleInfoModel(null, null, null).obs;
+    Get.to(Single());
 
     loading.value = true;
     var userId = '';
@@ -30,8 +31,7 @@ class SingleArticleController extends GetxController {
 
     if (response.statusCode == 200) {
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);
-       loading.value = false;
-
+      loading.value = false;
     }
 
     tagList.clear();
@@ -42,12 +42,6 @@ class SingleArticleController extends GetxController {
     relatedList.clear();
     response.data['related'].forEach((element) {
       relatedList.add(ArticleModel.fromJson(element));
-
     });
-
   }
-
-
- 
- 
 }

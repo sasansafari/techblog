@@ -14,6 +14,4 @@ class MyDecorations{
                 colors: GradientColors.bottomNav,
               ),
             );
-
-
 }

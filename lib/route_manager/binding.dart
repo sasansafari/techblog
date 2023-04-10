@@ -23,11 +23,8 @@ class ArticleManagerBinding implements Bindings {
     // TODO: implement dependencies
     // Get.put(ManageArticleController());
     Get.put(ManageArticleController());
-
-   }
+  }
 }
-
-
 
 class RegisterBinding implements Bindings {
   @override
@@ -35,11 +32,8 @@ class RegisterBinding implements Bindings {
     // ignore: todo
     // TODO: implement dependencies
     Get.put(RegisterController());
- 
   }
 }
-
-
 
 class SinglePodcastBinding implements Bindings {
   @override
@@ -47,6 +41,15 @@ class SinglePodcastBinding implements Bindings {
     // ignore: todo
     // TODO: implement dependencies
     Get.put(SinglePodcastController());
- 
+  }
+}
+
+class podcastManagerBinding implements Bindings {
+  @override
+  void dependencies() {
+    // TODO: implement dependencies
+
+    //Get.put(SinglePodcastController());
+    Get.lazyPut(() => SinglePodcastController());
   }
 }

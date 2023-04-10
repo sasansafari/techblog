@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
+import 'package:tec/component/widgets/article_widgets.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
-import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/route_manager/names.dart';
 
 import '../../constant/my_strings.dart';
@@ -19,7 +21,7 @@ class ManageArticle extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
     return SafeArea(
         child: Scaffold(
-      appBar: appBar("مدیریت مقاله ها"),
+      appBar: appBar(MyStrings.titleAppBarManageArticle),
       body: Obx(
         () => articleManageController.loading.value
             ? const Loading()
@@ -33,7 +35,7 @@ class ManageArticle extends StatelessWidget {
                           //route to single manage
                         }),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding:  EdgeInsets.all(Dimens.small),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -46,8 +48,8 @@ class ManageArticle extends StatelessWidget {
                                   imageBuilder: (((context, imageProvider) {
                                     return Container(
                                       decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(16)),
+                                          borderRadius:  BorderRadius.all(
+                                              Radius.circular(Dimens.medium)),
                                           image: DecorationImage(
                                               image: imageProvider,
                                               fit: BoxFit.cover)),
@@ -57,15 +59,15 @@ class ManageArticle extends StatelessWidget {
                                     return const Loading();
                                   }),
                                   errorWidget: ((context, url, error) {
-                                    return const Icon(
+                                    return  Icon(
                                         Icons.image_not_supported_outlined,
-                                        size: 50,
-                                        color: Colors.grey);
+                                        size: Dimens.xlarge-14,
+                                        color: SolidColors.greyColor);
                                   }),
                                 ),
                               ),
-                              const SizedBox(
-                                width: 16,
+                               SizedBox(
+                                width: Dimens.medium,
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -79,8 +81,8 @@ class ManageArticle extends StatelessWidget {
                                       maxLines: 2,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 16,
+                                   SizedBox(
+                                    height: Dimens.medium,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -91,13 +93,13 @@ class ManageArticle extends StatelessWidget {
                                             .articleList[index].author!,
                                         style: textTheme.bodySmall,
                                       ),
-                                      const SizedBox(
-                                        width: 20,
+                                       SizedBox(
+                                        width: Dimens.medium+4,
                                       ),
                                       Text(
                                         articleManageController
                                                 .articleList[index].view! +
-                                            " بازدید ",
+                                            MyStrings.visit,
                                         style: textTheme.bodySmall,
                                       ),
                                     ],
@@ -113,43 +115,19 @@ class ManageArticle extends StatelessWidget {
                 : articleEmptyState(textTheme),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(top: 32),
+        padding:  EdgeInsets.only(top: Dimens.large),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  EdgeInsets.all(Dimens.small),
           child: ElevatedButton(
             style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(Size(Get.width / 3, 56))),
+                fixedSize: MaterialStateProperty.all(Size(Get.width / 3, Dimens.xlarge-8))),
             onPressed: () {
               Get.toNamed(NamedRoute.singleManageArticle);
             },
-            child: const Text("بریم برای نوشتن یه مقاله باحال"),
+            child:  Text(MyStrings.textManageArticle),
           ),
         ),
       ),
     ));
-  }
-
-  Widget articleEmptyState(TextTheme textTheme) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            Assets.images.emptyState.path,
-            height: 100,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: MyStrings.articleEmpty,
-                style: textTheme.headlineMedium,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

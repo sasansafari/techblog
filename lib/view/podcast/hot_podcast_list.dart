@@ -1,19 +1,15 @@
 
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/text_style.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/podcast/single_podcast_cotroller.dart';
-import 'package:tec/view/podcast/single_podcast.dart';
-
 import '../../component/dimens.dart';
 import '../../component/my_component.dart';
 import '../../models/podcast_model.dart';
 import '../../route_manager/names.dart';
-
 class HotPodcastList extends StatelessWidget {
   final String title;
 
@@ -31,7 +27,7 @@ class HotPodcastList extends StatelessWidget {
       child: Scaffold(
         appBar: appBar(title),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 16, 15, 0),
+          padding:  EdgeInsets.fromLTRB(0, Dimens.medium, Dimens.medium-1, 0),
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: homeScreenController.topPodcasts.length,
@@ -45,28 +41,28 @@ class HotPodcastList extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(
-                          height: 100,
-                          width: 100,
+                          height: Dimens.xlarge+36,
+                          width: Dimens.xlarge+36,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding:  EdgeInsets.all(Dimens.small),
                             child: CachedNetworkImage(
                               imageUrl: homeScreenController
                                   .topPodcasts[index].poster!,
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(16),
+                                    borderRadius:  BorderRadius.all(
+                                      Radius.circular(Dimens.medium),
                                     ),
                                     image: DecorationImage(
                                         image: imageProvider,
                                         fit: BoxFit.cover)),
                               ),
                               placeholder: ((context, url) => const Loading()),
-                              errorWidget: (context, url, error) => const Icon(
+                              errorWidget: (context, url, error) =>  Icon(
                                 Icons.image_not_supported_outlined,
-                                size: 50,
-                                color: Color.fromARGB(255, 227, 10, 10),
+                                size: Dimens.xlarge-14,
+                                color: SolidColors.erorColor,
                               ),
                             ),
                           ),

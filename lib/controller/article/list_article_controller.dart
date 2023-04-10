@@ -23,7 +23,6 @@ class ListArticleController extends GetxController {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromJson(element));
       });
-
       loading.value = false;
     }
   }
@@ -33,14 +32,15 @@ class ListArticleController extends GetxController {
     loading.value = true;
     // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    
+
     final queryParam = {
-      'command':'get_articles_with_tag_id',
-      'tag_id':id,
-      'user_id':''
+      'command': 'get_articles_with_tag_id',
+      'tag_id': id,
+      'user_id': ''
     };
 
-    final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?',queryParam);
+    final uri =
+        Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
     var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {
@@ -48,8 +48,6 @@ class ListArticleController extends GetxController {
         articleList.add(ArticleModel.fromJson(element));
       });
       loading.value = false;
-
-      
     }
   }
 }

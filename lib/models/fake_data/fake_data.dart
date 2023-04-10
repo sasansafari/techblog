@@ -1,14 +1,9 @@
-import 'package:tec/gen/assets.gen.dart';
 
-import 'data_models.dart';
+import 'package:tec/models/fake_data/hashtag_model.dart';
 
-Map homePagePosterMap = {
-  "imageAsset": Assets.images.posterTest.path,
-  "writer": "ملیکا عزیزی",
-  "date": "یک روز پیش",
-  "title": "دوازده قدم برنامه نویسی یک دوره ",
-  "view": "251"
-};
+import 'blog_model.dart';
+
+
 
 //blog fake data
 List<HashTagModel> tagList = [
