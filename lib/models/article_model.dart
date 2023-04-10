@@ -31,7 +31,7 @@ class ArticleModel {
     image = ApiUrlConstant.hostDlUrl + element["image"];
     catId = element["cat_id"];
     catName = element["cat_name"];
-    author = element["author"];
+    author = element["author"]??'ساسان صفری';
     view = element["view"];
     status = element["status"];
     createdAt = element["created_at"];

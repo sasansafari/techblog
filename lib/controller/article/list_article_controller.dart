@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/article_model.dart';
@@ -33,14 +36,16 @@ class ListArticleController extends GetxController {
     loading.value = true;
     // ignore: todo
     //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    
+
     final queryParam = {
-      'command':'get_articles_with_tag_id',
-      'tag_id':id,
-      'user_id':''
+      'command': 'get_articles_with_tag_id',
+      'tag_id': id,
+      'user_id': ''
     };
 
-    final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?',queryParam);
+    final uri =
+        Uri.https('techblog.sasansafari.com', '/Techblog/api/article/get.php', queryParam);
+    log(uri.toString());
     var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {
@@ -48,8 +53,6 @@ class ListArticleController extends GetxController {
         articleList.add(ArticleModel.fromJson(element));
       });
       loading.value = false;
-
-      
     }
   }
 }
