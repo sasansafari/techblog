@@ -17,6 +17,7 @@ class PodcastModel {
     required this.createdAt,
   });
 
+
   factory PodcastModel.fromJson(Map<String, dynamic> json) {
     return PodcastModel(
       id: json['id'] ?? '',
@@ -26,5 +27,6 @@ class PodcastModel {
       view: json['view'] ?? '',
       createdAt: json['created_at'] ?? '',
     );
+
   }
 }
