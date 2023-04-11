@@ -8,7 +8,12 @@ import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
+ 
 import 'see_more_podcast_screen.dart';
+ 
+import '../../controller/article/list_article_controller.dart';
+import '../podcast/hot_podcast_list.dart';
+ 
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -22,6 +27,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
   SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
+  ListArticleController listArticleController =
+      Get.put(ListArticleController());
 
   final Size size;
   final TextTheme textTheme;

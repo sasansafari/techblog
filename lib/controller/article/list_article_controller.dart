@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/article_model.dart';
@@ -39,8 +42,8 @@ class ListArticleController extends GetxController {
       'user_id': ''
     };
 
-    final uri =
-        Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
+    final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
+ 
     var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {

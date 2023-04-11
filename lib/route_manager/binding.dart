@@ -11,7 +11,6 @@ class ArticleBinding implements Bindings {
     // ignore: todo
     // TODO: implement dependencies
     Get.put(ListArticleController());
-
     Get.lazyPut(() => SingleArticleController());
   }
 }
@@ -47,9 +46,6 @@ class SinglePodcastBinding implements Bindings {
 class podcastManagerBinding implements Bindings {
   @override
   void dependencies() {
-    // TODO: implement dependencies
-
-    //Get.put(SinglePodcastController());
-    Get.lazyPut(() => SinglePodcastController());
+     Get.lazyPut(() => SinglePodcastController());
   }
 }
