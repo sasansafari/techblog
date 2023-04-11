@@ -40,6 +40,12 @@ class SinglePodcastBinding implements Bindings {
     // ignore: todo
     // TODO: implement dependencies
     Get.put(SinglePodcastController());
-    
+  }
+}
+
+class podcastManagerBinding implements Bindings {
+  @override
+  void dependencies() {
+     Get.lazyPut(() => SinglePodcastController());
   }
 }

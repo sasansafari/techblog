@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +13,10 @@ import 'package:flutter/services.dart';
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
+
+  /// File path: assets/icons/audiofile.png
+  AssetGenImage get audiofile =>
+      const AssetGenImage('assets/icons/audiofile.png');
 
   /// File path: assets/icons/blue_pen.png
   AssetGenImage get bluePen => const AssetGenImage('assets/icons/blue_pen.png');
@@ -53,6 +57,22 @@ class $AssetsIconsGen {
   /// File path: assets/icons/write_podcast_icon.png
   AssetGenImage get writePodcastIcon =>
       const AssetGenImage('assets/icons/write_podcast_icon.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        audiofile,
+        bluePen,
+        downCatArrow,
+        hashtagicon,
+        home,
+        microphon,
+        user,
+        write,
+        writeArticle,
+        writeArticleIcon,
+        writeMicrophone,
+        writePodcastIcon
+      ];
 }
 
 class $AssetsImagesGen {
@@ -79,6 +99,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/tcbot.svg
   SvgGenImage get tcbot => const SvgGenImage('assets/images/tcbot.svg');
+
+  /// List of all assets
+  List<dynamic> get values =>
+      [emptyState, logo, posterTest, profileAvatar, singlePlaceHolder, tcbot];
 }
 
 class Assets {
@@ -146,6 +170,8 @@ class AssetGenImage {
     );
   }
 
+  ImageProvider provider() => AssetImage(_assetName);
+
   String get path => _assetName;
 
   String get keyName => _assetName;
@@ -167,13 +193,14 @@ class SvgGenImage {
     AlignmentGeometry alignment = Alignment.center,
     bool allowDrawingOutsideViewBox = false,
     WidgetBuilder? placeholderBuilder,
-    Color? color,
-    BlendMode colorBlendMode = BlendMode.srcIn,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    Clip clipBehavior = Clip.hardEdge,
-    bool cacheColorFilter = false,
-    SvgTheme? theme,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated Clip? clipBehavior,
+    @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
       _assetName,
@@ -187,15 +214,18 @@ class SvgGenImage {
       alignment: alignment,
       allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
       placeholderBuilder: placeholderBuilder,
-      color: color,
-      colorBlendMode: colorBlendMode,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      clipBehavior: clipBehavior,
-      cacheColorFilter: cacheColorFilter,
       theme: theme,
+ 
+      color: color,
+      colorBlendMode: colorBlendMode,
+      
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }

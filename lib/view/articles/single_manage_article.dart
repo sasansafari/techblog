@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
+import 'package:tec/component/widgets/article_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
+import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/controller/file_controller.dart';
-import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/services/pick_file.dart';
 import 'article_content_editor.dart';
@@ -22,13 +23,13 @@ class SingleManageArticle extends StatelessWidget {
 
   getTitle() {
     Get.defaultDialog(
-        title: "عنوان مقاله",
+        title: MyStrings.titleDialogSingleManageArticle,
         titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
         content: TextField(
           controller: manageArticleController.titleTextEditingController,
           keyboardType: TextInputType.text,
           style: const TextStyle(color: SolidColors.colorTitle),
-          decoration: const InputDecoration(hintText: 'اینجا بنویس'),
+          decoration:  InputDecoration(hintText: MyStrings.hintTextSingleManageArticle),
         ),
         backgroundColor: SolidColors.primaryColor,
         radius: 8,
@@ -37,7 +38,7 @@ class SingleManageArticle extends StatelessWidget {
               manageArticleController.updateTitle();
               Get.back();
             }),
-            child: const Text('ثبت')));
+            child:  Text(MyStrings.save)));
   }
 
   @override
@@ -76,7 +77,7 @@ class SingleManageArticle extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: Container(
-                      height: 60,
+                      height: Dimens.xlarge-4,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               end: Alignment.bottomCenter,
@@ -85,17 +86,17 @@ class SingleManageArticle extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const SizedBox(
-                            width: 20,
+                           SizedBox(
+                            width: Dimens.medium+4,
                           ),
                           GestureDetector(
                             onTap: () {
                               Get.back();
                             },
-                            child: const Icon(
+                            child:  Icon(
                               Icons.arrow_back,
-                              color: Colors.white,
-                              size: 24,
+                              color: SolidColors.lightIcon,
+                              size: Dimens.medium+8,
                             ),
                           ),
                           const Expanded(child: SizedBox()),
@@ -113,24 +114,24 @@ class SingleManageArticle extends StatelessWidget {
                           await pickFile();
                         },
                         child: Container(
-                          height: 30,
+                          height: Dimens.large-2,
                           width: Get.width / 3,
-                          decoration: const BoxDecoration(
+                          decoration:  BoxDecoration(
                               color: SolidColors.primaryColor,
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(12),
-                                topRight: Radius.circular(12),
+                                topLeft: Radius.circular(Dimens.small+4),
+                                topRight: Radius.circular(Dimens.small+4),
                               )),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "انتخاب تصویر",
+                               MyStrings.selectImage,
                                 style: textheme.displayMedium,
                               ),
                               const Icon(
                                 Icons.add,
-                                color: Colors.white,
+                                color: SolidColors.lightIcon,
                               )
                             ],
                           ),
@@ -139,8 +140,8 @@ class SingleManageArticle extends StatelessWidget {
                     ))
               ],
             ),
-            const SizedBox(
-              height: 24,
+             SizedBox(
+              height: Dimens.medium+8,
             ),
 
             GestureDetector(
@@ -150,7 +151,7 @@ class SingleManageArticle extends StatelessWidget {
               child: SeeMoreBlog(
                 bodyMargin: Dimens.halfBodyMargin,
                 textTheme: textheme,
-                title: 'ویرایش عنوان مقاله',
+                title: MyStrings.editTitleArticle,
               ),
             ),
 
@@ -167,12 +168,12 @@ class SingleManageArticle extends StatelessWidget {
               child: SeeMoreBlog(
                 bodyMargin: Dimens.halfBodyMargin,
                 textTheme: textheme,
-                title: 'ویرایش متن اصلی مقاله',
+                title: MyStrings.editMainTextArticle,
               ),
             ),
 
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:  EdgeInsets.all(Dimens.small),
               child: HtmlWidget(
                 manageArticleController.articleInfoModel.value.content!,
                 textStyle: textheme.headlineSmall,
@@ -181,8 +182,8 @@ class SingleManageArticle extends StatelessWidget {
                     const Loading()),
               ),
             ),
-            const SizedBox(
-              height: 25,
+             SizedBox(
+              height: Dimens.medium+9,
             ),
             GestureDetector(
               onTap: () {
@@ -191,14 +192,14 @@ class SingleManageArticle extends StatelessWidget {
               child: SeeMoreBlog(
                 bodyMargin: Dimens.halfBodyMargin,
                 textTheme: textheme,
-                title: 'انتخاب دسته بندی ',
+                title: MyStrings.selectCategory,
               ),
             ),
             Padding(
               padding: EdgeInsets.all(Dimens.halfBodyMargin),
               child: Text(
                 manageArticleController.articleInfoModel.value.catName == null
-                    ? "هیچ دسته بندی انتخاب نشده"
+                    ?MyStrings.noCategorySelected
                     : manageArticleController.articleInfoModel.value.catName!,
                 maxLines: 2,
                 style: textheme.titleLarge,
@@ -209,10 +210,10 @@ class SingleManageArticle extends StatelessWidget {
                 onPressed: (() async =>
                     await manageArticleController.storeArticle()),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(Dimens.small),
                   child: Text(manageArticleController.loading.value
-                      ? "ٌصبر کنید ..."
-                      : "ارسال مطلب"),
+                      ?MyStrings.wait
+                      :MyStrings.sendText ),
                 ))
             // tags(textheme),
           ]),
@@ -221,80 +222,31 @@ class SingleManageArticle extends StatelessWidget {
     ));
   }
 
-  Widget cats(textheme) {
-    var homeScreenController = Get.find<HomeScreenController>();
-    return SizedBox(
-      height: Get.height / 1.7,
-      child: GridView.builder(
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        scrollDirection: Axis.vertical,
-        itemCount: homeScreenController.tagsList.length,
-        itemBuilder: ((context, index) {
-          return GestureDetector(
-            onTap: () async {
-              manageArticleController.articleInfoModel.update((val) {
-                val?.catId = homeScreenController.tagsList[index].id!;
-                val?.catName = homeScreenController.tagsList[index].title!;
-              });
+ 
 
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                height: 30,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                    color: SolidColors.primaryColor),
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    child: Center(
-                      child: Text(
-                        homeScreenController.tagsList[index].title!,
-                        style: textheme.headline2,
-                      ),
-                    )),
-              ),
-            ),
-          );
-        }),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 5),
-      ),
-    );
-  }
-
-
-  chooseCatsBottomSheet(TextTheme textTheme){
-
-
-   Get.bottomSheet(
-
-      Container(
-          height: Get.height/1.5,
-
-          decoration: const BoxDecoration(
+  chooseCatsBottomSheet(TextTheme textTheme) {
+    Get.bottomSheet(
+        Container(
+          height: Get.height / 1.5,
+          decoration:  BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                topLeft: Radius.circular(Dimens.medium+4), topRight: Radius.circular(Dimens.medium+4)),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-
+            padding:  EdgeInsets.all(Dimens.small),
             child: SingleChildScrollView(
-              child: Column(children:   [
-                const Text("انتخاب دسته بندی"),
-                const SizedBox(height: 8,)
-                ,cats(textTheme)
+              child: Column(children: [
+                 Text(MyStrings.selectCategory),
+                 SizedBox(
+                  height: Dimens.small,
+                ),
+                cats(textTheme)
               ]),
             ),
           ),
         ),
         isScrollControlled: true,
-        persistent: true
-    );
-
-
+        persistent: true);
   }
 }

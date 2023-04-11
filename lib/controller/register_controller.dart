@@ -7,6 +7,7 @@ import 'package:tec/constant/api_constant.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/route_manager/names.dart';
 import 'package:tec/services/dio_service.dart';
+import 'package:tec/view/main_screen/bottom_navigation.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
 import 'package:tec/view/register/register_intro.dart';
 
@@ -65,125 +66,14 @@ class RegisterController extends GetxController {
         break;
       case 'expired':
         Get.snackbar('خطا', 'کد فعالسازی منقضی شده است');
-
         break;
     }
   }
-
-  toggleLogin() {
-    if (GetStorage().read(StorageKey.token) == null) {
-      Get.to(RegisterIntro());
-    } else {
-      routeToWriteBottomSheet();
-    }
-  }
-
-  routeToWriteBottomSheet() {
-    Get.bottomSheet(Container(
-      height: Get.height / 3,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                Assets.images.tcbot.path,
-                height: 40,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              const Text("دونسته هات رو با بقیه به اشتراک بذار ...")
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          const Text("""
-فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستی
-دونسته هات رو با  جامعه‌ی گیک های فارسی زبان به اشتراک بذار..
-"""),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: (() {
-                  // debugPrint("write article");
-                  Get.toNamed(NamedRoute.manageArticle);
-                }),
-                child: Container(
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        Assets.icons.writeArticleIcon.path,
-                        height: 32,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      const Text("مدیریت مقاله ها")
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: (() {
-                  debugPrint("write podcast");
-                }),
-                child: Container(
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        Assets.icons.writePodcastIcon.path,
-                        height: 32,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      const Text("مدیریت پادکست ها")
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          )
-        ]),
-      ),
-    ));
-  }
-
-  logOut() {
-    Get.defaultDialog(
-      title: "فاطمه امیری",
-      titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
-      backgroundColor: SolidColors.primaryColor,
-      content: const Text(
-        "آیا از خروج خود مطمئن هستید ؟",
-        style: TextStyle(color: SolidColors.scaffoldBg),
-      ),
-      radius: 8,
-      cancel: ElevatedButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: const Text("لغو")),
-      confirm: ElevatedButton(
-          onPressed: () {
-            if (GetStorage().read(StorageKey.token) == null) {
-              Get.back();
-              Get.snackbar("خطا", "قبلا خارج شدی !!");
-            } else {
-              BoxStorage.box.erase();
-              Get.offNamed(NamedRoute.profileScreen);
-            }
-          },
-          child: const Text("خروج")),
-    );
-  }
+    toggleLogin() {
+   if (GetStorage().read(StorageKey.token) == null) {
+    Get.to(RegisterIntro());
+       } else {
+       routeToWriteBottomSheet();
+        }
+     }
 }

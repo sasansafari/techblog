@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
+import 'package:tec/constant/my_colors.dart';
+import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/route_manager/names.dart';
@@ -23,7 +26,7 @@ class ArticleListScreen extends StatelessWidget {
       child: Scaffold(
         appBar: appBar(title),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(Dimens.small),
           child: SizedBox(
             child: Obx(
               () => !singleArticleController.loading.value
@@ -35,11 +38,10 @@ class ArticleListScreen extends StatelessWidget {
                           onTap: (() async {
                             await singleArticleController.getArticleInfo(
                                 listArticleController.articleList[index].id);
-
                             Get.toNamed(NamedRoute.routeSingleArticle);
                           }),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(Dimens.small),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -53,8 +55,8 @@ class ArticleListScreen extends StatelessWidget {
                                       return Container(
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(16)),
+                                                 BorderRadius.all(
+                                                    Radius.circular(Dimens.medium)),
                                             image: DecorationImage(
                                                 image: imageProvider,
                                                 fit: BoxFit.cover)),
@@ -64,15 +66,15 @@ class ArticleListScreen extends StatelessWidget {
                                       return const Loading();
                                     }),
                                     errorWidget: ((context, url, error) {
-                                      return const Icon(
+                                      return Icon(
                                           Icons.image_not_supported_outlined,
-                                          size: 50,
-                                          color: Colors.grey);
+                                          size: Dimens.xlarge - 14,
+                                          color: SolidColors.greyColor);
                                     }),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 16,
+                                SizedBox(
+                                  width: Dimens.medium,
                                 ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -86,8 +88,8 @@ class ArticleListScreen extends StatelessWidget {
                                         maxLines: 2,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 16,
+                                    SizedBox(
+                                      height: Dimens.medium,
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -98,13 +100,13 @@ class ArticleListScreen extends StatelessWidget {
                                               .articleList[index].author!,
                                           style: textTheme.bodySmall,
                                         ),
-                                        const SizedBox(
-                                          width: 20,
+                                        SizedBox(
+                                          width: Dimens.medium + 4,
                                         ),
                                         Text(
                                           listArticleController
                                                   .articleList[index].view! +
-                                              " بازدید ",
+                                              MyStrings.visit,
                                           style: textTheme.bodySmall,
                                         ),
                                       ],

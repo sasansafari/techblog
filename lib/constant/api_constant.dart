@@ -9,18 +9,8 @@ class ApiUrlConstant{
   static const postRegister =baseUrl + "register/action.php";
   static const articlePost =baseUrl + "article/post.php";
   static const podcastFiles =baseUrl + "podcast/get.php?command=get_files&podcats_id=";
- 
+  static const postPodcast = baseUrl + "podcast/post.php";
+  static const PublishedByMePodcast = baseUrl + "podcast/get.php?command=published_by_me&user_id=";
 
 }
 
-class ApiArticleKeyConstant{
-
-  static const title ="title";
-  static const content ="content";
-  static const catId ="cat_id";
-  static const userId ="user_id";
-  static const image ="image";
-  static const command ="command";
-  static const tagList ="tag_list";
-
-}

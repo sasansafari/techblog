@@ -26,7 +26,6 @@ class ListArticleController extends GetxController {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromJson(element));
       });
-
       loading.value = false;
     }
   }
@@ -43,9 +42,8 @@ class ListArticleController extends GetxController {
       'user_id': ''
     };
 
-    final uri =
-        Uri.https('techblog.sasansafari.com', '/Techblog/api/article/get.php', queryParam);
-    log(uri.toString());
+    final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
+ 
     var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {

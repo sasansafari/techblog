@@ -5,6 +5,7 @@ import 'package:tec/view/articles/manage_article.dart';
 import 'package:tec/view/articles/single.dart';
 import 'package:tec/view/articles/single_manage_article.dart';
 import 'package:tec/view/main_screen/main_screen.dart';
+import 'package:tec/view/podcast/single_manage_podcast.dart';
 import 'package:tec/view/podcast/single_podcast.dart';
 import 'package:tec/view/splash_screen.dart';
 
@@ -37,6 +38,11 @@ class Pages{
               name: NamedRoute.singlePodcast,
               page: () => PodcastSingle(),
               binding: SinglePodcastBinding()
+              ),
+               GetPage(
+              name: NamedRoute.singleManagePodcast,
+              page: () => SingleManagePodcast(),
+              binding: podcastManagerBinding(), 
               ),
 
         ];

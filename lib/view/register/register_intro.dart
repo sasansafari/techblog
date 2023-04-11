@@ -2,6 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:tec/component/dimens.dart';
+import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/constant/my_strings.dart';
@@ -26,10 +28,10 @@ class RegisterIntro extends StatelessWidget {
           children: [
             SvgPicture.asset(
               Assets.images.tcbot.path,
-              height: 100,
+              height: Dimens.xlarge+36,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16),
+              padding:  EdgeInsets.only(top: Dimens.medium),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -39,12 +41,12 @@ class RegisterIntro extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 32),
+              padding:  EdgeInsets.only(top: Dimens.large),
               child: ElevatedButton(
                 onPressed: () {
                   _showEmailBottomSheet(context, size, textTheme);
                 },
-                child: const Text("بزن بریم"),
+                child: Text(MyStrings.letsGo),
               ),
             )
           ],
@@ -59,7 +61,7 @@ class RegisterIntro extends StatelessWidget {
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: SolidColors.blackColor,
       builder: ((context) {
         return Padding(
           padding: EdgeInsets.only(
@@ -67,11 +69,11 @@ class RegisterIntro extends StatelessWidget {
           ),
           child: Container(
             height: size.height / 2,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: SolidColors.lightIcon,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+                topLeft: Radius.circular(Dimens.large-2),
+                topRight: Radius.circular(Dimens.large-2),
               ),
             ),
             child: Center(
@@ -83,19 +85,19 @@ class RegisterIntro extends StatelessWidget {
                   style: textTheme.headlineMedium,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding:  EdgeInsets.all(Dimens.medium+8),
                   child: TextFormField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
                       debugPrint(
-                          value + " is Email : " + isEmail(value).toString());
+                          value + MyStrings.isEmail + isEmail(value).toString());
                       isValidate = EmailValidator.validate(
                           registerController.emailTextEditingController.text);
                     },
                     style: textTheme.headlineSmall,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      hintText: "techblog@gmail.com",
+                      hintText: MyStrings.tecEmail,
                       hintStyle: textTheme.headlineSmall,
                     ),
                   ),
@@ -105,18 +107,18 @@ class RegisterIntro extends StatelessWidget {
                     if (registerController
                         .emailTextEditingController.text.isEmpty) {
                       Get.snackbar(
-                          "خطا", "لطفا ایمیل خود را به درستی وارد کنید");
+                          MyStrings.error,MyStrings.enterEmaile);
                     } else {
                       if (isValidate) {
                         registerController.register();
                         Navigator.pop(context);
                         _activateCodeBottomSheet(context, size, textTheme);
                       } else {
-                        Get.snackbar("خطا", "فرمت ایمیل درست نمیباشد, لطفا ایمیل خود را به درستی وارد کنید");
+                        Get.snackbar( MyStrings.error, MyStrings.formatEmailNotCorrect);
                       }
                     }
                   }),
-                  child: const Text("ادامه"),
+                  child:  Text(MyStrings.continuation),
                 ),
               ],
             )),
@@ -138,11 +140,11 @@ class RegisterIntro extends StatelessWidget {
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               height: size.height / 2,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration:  BoxDecoration(
+                color: SolidColors.lightIcon,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+                  topLeft: Radius.circular(Dimens.large-2),
+                  topRight: Radius.circular(Dimens.large-2),
                 ),
               ),
               child: Center(
@@ -154,19 +156,19 @@ class RegisterIntro extends StatelessWidget {
                         style: textTheme.headlineMedium,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(24),
+                        padding:  EdgeInsets.all(Dimens.medium+8),
                         child: TextField(
                           controller: registerController
                               .activeCodeTextEditingController,
                           onChanged: (value) {
                             debugPrint(value +
-                                " is Email : " +
+                                MyStrings.isEmail+
                                 isEmail(value).toString());
                           },
                           style: textTheme.headlineSmall,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              hintText: "******",
+                              hintText: MyStrings.stars,
                               hintStyle: textTheme.headlineSmall),
                         ),
                       ),
@@ -174,7 +176,7 @@ class RegisterIntro extends StatelessWidget {
                           onPressed: (() {
                             registerController.verify();
                           }),
-                          child: const Text("ادامه"))
+                          child:Text(MyStrings.continuation))
                     ]),
               ),
             ),

@@ -10,5 +10,5 @@ static String singleManageArticle = "/SingleManageArticle";
 static String singlePodcast = "/singlePodcast";
 static String profileScreen = "/ProfileScreen";
 static String initialRoute = "/";
-
+static String singleManagePodcast = "/SingleManagePodcast";
 }
