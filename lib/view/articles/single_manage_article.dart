@@ -4,21 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
-import 'package:tec/component/widgets/article_widgets.dart';
+import 'package:tec/view/widgets/article_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/controller/file_controller.dart';
+import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/services/pick_file.dart';
 import 'article_content_editor.dart';
 
 // ignore: must_be_immutable
 class SingleManageArticle extends StatelessWidget {
-  SingleManageArticle({Key? key}) : super(key: key);
+  SingleManageArticle({Key? key,}) : super(key: key);
 
   var manageArticleController = Get.find<ManageArticleController>();
+    HomeScreenController homeScreenController = Get.put(HomeScreenController());
   FilePickerController filePickerController = Get.put(FilePickerController());
 
   getTitle() {
@@ -222,8 +224,6 @@ class SingleManageArticle extends StatelessWidget {
     ));
   }
 
- 
-
   chooseCatsBottomSheet(TextTheme textTheme) {
     Get.bottomSheet(
         Container(
@@ -241,7 +241,7 @@ class SingleManageArticle extends StatelessWidget {
                  SizedBox(
                   height: Dimens.small,
                 ),
-                cats(textTheme)
+                Cats(textTheme: textTheme, homeScreenController: homeScreenController, manageArticleController: manageArticleController,)
               ]),
             ),
           ),
@@ -250,3 +250,5 @@ class SingleManageArticle extends StatelessWidget {
         persistent: true);
   }
 }
+
+

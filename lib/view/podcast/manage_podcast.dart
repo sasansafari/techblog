@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/component/text_style.dart';
-import 'package:tec/component/widgets/podcast_widgets.dart';
+import 'package:tec/view/widgets/podcast_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
+import 'package:tec/gen/assets.gen.dart';
 import '../../controller/podcast/manage_podcast_controller.dart';
 import '../../route_manager/names.dart';
 
@@ -105,7 +106,7 @@ class ManagePodcast extends StatelessWidget {
                         }),
                       ),
                     )
-                  : podcastEmpty(textTheme),
+                  : PodcastEmpty(textTheme: textTheme)
         ),
         bottomNavigationBar: Padding(
           padding: EdgeInsets.all(Dimens.small),

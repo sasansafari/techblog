@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:tec/component/dimens.dart';
-import 'package:tec/component/widgets/podcast_widgets.dart';
+import 'package:tec/view/widgets/podcast_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/podcast/single_podcast_cotroller.dart';
@@ -97,21 +97,28 @@ class PodcastSingle extends StatelessWidget {
                 ),
 
                 //title
-                title(textheme),
+               Titlee(podcastModel: podcastModel, textheme: textheme),
 
                 //writer
-                writer(textheme),
+              Writer(podcastModel: podcastModel, textheme: textheme),
 
                 //file list
-                fileList(textheme)
+               FileList(controller: controller, textheme: textheme),
               ]),
             ),
           ),
 
           //player manager
-          playerManager()
+          PlayerManager(controller: controller,)
         ],
       )),
     );
   }
 }
+
+
+
+
+
+
+

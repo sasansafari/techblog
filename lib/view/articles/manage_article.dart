@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
-import 'package:tec/component/widgets/article_widgets.dart';
+import 'package:tec/view/widgets/article_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/article/manage_article_controller.dart';
 import 'package:tec/route_manager/names.dart';
@@ -112,7 +112,7 @@ class ManageArticle extends StatelessWidget {
                       );
                     }),
                   )
-                : articleEmptyState(textTheme),
+                : ArticleEmptyState(textTheme:textTheme,),
       ),
       bottomNavigationBar: Padding(
         padding:  EdgeInsets.only(top: Dimens.large),

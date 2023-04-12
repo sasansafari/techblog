@@ -4,7 +4,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tec/component/dimens.dart';
-import 'package:tec/component/widgets/article_widgets.dart';
+import 'package:tec/view/widgets/article_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
@@ -151,11 +151,11 @@ class Single extends StatelessWidget {
                       SizedBox(
                         height: Dimens.medium + 9,
                       ),
-                      tags(textTheme),
+                      Tags(textheme: textTheme, singleArticleController: singleArticleController,),
                       SizedBox(
                         height: Dimens.medium + 9,
                       ),
-                      similar(textTheme)
+                      Similar(textheme: textTheme, singleArticleController: singleArticleController,)
                     ]),
         ),
       ),
