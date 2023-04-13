@@ -51,7 +51,8 @@ class SingleManageArticle extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Obx(
-          () => Column(children: [
+          () => Column(
+            children: [
             Stack(
               children: [
                 SizedBox(
