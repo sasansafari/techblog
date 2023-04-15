@@ -183,26 +183,41 @@ Widget fileList(TextTheme textheme) {
             return index < controller.podcastFileList.length - 1
                 ? Padding(
                     padding: EdgeInsets.all(Dimens.small),
-                    child: Row(
+                    child:
+                    
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            ImageIcon(
-                              Image.asset(Assets.icons.microphon.path).image,
-                              color: SolidColors.seeMore,
-                            ),
-                            SizedBox(
-                              width: Dimens.small,
-                            ),
-                            SizedBox(
-                              width: Get.width / 1.5,
-                              child: Text(
-                                controller.podcastFileList[index].title!,
-                                style: textheme.headline4,
+                        GestureDetector(
+                           onTap: () async {
+                           
+                            controller.startProgress();
+                            controller.selectedIndex.value =
+                                index;
+                            await controller.player.seek(
+                                Duration.zero,
+                                index: controller
+                                    .selectedIndex.value);
+                            await controller.player.play();
+                          },
+                          child: Row(
+                            children: [
+                              ImageIcon(
+                                Image.asset(Assets.icons.microphon.path).image,
+                                color: SolidColors.seeMore,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: Dimens.small,
+                              ),
+                              SizedBox(
+                                width: Get.width / 1.5,
+                                child: Text(
+                                  controller.podcastFileList[index].title!,
+                                  style: textheme.headline4,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Text(controller.podcastFileList[index].lenght! + ":00")
                       ],
