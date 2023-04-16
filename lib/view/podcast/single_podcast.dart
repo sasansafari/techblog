@@ -71,7 +71,16 @@ class PodcastSingle extends StatelessWidget {
                                 width: Dimens.medium + 4,
                               ),
                               GestureDetector(
-                                onTap: (() => Get.back()),
+                                onTap: () async {
+                                      await controller.player
+                                          .stop();
+                                      controller.startProgress();
+                                      controller.progressValue
+                                          .value = const Duration(seconds: 0);
+                                      controller
+                                          .selectedIndex.value = 0;
+                                      Get.back();
+                                    },
                                 child: Icon(
                                   Icons.arrow_back,
                                   color: SolidColors.lightIcon,
