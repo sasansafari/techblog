@@ -46,43 +46,43 @@ class SinglePodcastController extends GetxController {
     }
   }
 
-  Rx<Duration> progressValue = const Duration(seconds: 0).obs;
-  Rx<Duration> bufferedValue = const Duration(seconds: 0).obs;
-
+  int? duration;
+  RxInt selectedIndex = 0.obs;
+  Rx<Duration> progressState = const Duration(seconds: 0).obs;
+  Rx<Duration> totalDuration = const Duration(seconds: 0).obs;
+  Rx<Duration> bufferState = const Duration(seconds: 0).obs;
   Timer? timer;
-
   startProgress() {
     const tick = Duration(seconds: 1);
-    int duration = player.duration!.inSeconds - player.position.inSeconds;
+    switch (player.duration) {
+      case null:
+        duration = 0;
+        break;
+      default:
+        duration = player.duration!.inSeconds;
+        break;
+    }
+
     if (timer != null) {
       if (timer!.isActive) {
         timer!.cancel();
         timer = null;
       }
     }
-
     timer = Timer.periodic(tick, (timer) {
-      duration--;
-      log("duration: $duration  ====> index: ${player.currentIndex}");
-      progressValue.value = player.position;
-      bufferedValue.value = player.bufferedPosition;
-      if (duration <= 0) {
+      if (player.position.inSeconds == duration) {
         timer.cancel();
-        progressValue.value = const Duration(seconds: 0);
-        bufferedValue.value = const Duration(seconds: 0);
+      }
+      if (player.playing) {
+        progressState.value = player.position;
+
+        bufferState.value = player.bufferedPosition;
+        debugPrint('TIMER :: ${progressState.value}');
       }
     });
   }
 
-  timerCheck() {
-    if (player.playing) {
-      startProgress();
-    } else {
-      timer!.cancel();
-      progressValue.value = const Duration(seconds: 0);
-      bufferedValue.value = const Duration(seconds: 0);
-    }
-  }
+  
 
   setLoopMode() {
     if (isLoopAll.value) {
