@@ -145,6 +145,7 @@ class BottomNavigation extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: (() {
+                  Get.toNamed(NamedRoute.podcastManageList);
                   debugPrint(MyStrings.writePodcast);
                 }),
                 child: Container(

@@ -23,7 +23,7 @@ class ManageArticleController extends GetxController {
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(
     MyStrings.titltArrticle,
     MyStrings.editOrginalTextArticle,
-     null,
+     "",
      )
       .obs;
 

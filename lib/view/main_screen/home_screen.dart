@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
-import 'package:tec/component/widgets/main_widget.dart';
+import 'package:tec/view/widgets/main_widget.dart';
 import 'package:tec/component/my_component.dart';
 import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
@@ -48,11 +48,11 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(0, Dimens.medium, 0, 0),
                   child: Column(
                     children: [
-                      poster(size, textTheme),
+                      Poster(homeScreenController: homeScreenController, textTheme: textTheme, size: size,),
                       SizedBox(
                         height: Dimens.medium,
                       ),
-                      tag(textTheme, bodyMargin),
+                      Tag(textTheme: textTheme, bodyMargin: bodyMargin,),
                       SizedBox(
                         height: Dimens.large,
                       ),
@@ -65,13 +65,13 @@ class HomeScreen extends StatelessWidget {
                             textTheme: textTheme,
                             title: MyStrings.viewHotestBlog,
                           )),
-                      topVisited(size, textTheme, bodyMargin),
-                      SizedBox(
+                      TopVisited(bodyMargin: bodyMargin, homeScreenController: homeScreenController, singleArticleController: singleArticleController, size: size, textTheme: textTheme,)
+                     , SizedBox(
                         height: Dimens.large,
                       ),
                       SeeMorePodcast(
                           bodyMargin: bodyMargin, textTheme: textTheme),
-                      topPodcasts(size, textTheme, bodyMargin),
+                     TopPodcast(bodyMargin: bodyMargin, homeScreenController: homeScreenController, size: size,),
                       SizedBox(
                         height: Dimens.xlarge + 36,
                       )

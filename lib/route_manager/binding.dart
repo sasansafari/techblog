@@ -49,3 +49,4 @@ class podcastManagerBinding implements Bindings {
      Get.lazyPut(() => SinglePodcastController());
   }
 }
+
