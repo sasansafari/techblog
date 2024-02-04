@@ -22,6 +22,7 @@ class DioService {
   }
 
   Future<dynamic> postMethod(Map<String, dynamic> map, String url) async {
+     try {
     dio.options.headers['content-Type'] = 'application/json';
     var token = GetStorage().read(StorageKey.token);
     if (token != null) {
@@ -43,5 +44,10 @@ class DioService {
         return err.response!;
       }
     });
+         }catch (e) {
+      
+      print(e.toString());
+    }
   }
+     
 }
