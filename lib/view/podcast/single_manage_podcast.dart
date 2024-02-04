@@ -164,7 +164,7 @@ class SingleManagePodcast extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: (() {
-                            bottomSheet();
+                            bottomSheet(textheme);
                           }),
                           child: SeeMoreBlog(
                             bodyMargin: Dimens.bodyMargin / 2,
@@ -205,29 +205,11 @@ class SingleManagePodcast extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          managePodcastController
-                                              .titleTextEditingControllerMinute
-                                              .text,
-                                          style: const TextStyle(
-                                              color: SolidColors.blackColor),
-                                        ),
-                                        const Text(
-                                          ":",
-                                          style: TextStyle(
-                                              color: SolidColors.blackColor),
-                                        ),
-                                        Text(
-                                          managePodcastController
-                                              .titleTextEditingControllerHour
-                                              .text,
-                                          style: const TextStyle(
-                                              color: SolidColors.blackColor),
-                                        ),
-                                      ],
-                                    ),
+                                   
+                                    Text(
+                                        '${managePodcastController.currentHourValue.value}:${managePodcastController.currentMinuteValue.value}:${managePodcastController.currentSecondeValue.value}',
+                                        style: const TextStyle(
+                                            color: SolidColors.blackColor))
                                   ],
                                 ),
                               );
@@ -385,7 +367,7 @@ class SingleManagePodcast extends StatelessWidget {
     );
   }
 
-  bottomSheet() {
+  bottomSheet(TextTheme textheme) {
     Get.bottomSheet(
       Container(
         height: Get.height / 2.2,
@@ -425,208 +407,125 @@ class SingleManagePodcast extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: Dimens.bodyMargin / 1.4),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: Get.height / 6,
-                    width: Get.width / 3.1,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: SolidColors.lightIcon,
-                    ),
+                  GestureDetector(
+                    onTap: () async {
+                      await audioFile();
+                    },
                     child: Column(
                       children: [
-                        IconButton(
-                            iconSize: Dimens.xlarge - 4,
-                            onPressed: () {
-                              //انتخاب فایل صوتی
-                              audioFile();
-                            },
-                            icon: ImageIcon(
-                                AssetImage(Assets.icons.audiofile.path))),
-                        Text(MyStrings.selectAudioFile,
-                            style: TextStyle(
-                                fontSize: Dimens.small + 4,
-                                fontWeight: FontWeight.bold)),
+                        Assets.icons.audiofile.image(
+                          width: 40,
+                          height: 40,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'انتخاب فایل صوتی',
+                          style: textheme.headlineMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: Get.width / 14,
+                  const SizedBox(
+                    width: 30,
                   ),
-                  Container(
-                    height: Get.height / 6,
-                    width: Get.width / 2.1,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: SolidColors.lightIcon),
-                    // child: managePodcastController.chooseTime(),
-                    child: Obx(
-                      () => Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: Dimens.bodyMargin * 5,
-                            width: Dimens.bodyMargin * 1.7,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: Dimens.small + 4),
-                                  child: TextField(
-                                      maxLength: 2,
-                                      controller: managePodcastController
-                                          .titleTextEditingControllerMinute,
-                                      keyboardType: TextInputType.number,
-                                      cursorColor: SolidColors.blackColor,
-                                      style: const TextStyle(
-                                          color: SolidColors.blackColor),
-                                      decoration: InputDecoration(
-                                        fillColor:
-                                            SolidColors.minutesColorColor,
-                                        border: const OutlineInputBorder(),
-                                        hintText: MyStrings.enterNumber,
-                                      ),
-                                      onChanged: (value) {
-                                        managePodcastController.input!.value =
-                                            int.tryParse(value)!;
-                                        if (managePodcastController.input! >
-                                            60) {
-                                          managePodcastController
-                                              .isvisibleMinute.value = true;
-                                          managePodcastController
-                                              .titleTextEditingControllerMinute
-                                              .clear();
-                                        } else {
-                                          managePodcastController
-                                              .isvisibleMinute.value = false;
-                                          value = "";
-                                        }
-                                      }),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(Dimens.small-7),
-                                  child: Row(
-                                    children: [
-                                      Visibility(
-                                        visible: managePodcastController
-                                            .isvisibleMinute.value,
-                                        child:  Padding(
-                                          padding: EdgeInsets.all(Dimens.small-5),
-                                          child: Text(
-                                            MyStrings.errorText,
-                                            style: const TextStyle(
-                                                color: SolidColors.erorColor),
-                                          ),
-                                        ),
-                                      ),
-                                       Text(
-                                        MyStrings.minute,
-                                        style: const TextStyle(color: SolidColors.blackColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                  Obx(
+                    () => Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height / 6,
+                          width: 60,
+                          child: NumberPicker(
+                            haptics: true,
+                            minValue: 0,
+                            maxValue: 60,
+                            value: managePodcastController
+                                .currentSecondeValue.value,
+                            onChanged: (value) => managePodcastController
+                                .currentSecondeValue.value = value,
                           ),
-                           Padding(
-                            padding: EdgeInsets.only(bottom: Dimens.xlarge-14),
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: Dimens.xlarge-14),
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text('ثانیه'),
+                      ],
+                    ),
+                  ),
+                  const Text(
+                    ':',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Obx(
+                    () => Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height / 6,
+                          width: 60,
+                          child: NumberPicker(
+                            haptics: true,
+                            minValue: 0,
+                            maxValue: 60,
+                            value: managePodcastController
+                                .currentMinuteValue.value,
+                            onChanged: (value) => managePodcastController
+                                .currentMinuteValue.value = value,
                           ),
-                          SizedBox(
-                            height: Dimens.bodyMargin * 5,
-                            width: Dimens.bodyMargin * 1.7,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding:  EdgeInsets.only(top: Dimens.small+4),
-                                  child: TextField(
-                                      maxLength: 2,
-                                      controller: managePodcastController
-                                          .titleTextEditingControllerHour,
-                                      keyboardType: TextInputType.number,
-                                      cursorColor:
-                                          SolidColors.blackColor,
-                                      style: const TextStyle(
-                                          color: SolidColors.blackColor),
-                                      decoration:  InputDecoration(
-                                        fillColor:
-                                            SolidColors.minutesColorColor,
-                                        border: const OutlineInputBorder(),
-                                        hintText:MyStrings.enterNumber,
-                                      ),
-                                      onChanged: (value) {
-                                        managePodcastController.inputHoure!
-                                            .value = int.tryParse(value)!;
-                                        if (managePodcastController
-                                                .inputHoure! >
-                                            12) {
-                                          managePodcastController
-                                              .isvisibleHour.value = true;
-
-                                          managePodcastController
-                                              .titleTextEditingControllerHour
-                                              .clear();
-                                        } else {
-                                          managePodcastController
-                                              .isvisibleHour.value = false;
-                                          value = "";
-                                        }
-                                      }),
-                                ),
-                                Padding(
-                                  padding:  EdgeInsets.all(Dimens.small-7),
-                                  child: Row(
-                                    children: [
-                                      Visibility(
-                                        visible: managePodcastController
-                                            .isvisibleHour.value,
-                                        child:  Padding(
-                                          padding: EdgeInsets.all(Dimens.small-5),
-                                          child: Text(
-                                            MyStrings.errorText,
-                                            style: const TextStyle(
-                                                color: SolidColors.erorColor),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 1,
-                                      ),
-                                       Text(
-                                        MyStrings.houre,
-                                        style: const TextStyle(color: SolidColors.blackColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text('دقیقه'),
+                      ],
+                    ),
+                  ),
+                  const Text(
+                    ':',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Obx(
+                    () => Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height / 6,
+                          width: 60,
+                          child: NumberPicker(
+                            haptics: true,
+                            minValue: 0,
+                            maxValue: 12,
+                            value:
+                                managePodcastController.currentHourValue.value,
+                            onChanged: (value) => managePodcastController
+                                .currentHourValue.value = value,
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text('ساعت'),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(top: Dimens.large-2),
+              padding: EdgeInsets.only(top: Dimens.large - 2),
               child: ElevatedButton(
                 style: ButtonStyle(
-                    fixedSize:
-                        MaterialStateProperty.all(Size(Get.width / 3, Dimens.xlarge-8))),
+                    fixedSize: MaterialStateProperty.all(
+                        Size(Get.width / 3, Dimens.xlarge - 8))),
                 onPressed: (() async {
                   await managePodcastController.titlePodcast();
                   await managePodcastController.filePodcast();
                   await managePodcastController.UpdatePodcast();
                 }),
-                child:  Text(
+                child: Text(
                   MyStrings.verification,
                 ),
               ),
