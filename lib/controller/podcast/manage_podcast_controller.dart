@@ -17,22 +17,18 @@ import '../../constant/storage_const.dart';
 
 class ManagePodcastController extends GetxController {
   RxList<PodcastModel> podcastModel = RxList.empty();
-
+RxInt currentHourValue = 0.obs;
+  RxInt currentMinuteValue = 0.obs;
+  RxInt currentSecondeValue = 0.obs;
   Rx<PodcastsFileModel> podcastFileModel =
       PodcastsFileModel("اسم پادکست اینجا قرار میگیره").obs;
 
   // var selectedTime = TimeOfDay.now().replacing(hour: 0,minute: 0).obs;
   RxBool loading = false.obs;
   TextEditingController titleTextEditingController = TextEditingController();
-  TextEditingController titleTextEditingControllerHour =
-      TextEditingController();
-  TextEditingController titleTextEditingControllerMinute =
-      TextEditingController();
+  
 
   RxInt? input = 0.obs;
-  RxInt? inputHoure = 0.obs;
-  RxBool isvisibleMinute = false.obs;
-  RxBool isvisibleHour = false.obs;
   var userId = '';
   var catId = '';
 
