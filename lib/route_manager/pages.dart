@@ -10,49 +10,43 @@ import 'package:tec/view/podcast/single_manage_podcast.dart';
 import 'package:tec/view/podcast/single_podcast.dart';
 import 'package:tec/view/splash_screen.dart';
 
-class Pages{
-
+class Pages {
   Pages._();
 
-  static List<GetPage<dynamic>>  pages =  [
-          GetPage(
-              name: NamedRoute.initialRoute,
-              page: () => const SplashScreen(),
-             ),
-          GetPage(
-              name: NamedRoute.routeMainScreen,
-              page: () => const MainScreen(),
-              binding: RegisterBinding()),
-          GetPage(
-              name: NamedRoute.routeSingleArticle,
-              page: () => Single(),
-              binding: ArticleBinding()),
-          GetPage(
-              name: NamedRoute.manageArticle,
-              page: () => ManageArticle(),
-              binding: ArticleManagerBinding()),
-          GetPage(
-              name: NamedRoute.singleManageArticle,
-              page: () => SingleManageArticle(),
-              binding: ArticleManagerBinding()),
-          GetPage(
-              name: NamedRoute.singlePodcast,
-              page: () => PodcastSingle(),
-              binding: SinglePodcastBinding()
-              ),
-               GetPage(
-              name: NamedRoute.singleManagePodcast,
-              page: () => SingleManagePodcast(),
-              binding: podcastManagerBinding(), 
-              ),
-               GetPage(
-              name: NamedRoute.podcastManageList,
-              page: () => ManagePodcast(),
-              binding: podcastManagerBinding(),
-              ),
-
-
-        ];
-
-
+  static List<GetPage<dynamic>> pages = [
+    GetPage(
+      name: NamedRoute.initialRoute,
+      page: () => const SplashScreen(),
+    ),
+    GetPage(
+        name: NamedRoute.routeMainScreen,
+        page: () => const MainScreen(),
+        binding: RegisterBinding()),
+    GetPage(
+        name: NamedRoute.routeSingleArticle,
+        page: () => Single(),
+        binding: ArticleBinding()),
+    GetPage(
+        name: NamedRoute.manageArticle,
+        page: () => ManageArticle(),
+        binding: ArticleManagerBinding()),
+    GetPage(
+        name: NamedRoute.singleManageArticle,
+        page: () => SingleManageArticle(),
+        binding: ArticleManagerBinding()),
+    GetPage(
+        name: NamedRoute.singlePodcast,
+        page: () => PodcastSingle(),
+        binding: SinglePodcastBinding()),
+    GetPage(
+      name: NamedRoute.singleManagePodcast,
+      page: () => SingleManagePodcast(),
+      binding: PodcastManagerBinding(),
+    ),
+    GetPage(
+      name: NamedRoute.podcastManageList,
+      page: () => ManagePodcast(),
+      binding: PodcastManagerBinding(),
+    ),
+  ];
 }

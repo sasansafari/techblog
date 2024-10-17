@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tec/constant/api_constant.dart';
 import 'package:tec/models/article_model.dart';
@@ -18,8 +15,7 @@ class ListArticleController extends GetxController {
 
   getList() async {
     loading.value = true;
-    // ignore: todo
-    //TODO get userid from getStorage ApiConstant.getArticleList+userid
+
     var response = await DioService().getMethod(ApiUrlConstant.getArticleList);
 
     if (response.statusCode == 200) {
@@ -33,8 +29,6 @@ class ListArticleController extends GetxController {
   getArticleListWithTagsId(String id) async {
     articleList.clear();
     loading.value = true;
-    // ignore: todo
-    //TODO get userid from getStorage ApiConstant.getArticleList+userid
 
     final queryParam = {
       'command': 'get_articles_with_tag_id',
@@ -42,8 +36,9 @@ class ListArticleController extends GetxController {
       'user_id': ''
     };
 
-    final uri = Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
- 
+    final uri =
+        Uri.https(ApiUrlConstant.baseUrl, 'article/get.php?', queryParam);
+
     var response = await DioService().getMethod(uri.toString());
 
     if (response.statusCode == 200) {

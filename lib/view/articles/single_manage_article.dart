@@ -17,10 +17,12 @@ import 'article_content_editor.dart';
 
 // ignore: must_be_immutable
 class SingleManageArticle extends StatelessWidget {
-  SingleManageArticle({Key? key,}) : super(key: key);
+  SingleManageArticle({
+    Key? key,
+  }) : super(key: key);
 
   var manageArticleController = Get.find<ManageArticleController>();
-    HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
   FilePickerController filePickerController = Get.put(FilePickerController());
 
   getTitle() {
@@ -31,7 +33,8 @@ class SingleManageArticle extends StatelessWidget {
           controller: manageArticleController.titleTextEditingController,
           keyboardType: TextInputType.text,
           style: const TextStyle(color: SolidColors.colorTitle),
-          decoration:  InputDecoration(hintText: MyStrings.hintTextSingleManageArticle),
+          decoration:
+              InputDecoration(hintText: MyStrings.hintTextSingleManageArticle),
         ),
         backgroundColor: SolidColors.primaryColor,
         radius: 8,
@@ -40,7 +43,7 @@ class SingleManageArticle extends StatelessWidget {
               manageArticleController.updateTitle();
               Get.back();
             }),
-            child:  Text(MyStrings.save)));
+            child: Text(MyStrings.save)));
   }
 
   @override
@@ -51,8 +54,7 @@ class SingleManageArticle extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Obx(
-          () => Column(
-            children: [
+          () => Column(children: [
             Stack(
               children: [
                 SizedBox(
@@ -80,7 +82,7 @@ class SingleManageArticle extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: Container(
-                      height: Dimens.xlarge-4,
+                      height: Dimens.xlarge - 4,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               end: Alignment.bottomCenter,
@@ -89,17 +91,17 @@ class SingleManageArticle extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                           SizedBox(
-                            width: Dimens.medium+4,
+                          SizedBox(
+                            width: Dimens.medium + 4,
                           ),
                           GestureDetector(
                             onTap: () {
                               Get.back();
                             },
-                            child:  Icon(
+                            child: Icon(
                               Icons.arrow_back,
                               color: SolidColors.lightIcon,
-                              size: Dimens.medium+8,
+                              size: Dimens.medium + 8,
                             ),
                           ),
                           const Expanded(child: SizedBox()),
@@ -117,19 +119,19 @@ class SingleManageArticle extends StatelessWidget {
                           await pickFile();
                         },
                         child: Container(
-                          height: Dimens.large-2,
+                          height: Dimens.large - 2,
                           width: Get.width / 3,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                               color: SolidColors.primaryColor,
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(Dimens.small+4),
-                                topRight: Radius.circular(Dimens.small+4),
+                                topLeft: Radius.circular(Dimens.small + 4),
+                                topRight: Radius.circular(Dimens.small + 4),
                               )),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                               MyStrings.selectImage,
+                                MyStrings.selectImage,
                                 style: textheme.displayMedium,
                               ),
                               const Icon(
@@ -143,8 +145,8 @@ class SingleManageArticle extends StatelessWidget {
                     ))
               ],
             ),
-             SizedBox(
-              height: Dimens.medium+8,
+            SizedBox(
+              height: Dimens.medium + 8,
             ),
 
             GestureDetector(
@@ -176,7 +178,7 @@ class SingleManageArticle extends StatelessWidget {
             ),
 
             Padding(
-              padding:  EdgeInsets.all(Dimens.small),
+              padding: EdgeInsets.all(Dimens.small),
               child: HtmlWidget(
                 manageArticleController.articleInfoModel.value.content!,
                 textStyle: textheme.headlineSmall,
@@ -185,8 +187,8 @@ class SingleManageArticle extends StatelessWidget {
                     const Loading()),
               ),
             ),
-             SizedBox(
-              height: Dimens.medium+9,
+            SizedBox(
+              height: Dimens.medium + 9,
             ),
             GestureDetector(
               onTap: () {
@@ -202,7 +204,7 @@ class SingleManageArticle extends StatelessWidget {
               padding: EdgeInsets.all(Dimens.halfBodyMargin),
               child: Text(
                 manageArticleController.articleInfoModel.value.catName == null
-                    ?MyStrings.noCategorySelected
+                    ? MyStrings.noCategorySelected
                     : manageArticleController.articleInfoModel.value.catName!,
                 maxLines: 2,
                 style: textheme.titleLarge,
@@ -213,10 +215,10 @@ class SingleManageArticle extends StatelessWidget {
                 onPressed: (() async =>
                     await manageArticleController.storeArticle()),
                 child: Padding(
-                  padding:  EdgeInsets.all(Dimens.small),
+                  padding: EdgeInsets.all(Dimens.small),
                   child: Text(manageArticleController.loading.value
-                      ?MyStrings.wait
-                      :MyStrings.sendText ),
+                      ? MyStrings.wait
+                      : MyStrings.sendText),
                 ))
             // tags(textheme),
           ]),
@@ -229,20 +231,25 @@ class SingleManageArticle extends StatelessWidget {
     Get.bottomSheet(
         Container(
           height: Get.height / 1.5,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimens.medium+4), topRight: Radius.circular(Dimens.medium+4)),
+                topLeft: Radius.circular(Dimens.medium + 4),
+                topRight: Radius.circular(Dimens.medium + 4)),
           ),
           child: Padding(
-            padding:  EdgeInsets.all(Dimens.small),
+            padding: EdgeInsets.all(Dimens.small),
             child: SingleChildScrollView(
               child: Column(children: [
-                 Text(MyStrings.selectCategory),
-                 SizedBox(
+                Text(MyStrings.selectCategory),
+                SizedBox(
                   height: Dimens.small,
                 ),
-                Cats(textTheme: textTheme, homeScreenController: homeScreenController, manageArticleController: manageArticleController,)
+                Cats(
+                  textTheme: textTheme,
+                  homeScreenController: homeScreenController,
+                  manageArticleController: manageArticleController,
+                )
               ]),
             ),
           ),
@@ -251,5 +258,3 @@ class SingleManageArticle extends StatelessWidget {
         persistent: true);
   }
 }
-
-

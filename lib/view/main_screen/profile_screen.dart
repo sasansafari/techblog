@@ -22,16 +22,16 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding:  EdgeInsets.only(top: Dimens.medium+8),
+          padding: EdgeInsets.only(top: Dimens.medium + 8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 Assets.images.profileAvatar.path,
-                height: Dimens.xlarge+36,
+                height: Dimens.xlarge + 36,
               ),
-               SizedBox(
-                height: Dimens.small+4,
+              SizedBox(
+                height: Dimens.small + 4,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                     Image.asset(Assets.icons.bluePen.path).image,
                     color: SolidColors.seeMore,
                   ),
-                   SizedBox(
+                  SizedBox(
                     width: Dimens.small,
                   ),
                   Text(
@@ -49,19 +49,19 @@ class ProfileScreen extends StatelessWidget {
                   )
                 ],
               ),
-               SizedBox(
-                height: Dimens.xlarge-4,
+              SizedBox(
+                height: Dimens.xlarge - 4,
               ),
               Text(
-               MyStrings.nameFatemeAmiri,
+                MyStrings.nameFatemeAmiri,
                 style: textTheme.headlineMedium,
               ),
               Text(
                 MyStrings.gmailFatemeAmiri,
                 style: textTheme.headlineMedium,
               ),
-               SizedBox(
-                height: Dimens.large+8,
+              SizedBox(
+                height: Dimens.large + 8,
               ),
               TechDivider(size: size),
               InkWell(
@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                 }),
                 splashColor: SolidColors.primaryColor,
                 child: SizedBox(
-                    height: Dimens.large+13,
+                    height: Dimens.large + 13,
                     child: Center(
                         child: Text(
                       MyStrings.myFavBlog,
@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                 }),
                 splashColor: SolidColors.primaryColor,
                 child: SizedBox(
-                    height: Dimens.large+13,
+                    height: Dimens.large + 13,
                     child: Center(
                         child: Text(
                       MyStrings.myFavPodcast,
@@ -94,19 +94,19 @@ class ProfileScreen extends StatelessWidget {
               TechDivider(size: size),
               InkWell(
                 onTap: (() {
-                 logOut();
+                  logOut();
                 }),
                 splashColor: SolidColors.primaryColor,
                 child: SizedBox(
-                    height: Dimens.large+13,
+                    height: Dimens.large + 13,
                     child: Center(
                         child: Text(
                       MyStrings.logOut,
                       style: textTheme.headlineMedium,
                     ))),
               ),
-               SizedBox(
-                height: Dimens.xlarge-4,
+              SizedBox(
+                height: Dimens.xlarge - 4,
               ),
             ],
           ),
@@ -114,31 +114,31 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
- logOut() {
-    Get.defaultDialog(
-      title: MyStrings.nameFatemeAmiri,
-      titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
-      backgroundColor: SolidColors.primaryColor,
-      content:  Text(
-       MyStrings.areYouSureExit,
-        style: TextStyle(color: SolidColors.scaffoldBg),
-      ),
-      radius: Dimens.small,
-      cancel: ElevatedButton(
-          onPressed: () {
+logOut() {
+  Get.defaultDialog(
+    title: MyStrings.nameFatemeAmiri,
+    titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
+    backgroundColor: SolidColors.primaryColor,
+    content: Text(
+      MyStrings.areYouSureExit,
+      style: const TextStyle(color: SolidColors.scaffoldBg),
+    ),
+    radius: Dimens.small,
+    cancel: ElevatedButton(
+        onPressed: () {
+          Get.back();
+        },
+        child: Text(MyStrings.cancel)),
+    confirm: ElevatedButton(
+        onPressed: () {
+          if (GetStorage().read(StorageKey.token) == null) {
             Get.back();
-          },
-          child:  Text(MyStrings.cancel)),
-      confirm: ElevatedButton(
-          onPressed: () {
-            if (GetStorage().read(StorageKey.token) == null) {
-              Get.back();
-              Get.snackbar(MyStrings.error,MyStrings.youAlreadyLeft);
-            } else {
-              BoxStorage.box.erase();
-              Get.offNamed(NamedRoute.profileScreen);
-            }
-          },
-          child:  Text(MyStrings.exit)),
-    );
-  }
+            Get.snackbar(MyStrings.error, MyStrings.youAlreadyLeft);
+          } else {
+            BoxStorage.box.erase();
+            Get.offNamed(NamedRoute.profileScreen);
+          }
+        },
+        child: Text(MyStrings.exit)),
+  );
+}

@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:tec/component/dimens.dart';
 import 'package:tec/view/widgets/podcast_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
@@ -23,8 +21,6 @@ class PodcastSingle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.id);
-
     var textheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
@@ -72,15 +68,13 @@ class PodcastSingle extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                      await controller.player
-                                          .stop();
-                                      controller.startProgress();
-                                      controller.progressValue
-                                          .value = const Duration(seconds: 0);
-                                      controller
-                                          .selectedIndex.value = 0;
-                                      Get.back();
-                                    },
+                                  await controller.player.stop();
+                                  controller.startProgress();
+                                  controller.progressState.value =
+                                      const Duration(seconds: 0);
+                                  controller.selectedIndex.value = 0;
+                                  Get.back();
+                                },
                                 child: Icon(
                                   Icons.arrow_back,
                                   color: SolidColors.lightIcon,
@@ -106,28 +100,23 @@ class PodcastSingle extends StatelessWidget {
                 ),
 
                 //title
-               Titlee(podcastModel: podcastModel, textheme: textheme),
+                Titlee(podcastModel: podcastModel, textheme: textheme),
 
                 //writer
-              Writer(podcastModel: podcastModel, textheme: textheme),
+                Writer(podcastModel: podcastModel, textheme: textheme),
 
                 //file list
-               FileList(controller: controller, textheme: textheme),
+                FileList(controller: controller, textheme: textheme),
               ]),
             ),
           ),
 
           //player manager
-          PlayerManager(controller: controller,)
+          PlayerManager(
+            controller: controller,
+          )
         ],
       )),
     );
   }
 }
-
-
-
-
-
-
-

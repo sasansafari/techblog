@@ -151,11 +151,17 @@ class Single extends StatelessWidget {
                       SizedBox(
                         height: Dimens.medium + 9,
                       ),
-                      Tags(textheme: textTheme, singleArticleController: singleArticleController,),
+                      Tags(
+                        textheme: textTheme,
+                        singleArticleController: singleArticleController,
+                      ),
                       SizedBox(
                         height: Dimens.medium + 9,
                       ),
-                      Similar(textheme: textTheme, singleArticleController: singleArticleController,)
+                      Similar(
+                        textheme: textTheme,
+                        singleArticleController: singleArticleController,
+                      )
                     ]),
         ),
       ),

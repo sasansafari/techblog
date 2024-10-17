@@ -3,7 +3,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/gen/assets.gen.dart';
-
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/route_manager/names.dart';
 
@@ -18,7 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      
       Get.offAndToNamed(NamedRoute.routeMainScreen);
     });
     super.initState();
@@ -31,10 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image.asset(Assets.images.logo.path, height: Dimens.xlarge),
-             SizedBox(
+            SizedBox(
               height: Dimens.large,
             ),
-             SpinKitFadingCube(
+            SpinKitFadingCube(
               color: SolidColors.primaryColor,
               size: Dimens.large,
             )

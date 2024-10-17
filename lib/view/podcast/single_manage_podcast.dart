@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:tec/component/decrations.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
@@ -15,6 +16,7 @@ import 'package:tec/controller/podcast/single_podcast_cotroller.dart';
 import 'package:tec/services/pick_file.dart';
 import '../../gen/assets.gen.dart';
 
+// ignore: must_be_immutable
 class SingleManagePodcast extends StatelessWidget {
   SinglePodcastController controller = Get.put(SinglePodcastController());
   ManagePodcastController managePodcastController =
@@ -121,7 +123,7 @@ class SingleManagePodcast extends StatelessWidget {
                                         children: [
                                           Text(
                                             MyStrings.selectImage,
-                                            style: textheme.headline2,
+                                            style: textheme.displayMedium,
                                           ),
                                           const Icon(
                                             Icons.add,
@@ -201,11 +203,10 @@ class SingleManagePodcast extends StatelessWidget {
                                         ),
                                         Text(
                                           MyStrings.frilance,
-                                          style: textheme.headline4,
+                                          style: textheme.headlineMedium,
                                         ),
                                       ],
                                     ),
-                                   
                                     Text(
                                         '${managePodcastController.currentHourValue.value}:${managePodcastController.currentMinuteValue.value}:${managePodcastController.currentSecondeValue.value}',
                                         style: const TextStyle(
@@ -237,9 +238,9 @@ class SingleManagePodcast extends StatelessWidget {
                               const TextStyle(color: SolidColors.lightText),
                           thumbColor: SolidColors.yelowColor,
                           baseBarColor: SolidColors.lightText,
-                          buffered: controller.bufferedValue.value,
+                          buffered: controller.bufferState.value,
                           progressBarColor: SolidColors.selectedPodCast,
-                          progress: controller.progressValue.value,
+                          progress: controller.progressState.value,
                           onSeek: (position) {
                             controller.player.seek(position);
 
@@ -518,12 +519,12 @@ class SingleManagePodcast extends StatelessWidget {
               padding: EdgeInsets.only(top: Dimens.large - 2),
               child: ElevatedButton(
                 style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
+                    fixedSize: WidgetStateProperty.all(
                         Size(Get.width / 3, Dimens.xlarge - 8))),
                 onPressed: (() async {
                   await managePodcastController.titlePodcast();
                   await managePodcastController.filePodcast();
-                  await managePodcastController.UpdatePodcast();
+                  await managePodcastController.updatePodcast();
                 }),
                 child: Text(
                   MyStrings.verification,

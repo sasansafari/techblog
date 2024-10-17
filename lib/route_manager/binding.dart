@@ -8,9 +8,7 @@ import 'package:tec/controller/article/single_article_controller.dart';
 class ArticleBinding implements Bindings {
   @override
   void dependencies() {
-    // ignore: todo
-    // TODO: implement dependencies
-    Get.put(ListArticleController());
+    Get.put(() => ListArticleController());
     Get.lazyPut(() => SingleArticleController());
   }
 }
@@ -18,9 +16,6 @@ class ArticleBinding implements Bindings {
 class ArticleManagerBinding implements Bindings {
   @override
   void dependencies() {
-    // ignore: todo
-    // TODO: implement dependencies
-    // Get.put(ManageArticleController());
     Get.put(ManageArticleController());
   }
 }
@@ -28,8 +23,6 @@ class ArticleManagerBinding implements Bindings {
 class RegisterBinding implements Bindings {
   @override
   void dependencies() {
-    // ignore: todo
-    // TODO: implement dependencies
     Get.put(RegisterController());
   }
 }
@@ -37,16 +30,13 @@ class RegisterBinding implements Bindings {
 class SinglePodcastBinding implements Bindings {
   @override
   void dependencies() {
-    // ignore: todo
-    // TODO: implement dependencies
     Get.put(SinglePodcastController());
   }
 }
 
-class podcastManagerBinding implements Bindings {
+class PodcastManagerBinding implements Bindings {
   @override
   void dependencies() {
-     Get.lazyPut(() => SinglePodcastController());
+    Get.lazyPut(() => SinglePodcastController());
   }
 }
-

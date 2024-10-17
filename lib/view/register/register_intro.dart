@@ -7,7 +7,6 @@ import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/constant/my_strings.dart';
-
 import 'package:validators/validators.dart';
 
 // ignore: must_be_immutable
@@ -28,10 +27,10 @@ class RegisterIntro extends StatelessWidget {
           children: [
             SvgPicture.asset(
               Assets.images.tcbot.path,
-              height: Dimens.xlarge+36,
+              height: Dimens.xlarge + 36,
             ),
             Padding(
-              padding:  EdgeInsets.only(top: Dimens.medium),
+              padding: EdgeInsets.only(top: Dimens.medium),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -41,7 +40,7 @@ class RegisterIntro extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(top: Dimens.large),
+              padding: EdgeInsets.only(top: Dimens.large),
               child: ElevatedButton(
                 onPressed: () {
                   _showEmailBottomSheet(context, size, textTheme);
@@ -57,6 +56,7 @@ class RegisterIntro extends StatelessWidget {
 
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
+    // ignore: prefer_typing_uninitialized_variables
     var isValidate;
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -72,8 +72,8 @@ class RegisterIntro extends StatelessWidget {
             decoration: BoxDecoration(
               color: SolidColors.lightIcon,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimens.large-2),
-                topRight: Radius.circular(Dimens.large-2),
+                topLeft: Radius.circular(Dimens.large - 2),
+                topRight: Radius.circular(Dimens.large - 2),
               ),
             ),
             child: Center(
@@ -85,12 +85,13 @@ class RegisterIntro extends StatelessWidget {
                   style: textTheme.headlineMedium,
                 ),
                 Padding(
-                  padding:  EdgeInsets.all(Dimens.medium+8),
+                  padding: EdgeInsets.all(Dimens.medium + 8),
                   child: TextFormField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
-                      debugPrint(
-                          value + MyStrings.isEmail + isEmail(value).toString());
+                      debugPrint(value +
+                          MyStrings.isEmail +
+                          isEmail(value).toString());
                       isValidate = EmailValidator.validate(
                           registerController.emailTextEditingController.text);
                     },
@@ -106,19 +107,19 @@ class RegisterIntro extends StatelessWidget {
                   onPressed: (() async {
                     if (registerController
                         .emailTextEditingController.text.isEmpty) {
-                      Get.snackbar(
-                          MyStrings.error,MyStrings.enterEmaile);
+                      Get.snackbar(MyStrings.error, MyStrings.enterEmaile);
                     } else {
                       if (isValidate) {
                         registerController.register();
                         Navigator.pop(context);
                         _activateCodeBottomSheet(context, size, textTheme);
                       } else {
-                        Get.snackbar( MyStrings.error, MyStrings.formatEmailNotCorrect);
+                        Get.snackbar(
+                            MyStrings.error, MyStrings.formatEmailNotCorrect);
                       }
                     }
                   }),
-                  child:  Text(MyStrings.continuation),
+                  child: Text(MyStrings.continuation),
                 ),
               ],
             )),
@@ -140,11 +141,11 @@ class RegisterIntro extends StatelessWidget {
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               height: size.height / 2,
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: SolidColors.lightIcon,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(Dimens.large-2),
-                  topRight: Radius.circular(Dimens.large-2),
+                  topLeft: Radius.circular(Dimens.large - 2),
+                  topRight: Radius.circular(Dimens.large - 2),
                 ),
               ),
               child: Center(
@@ -156,13 +157,13 @@ class RegisterIntro extends StatelessWidget {
                         style: textTheme.headlineMedium,
                       ),
                       Padding(
-                        padding:  EdgeInsets.all(Dimens.medium+8),
+                        padding: EdgeInsets.all(Dimens.medium + 8),
                         child: TextField(
                           controller: registerController
                               .activeCodeTextEditingController,
                           onChanged: (value) {
                             debugPrint(value +
-                                MyStrings.isEmail+
+                                MyStrings.isEmail +
                                 isEmail(value).toString());
                           },
                           style: textTheme.headlineSmall,
@@ -176,7 +177,7 @@ class RegisterIntro extends StatelessWidget {
                           onPressed: (() {
                             registerController.verify();
                           }),
-                          child:Text(MyStrings.continuation))
+                          child: Text(MyStrings.continuation))
                     ]),
               ),
             ),

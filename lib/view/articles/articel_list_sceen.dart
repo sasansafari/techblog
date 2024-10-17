@@ -54,9 +54,8 @@ class ArticleListScreen extends StatelessWidget {
                                     imageBuilder: (((context, imageProvider) {
                                       return Container(
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                                 BorderRadius.all(
-                                                    Radius.circular(Dimens.medium)),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(Dimens.medium)),
                                             image: DecorationImage(
                                                 image: imageProvider,
                                                 fit: BoxFit.cover)),

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
@@ -259,6 +258,13 @@ class Poster extends StatelessWidget {
         Container(
           width: size.width / 1.25,
           height: size.height / 4.2,
+          foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(Dimens.medium)),
+              gradient: const LinearGradient(
+                colors: GradientColors.homePosterCoverGradiant,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
           child: CachedNetworkImage(
             imageUrl: homeScreenController.poster.value.image!,
             imageBuilder: ((context, imageProvider) => Container(
@@ -278,13 +284,6 @@ class Poster extends StatelessWidget {
                   color: SolidColors.greyColor,
                 )),
           ),
-          foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(Dimens.medium)),
-              gradient: const LinearGradient(
-                colors: GradientColors.homePosterCoverGradiant,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )),
         ),
         Positioned(
           bottom: 8,
