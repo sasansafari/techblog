@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -23,9 +22,8 @@ class ManageArticleController extends GetxController {
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(
     MyStrings.titltArrticle,
     MyStrings.editOrginalTextArticle,
-     "",
-     )
-      .obs;
+    "",
+  ).obs;
 
   @override
   onInit() {
@@ -35,11 +33,8 @@ class ManageArticleController extends GetxController {
 
   getManagedArticle() async {
     loading.value = true;
-    // ignore: todo
-    //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    // var response = await DioService().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
     var response =
-        await DioService().getMethod(ApiUrlConstant.publishedByMe + "1");
+        await DioService().getMethod("${ApiUrlConstant.publishedByMe}1");
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {
@@ -69,9 +64,9 @@ class ManageArticleController extends GetxController {
       ApiArticleKeyConstant.command: Commands.store,
       ApiArticleKeyConstant.tagList: "[]"
     };
+    // ignore: unused_local_variable
     var response =
         await DioService().postMethod(map, ApiUrlConstant.articlePost);
-    log(response.data.toString());
     loading.value = false;
   }
 }

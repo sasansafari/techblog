@@ -35,7 +35,7 @@ class ManageArticle extends StatelessWidget {
                           //route to single manage
                         }),
                         child: Padding(
-                          padding:  EdgeInsets.all(Dimens.small),
+                          padding: EdgeInsets.all(Dimens.small),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -48,7 +48,7 @@ class ManageArticle extends StatelessWidget {
                                   imageBuilder: (((context, imageProvider) {
                                     return Container(
                                       decoration: BoxDecoration(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                               Radius.circular(Dimens.medium)),
                                           image: DecorationImage(
                                               image: imageProvider,
@@ -59,14 +59,14 @@ class ManageArticle extends StatelessWidget {
                                     return const Loading();
                                   }),
                                   errorWidget: ((context, url, error) {
-                                    return  Icon(
+                                    return Icon(
                                         Icons.image_not_supported_outlined,
-                                        size: Dimens.xlarge-14,
+                                        size: Dimens.xlarge - 14,
                                         color: SolidColors.greyColor);
                                   }),
                                 ),
                               ),
-                               SizedBox(
+                              SizedBox(
                                 width: Dimens.medium,
                               ),
                               Column(
@@ -81,7 +81,7 @@ class ManageArticle extends StatelessWidget {
                                       maxLines: 2,
                                     ),
                                   ),
-                                   SizedBox(
+                                  SizedBox(
                                     height: Dimens.medium,
                                   ),
                                   Row(
@@ -93,8 +93,8 @@ class ManageArticle extends StatelessWidget {
                                             .articleList[index].author!,
                                         style: textTheme.bodySmall,
                                       ),
-                                       SizedBox(
-                                        width: Dimens.medium+4,
+                                      SizedBox(
+                                        width: Dimens.medium + 4,
                                       ),
                                       Text(
                                         articleManageController
@@ -112,19 +112,22 @@ class ManageArticle extends StatelessWidget {
                       );
                     }),
                   )
-                : ArticleEmptyState(textTheme:textTheme,),
+                : ArticleEmptyState(
+                    textTheme: textTheme,
+                  ),
       ),
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.only(top: Dimens.large),
+        padding: EdgeInsets.only(top: Dimens.large),
         child: Padding(
-          padding:  EdgeInsets.all(Dimens.small),
+          padding: EdgeInsets.all(Dimens.small),
           child: ElevatedButton(
             style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(Size(Get.width / 3, Dimens.xlarge-8))),
+                fixedSize: WidgetStateProperty.all(
+                    Size(Get.width / 3, Dimens.xlarge - 8))),
             onPressed: () {
               Get.toNamed(NamedRoute.singleManageArticle);
             },
-            child:  Text(MyStrings.textManageArticle),
+            child: Text(MyStrings.textManageArticle),
           ),
         ),
       ),

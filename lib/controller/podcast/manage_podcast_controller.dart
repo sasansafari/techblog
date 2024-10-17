@@ -1,8 +1,4 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:dio/dio.dart' as dio;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,7 +13,7 @@ import '../../constant/storage_const.dart';
 
 class ManagePodcastController extends GetxController {
   RxList<PodcastModel> podcastModel = RxList.empty();
-RxInt currentHourValue = 0.obs;
+  RxInt currentHourValue = 0.obs;
   RxInt currentMinuteValue = 0.obs;
   RxInt currentSecondeValue = 0.obs;
   Rx<PodcastsFileModel> podcastFileModel =
@@ -26,7 +22,6 @@ RxInt currentHourValue = 0.obs;
   // var selectedTime = TimeOfDay.now().replacing(hour: 0,minute: 0).obs;
   RxBool loading = false.obs;
   TextEditingController titleTextEditingController = TextEditingController();
-  
 
   RxInt? input = 0.obs;
   var userId = '';
@@ -49,7 +44,7 @@ RxInt currentHourValue = 0.obs;
     var response =
         await DioService().postMethod(map, ApiUrlConstant.postPodcast);
     if (response.statusCode == 200) {
-      SnackBar(
+      const SnackBar(
         content: Text("با موفقیت انجام شد"),
       );
     }
@@ -67,11 +62,12 @@ RxInt currentHourValue = 0.obs;
       ApiPodcastFileKyConstants.command: Commands.storFile,
       ApiPodcastFileKyConstants.length: podcastFileModel.value.lenght,
     };
+    // ignore: unused_local_variable
     var response =
         await DioService().postMethod(map, ApiUrlConstant.postPodcast);
   }
 
-  UpdatePodcast() async {
+  updatePodcast() async {
     var fileController = Get.find<FilePickerController>();
     loading.value = true;
     Map<String, dynamic> map = {
@@ -82,6 +78,7 @@ RxInt currentHourValue = 0.obs;
       ApiPodcastUpdateKyConstants.command: Commands.storUpdate,
       ApiPodcastUpdateKyConstants.userId: GetStorage().read(StorageKey.userId),
     };
+    // ignore: unused_local_variable
     var response =
         await DioService().postMethod(map, ApiUrlConstant.postPodcast);
   }

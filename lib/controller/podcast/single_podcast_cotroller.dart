@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:tec/constant/api_constant.dart';
@@ -8,6 +6,7 @@ import 'package:tec/models/podcasts_file_model.dart';
 import 'package:tec/services/dio_service.dart';
 
 class SinglePodcastController extends GetxController {
+  // ignore: prefer_typing_uninitialized_variables
   var id;
 
   SinglePodcastController({this.id});
@@ -77,12 +76,19 @@ class SinglePodcastController extends GetxController {
         progressState.value = player.position;
 
         bufferState.value = player.bufferedPosition;
-        debugPrint('TIMER :: ${progressState.value}');
       }
     });
   }
 
-  
+  timerCheck() {
+    if (player.playing) {
+      startProgress();
+    } else {
+      timer!.cancel();
+      progressState.value = const Duration(seconds: 0);
+      bufferState.value = const Duration(seconds: 0);
+    }
+  }
 
   setLoopMode() {
     if (isLoopAll.value) {

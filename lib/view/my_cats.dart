@@ -32,14 +32,14 @@ class _MyCatsState extends State<MyCats> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   SizedBox(
+                  SizedBox(
                     height: Dimens.large,
                   ),
                   SvgPicture.asset(
                     Assets.images.tcbot.path,
                     height: Dimens.xlarge + 36,
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: Dimens.medium,
                   ),
                   Text(
@@ -54,8 +54,8 @@ class _MyCatsState extends State<MyCats> {
                       hintStyle: textTheme.headlineMedium,
                     ),
                   ),
-                   SizedBox(
-                    height:  Dimens.large,
+                  SizedBox(
+                    height: Dimens.large,
                   ),
                   Text(
                     MyStrings.chooseCats,
@@ -63,19 +63,19 @@ class _MyCatsState extends State<MyCats> {
                   ),
                   //taglist
                   Padding(
-                    padding:  EdgeInsets.only(top: Dimens.large),
+                    padding: EdgeInsets.only(top: Dimens.large),
                     child: SizedBox(
                       width: double.infinity,
-                      height: Dimens.xlarge+21,
+                      height: Dimens.xlarge + 21,
                       child: GridView.builder(
                           physics: const ClampingScrollPhysics(),
                           itemCount: tagList.length,
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           gridDelegate:
-                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisSpacing: Dimens.small-3,
-                                  mainAxisSpacing: Dimens.small-3,
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: Dimens.small - 3,
+                                  mainAxisSpacing: Dimens.small - 3,
                                   crossAxisCount: 2,
                                   childAspectRatio: 0.3),
                           itemBuilder: ((context, index) {
@@ -95,7 +95,7 @@ class _MyCatsState extends State<MyCats> {
                           })),
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: Dimens.medium,
                   ),
                   Image.asset(
@@ -104,10 +104,10 @@ class _MyCatsState extends State<MyCats> {
                   ),
                   //selected Tags
                   Padding(
-                    padding:  EdgeInsets.only(top: Dimens.large),
+                    padding: EdgeInsets.only(top: Dimens.large),
                     child: SizedBox(
                       width: double.infinity,
-                      height: Dimens.xlarge+21,
+                      height: Dimens.xlarge + 21,
                       child: GridView.builder(
                         physics: const ClampingScrollPhysics(),
                         itemCount: selectedTags.length,
@@ -122,19 +122,20 @@ class _MyCatsState extends State<MyCats> {
                         ),
                         itemBuilder: ((context, index) {
                           return Container(
-                            height: Dimens.xlarge-4,
-                            decoration:  BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(Dimens.medium+8)),
+                            height: Dimens.xlarge - 4,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Dimens.medium + 8)),
                               color: SolidColors.surface,
                             ),
                             child: Padding(
-                              padding:  EdgeInsets.fromLTRB(Dimens.medium, Dimens.small, Dimens.small, Dimens.small),
+                              padding: EdgeInsets.fromLTRB(Dimens.medium,
+                                  Dimens.small, Dimens.small, Dimens.small),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                   SizedBox(
+                                  SizedBox(
                                     width: Dimens.small,
                                   ),
                                   Text(

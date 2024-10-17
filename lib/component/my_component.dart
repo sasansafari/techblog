@@ -121,11 +121,14 @@ PreferredSize appBar(String title) {
             child: Container(
               height: 40,
               width: 40,
-              decoration: BoxDecoration(
-                color: SolidColors.primaryColor.withBlue(100),
+              decoration: const BoxDecoration(
+                color: SolidColors.primaryColor,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.keyboard_arrow_right_rounded),
+              child: const Icon(
+                Icons.keyboard_arrow_right_rounded,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

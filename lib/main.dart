@@ -9,7 +9,6 @@ import 'my_http_overrides.dart';
 import 'route_manager/names.dart';
 import 'route_manager/pages.dart';
 
-
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
 
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      
       locale: const Locale('fa'),
       theme: AppThemes.lightTheme,
       debugShowCheckedModeBanner: false,

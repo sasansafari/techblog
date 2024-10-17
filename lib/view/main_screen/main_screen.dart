@@ -9,7 +9,7 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen/bottom_navigation.dart';
 import 'package:tec/view/main_screen/home_screen.dart';
 import 'package:tec/view/main_screen/profile_screen.dart';
-import '../../component/searchBar.dart';
+import '../../component/search_bar.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                 )),
                 ListTile(
                   title: Text(
-                   MyStrings.userProfile,
+                    MyStrings.userProfile,
                     style: textTheme.headlineMedium,
                   ),
                   onTap: () {
@@ -82,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 ListTile(
                   title: Text(
-                   MyStrings.tecIngithub,
+                    MyStrings.tecIngithub,
                     style: textTheme.headlineMedium,
                   ),
                   onTap: () {
@@ -122,10 +122,12 @@ class _MainScreenState extends State<MainScreen> {
                   showSearch(
                       context: context,
                       // delegate to customize the search bar
-                      delegate: CustomSearchDelegate()
-                  );
+                      delegate: CustomSearchDelegate());
                 },
-                icon: const Icon(Icons.search , color: SolidColors.blackColor,),
+                icon: const Icon(
+                  Icons.search,
+                  color: SolidColors.blackColor,
+                ),
               )
             ],
           ),
@@ -159,4 +161,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
