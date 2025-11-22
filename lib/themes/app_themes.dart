@@ -14,8 +14,8 @@ class AppThemes {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            textStyle: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+            textStyle: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed)) {
                 return const TextStyle(
                 fontSize: 16,
                 fontFamily: 'dana',
@@ -30,8 +30,8 @@ class AppThemes {
               color: SolidColors.posterSubTitle,
             );
             }),
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+            backgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed)) {
                 return SolidColors.seeMore;
               }
               return SolidColors.primaryColor;
@@ -40,7 +40,7 @@ class AppThemes {
         ),
         fontFamily: 'dana',
         brightness: Brightness.light,
-        accentColor: SolidColors.primaryColor,
+        hintColor: SolidColors.primaryColor,
         textTheme: const TextTheme(
           displayLarge: TextStyle(
               fontFamily: 'dana',

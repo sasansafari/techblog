@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
@@ -87,7 +86,7 @@ class Cats extends StatelessWidget {
                     child: Center(
                       child: Text(
                         homeScreenController.tagsList[index].title!,
-                        style: textTheme.headline2,
+                        style: textTheme.displayMedium,
                       ),
                     )),
               ),
@@ -178,14 +177,14 @@ class Similar extends StatelessWidget {
                                   Text(
                                     singleArticleController
                                         .relatedList[index].author!,
-                                    style: textheme.subtitle1,
+                                    style: textheme.titleMedium,
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         singleArticleController
                                             .relatedList[index].view!,
-                                        style: textheme.subtitle1,
+                                        style: textheme.titleMedium,
                                       ),
                                       SizedBox(
                                         width: Dimens.small,
@@ -262,7 +261,7 @@ class Tags extends StatelessWidget {
                           Dimens.small, Dimens.small),
                       child: Text(
                         singleArticleController.tagList[index].title!,
-                        style: textheme.headline2,
+                        style: textheme.displayMedium,
                       )),
                 ),
               ),
