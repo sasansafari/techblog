@@ -121,7 +121,7 @@ class SingleManagePodcast extends StatelessWidget {
                                         children: [
                                           Text(
                                             MyStrings.selectImage,
-                                            style: textheme.headline2,
+                                            style: textheme.displayMedium,
                                           ),
                                           const Icon(
                                             Icons.add,
@@ -201,11 +201,10 @@ class SingleManagePodcast extends StatelessWidget {
                                         ),
                                         Text(
                                           MyStrings.frilance,
-                                          style: textheme.headline4,
+                                          style: textheme.headlineMedium,
                                         ),
                                       ],
                                     ),
-                                   
                                     Text(
                                         '${managePodcastController.currentHourValue.value}:${managePodcastController.currentMinuteValue.value}:${managePodcastController.currentSecondeValue.value}',
                                         style: const TextStyle(

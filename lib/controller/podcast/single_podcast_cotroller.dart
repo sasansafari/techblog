@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:developer' as developer show log;
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -48,9 +48,9 @@ class SinglePodcastController extends GetxController {
 
   int? duration;
   RxInt selectedIndex = 0.obs;
-  Rx<Duration> progressState = const Duration(seconds: 0).obs;
+  Rx<Duration> progressValue = const Duration(seconds: 0).obs;
   Rx<Duration> totalDuration = const Duration(seconds: 0).obs;
-  Rx<Duration> bufferState = const Duration(seconds: 0).obs;
+  Rx<Duration> bufferedValue = const Duration(seconds: 0).obs;
   Timer? timer;
   startProgress() {
     const tick = Duration(seconds: 1);
@@ -74,15 +74,13 @@ class SinglePodcastController extends GetxController {
         timer.cancel();
       }
       if (player.playing) {
-        progressState.value = player.position;
+        progressValue.value = player.position;
 
-        bufferState.value = player.bufferedPosition;
-        debugPrint('TIMER :: ${progressState.value}');
+        bufferedValue.value = player.bufferedPosition;
+        developer.log('TIMER :: ${progressValue.value}');
       }
     });
   }
-
-  
 
   setLoopMode() {
     if (isLoopAll.value) {
