@@ -1,5 +1,16 @@
-> ⚠️ این مخزن بخشی از فعالیت‌های آموزشی من در مسیر تدریس فلاتر/اندروید است.  
-> هدف از انتشار آن، آموزش مفاهیم اولیه به دانشجویان بوده و این پروژه به عنوان نمونه کار حرفه‌ای ارائه نمی‌شود.  
->  
-> ⚠️ This repository is part of my educational activities as an instructor.  
-> It was created solely for learning purposes and is not intended to reflect production-level code or professional portfolio projects.
+# tec
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

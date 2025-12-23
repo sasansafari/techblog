@@ -8,21 +8,18 @@ import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
 import 'package:tec/view/articles/articel_list_sceen.dart';
- 
 import 'see_more_podcast_screen.dart';
- 
 import '../../controller/article/list_article_controller.dart';
-import '../podcast/hot_podcast_list.dart';
  
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({
-    Key? key,
+    super.key,
     required this.size,
     required this.textTheme,
     required this.bodyMargin,
-  }) : super(key: key);
+  });
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
   SingleArticleController singleArticleController =
@@ -38,7 +35,7 @@ class HomeScreen extends StatelessWidget {
     return Obx(() => homeScreenController.loading.value == false
         ? RefreshIndicator(
             // ignore: deprecated_member_use
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onRefresh: () {
               return homeScreenController.getHomeItems();
             },

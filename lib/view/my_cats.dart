@@ -9,7 +9,7 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data/fake_data.dart';
 
 class MyCats extends StatefulWidget {
-  const MyCats({Key? key}) : super(key: key);
+  const MyCats({super.key});
 
   @override
   State<MyCats> createState() => _MyCatsState();
@@ -36,7 +36,7 @@ class _MyCatsState extends State<MyCats> {
                     height: Dimens.large,
                   ),
                   SvgPicture.asset(
-                    Assets.images.tcbot.path,
+                    Assets.images.tcbot,
                     height: Dimens.xlarge + 36,
                   ),
                    SizedBox(

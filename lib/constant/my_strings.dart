@@ -38,69 +38,72 @@ www.sasansafari.com
 لطفا اطلاعات ثبت نام رو کامل کن
 """;
 
-  static String titltArrticle =
+  static const String titltArrticle =
       'اینجا عنوان مقاله قرار میگیره ، یه عنوان جذاب انتخاب کن';
 
-  static String editOrginalTextArticle = """
+  static const String editOrginalTextArticle = """
 من متن و بدنه اصلی مقاله هستم ، اگه میخوای من رو ویرایش کنی و یه مقاله جذاب بنویسی ، نوشته آبی رنگ بالا که نوشته "ویرایش متن اصلی مقاله" رو با انگشتت لمس کن تا وارد ویرایشگر بشی""";
 
-  static String visit = 'بازدید';
-  static String titleAppBarManageArticle = "مدیریت مقاله ها";
-  static String ManagePodcast = "مدیریت پادکست ها";
-  static String titleAppBarArticleContentEditor = "نوشتن/ویرایش مقاله ";
-  static String hintArticleContentEditor = "میتونی مقاله‌تو اینجا بنویسی...";
-  static String textManageArticle = "بریم برای نوشتن یه مقاله باحال";
-  static String titleDialogSingleManageArticle ="عنوان مقاله";
-  static String hintTextSingleManageArticle ="اینجا بنویس";
-  static String save ="ثبت";
-  static String selectImage ="انتخاب تصویر";
-  static String editTitleArticle ="ویرایش عنوان مقاله";
-  static String editTitlePodcast ="ویرایش عنوان پادکست";
-  static String editMainTextArticle ='ویرایش متن اصلی مقاله';
-  static String selectCategory ="انتخاب دسته بندی";
-  static String noCategorySelected ="هیچ دسته بندی انتخاب نشده";
-  static String wait = "ٌصبر کنید ...";
-  static String sendText = "ارسال مطلب";
-  static String anonymousText = "ناشناس";
-  static String writePodcast = "write podcast";
-  static String titleArticleText = "مقالات";
-  static String userProfile =  "پروفایل کاربری";
-  static String aboutTec =  "درباره تکبلاگ";
-  static String shareTec =  "اشتراک گذاری تک بلاگ";
-  static String tecIngithub =  "تک‌بلاگ در گیت هاب";
-  static String shareKnowledge =  "دونسته هات رو با بقیه به اشتراک بذار ...";
-  static String gigTech =  """
+  static const String visit = 'بازدید';
+  static const String titleAppBarManageArticle = "مدیریت مقاله ها";
+  static const String managePodcast = "مدیریت پادکست ها";
+  static const String titleAppBarArticleContentEditor = "نوشتن/ویرایش مقاله ";
+  static const String hintArticleContentEditor =
+      "میتونی مقاله‌تو اینجا بنویسی...";
+  static const String textManageArticle = "بریم برای نوشتن یه مقاله باحال";
+  static const String titleDialogSingleManageArticle = "عنوان مقاله";
+  static const String hintTextSingleManageArticle = "اینجا بنویس";
+  static const String save = "ثبت";
+  static const String selectImage = "انتخاب تصویر";
+  static const String editTitleArticle = "ویرایش عنوان مقاله";
+  static const String editTitlePodcast = "ویرایش عنوان پادکست";
+  static const String editMainTextArticle = 'ویرایش متن اصلی مقاله';
+  static const String selectCategory = "انتخاب دسته بندی";
+  static const String noCategorySelected = "هیچ دسته بندی انتخاب نشده";
+  static const String wait = "ٌصبر کنید ...";
+  static const String sendText = "ارسال مطلب";
+  static const String anonymousText = "ناشناس";
+  static const String writePodcast = "write podcast";
+  static const String titleArticleText = "مقالات";
+  static const String userProfile = "پروفایل کاربری";
+  static const String aboutTec = "درباره تکبلاگ";
+  static const String shareTec = "اشتراک گذاری تک بلاگ";
+  static const String tecIngithub = "تک‌بلاگ در گیت هاب";
+  static const String shareKnowledge =
+      "دونسته هات رو با بقیه به اشتراک بذار ...";
+  static const String gigTech = """
 فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستی
 دونسته هات رو با  جامعه‌ی گیک های فارسی زبان به اشتراک بذار..
 """;
 
-  static String nameFatemeAmiri =  "فاطمه امیری";
-  static String gmailFatemeAmiri =  "fatemeamiri@gmail.com";
-  static String exit =  "خروج";
-  static String cancel =  "لغو";
-  static String error =  "خطا";
-  static String errorText =  "Eror";
-  static String youAlreadyLeft =   "قبلا خارج شدی !!";
-  static String areYouSureExit ="آیا از خروج خود مطمئن هستید ؟";
-  static String addNewPodcast ="اضافه کردن یک پادکست جدید";
-  static String addNewFile ="اضافه کردن فایل";
-  static String frilance ="بخش چهارم : فریلنسر دیوانه";
-  static String meaningFullTitle ="لطفا یک عنوان پرمعنا انتخاب کن";
-  static String verification ="تایید";
-  static String  later="بعدا";
-  static String  minute="دقیقه";
-  static String  houre="ساعت";
-  static String  isEmail="isEmail:";
-  static String  tecEmail="techblog@gmail.com";
-  static String  enterEmaile= "لطفا ایمیل خود را به درستی وارد کنید";
-  static String  formatEmailNotCorrect= "فرمت ایمیل درست نمیباشد, لطفا ایمیل خود را به درستی وارد کنید";
-  static String  selectAudioFile="انتخاب فابل صوتی";
-  static String  enterNumber = "Enter Number";
-  static String  continuation = "ادامه";
-  static String  letsGo = "بزن بریم";
-  static String  stars = "******";
-  static String  nameAndFamilyName = "نام و نام خانوادگی";
-  static String  addNewTimeFile="لطفا زمان و فایل قسمت جدید پادکست رو وارد کن";
-
-
+  static const String nameFatemeAmiri = "فاطمه امیری";
+  static const String gmailFatemeAmiri = "fatemeamiri@gmail.com";
+  static const String exit = "خروج";
+  static const String cancel = "لغو";
+  static const String error = "خطا";
+  static const String errorText = "Eror";
+  static const String youAlreadyLeft = "قبلا خارج شدی !!";
+  static const String areYouSureExit = "آیا از خروج خود مطمئن هستید ؟";
+  static const String addNewPodcast = "اضافه کردن یک پادکست جدید";
+  static const String addNewFile = "اضافه کردن فایل";
+  static const String frilance = "بخش چهارم : فریلنسر دیوانه";
+  static const String meaningFullTitle = "لطفا یک عنوان پرمعنا انتخاب کن";
+  static const String verification = "تایید";
+  static const String later = "بعدا";
+  static const String minute = "دقیقه";
+  static const String houre = "ساعت";
+  static const String isEmail = "isEmail:";
+  static const String tecEmail = "techblog@gmail.com";
+  static const String enterEmaile = "لطفا ایمیل خود را به درستی وارد کنید";
+  static const String formatEmailNotCorrect =
+      "فرمت ایمیل درست نمیباشد, لطفا ایمیل خود را به درستی وارد کنید";
+  static const String selectAudioFile = "انتخاب فابل صوتی";
+  static const String enterNumber = "Enter Number";
+  static const String continuation = "ادامه";
+  static const String letsGo = "بزن بریم";
+  static const String stars = "******";
+  static const String nameAndFamilyName = "نام و نام خانوادگی";
+  static const String addNewTimeFile =
+      "لطفا زمان و فایل قسمت جدید پادکست رو وارد کن";
+  static const faLocale = "fa";
 }

@@ -10,9 +10,9 @@ import 'package:tec/controller/home_screen_controller.dart';
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
-    Key? key,
+    super.key,
     required this.size,
-  }) : super(key: key);
+  });
 
   final Size size;
 
@@ -29,10 +29,10 @@ class TechDivider extends StatelessWidget {
 
 class MainTags extends StatelessWidget {
   const MainTags({
-    Key? key,
+    super.key,
     required this.textTheme,
     required this.index,
-  }) : super(key: key);
+  });
 
   final TextTheme textTheme;
   final int index;
@@ -73,17 +73,17 @@ class MainTags extends StatelessWidget {
 
 myLaunchUrl(String url) async {
   var uri = Uri.parse(url);
-  if (await canLaunchUrl(uri)) {
+  try {
     await launchUrl(uri);
-  } else {
+  } catch(e) {
     log("could not launch ${uri.toString()}");
   }
 }
 
 class Loading extends StatelessWidget {
   const Loading({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

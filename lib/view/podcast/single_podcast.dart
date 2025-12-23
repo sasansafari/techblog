@@ -16,14 +16,13 @@ import 'package:tec/models/podcast_model.dart';
 class PodcastSingle extends StatelessWidget {
   late SinglePodcastController controller;
   late PodcastModel podcastModel;
-  PodcastSingle({Key? key}) : super(key: key) {
+  PodcastSingle({super.key}) {
     podcastModel = Get.arguments;
     controller = Get.put(SinglePodcastController(id: podcastModel.id));
   }
 
   @override
   Widget build(BuildContext context) {
-    print(controller.id);
 
     var textheme = Theme.of(context).textTheme;
     return SafeArea(

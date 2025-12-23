@@ -14,7 +14,7 @@ import '../../component/searchBar.dart';
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -35,19 +35,19 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: SolidColors.scaffoldBg,
           child: Padding(
             padding: EdgeInsets.only(
-                right: Dimens.bodyMargin, left: Dimens.bodyMargin),
+              right: Dimens.bodyMargin,
+              left: Dimens.bodyMargin,
+            ),
             child: ListView(
               children: [
                 DrawerHeader(
-                    child: Center(
-                  child: Image.asset(
-                    Assets.images.logo.path,
-                    scale: 3,
+                  child: Center(
+                    child: Image.asset(Assets.images.logo.path, scale: 3),
                   ),
-                )),
+                ),
                 ListTile(
                   title: Text(
-                   MyStrings.userProfile,
+                    MyStrings.userProfile,
                     style: textTheme.headlineMedium,
                   ),
                   onTap: () {
@@ -55,9 +55,7 @@ class _MainScreenState extends State<MainScreen> {
                     selectedPageIndex.value = 1;
                   },
                 ),
-                const Divider(
-                  color: SolidColors.dividerColor,
-                ),
+                const Divider(color: SolidColors.dividerColor),
                 ListTile(
                   title: Text(
                     MyStrings.aboutTec,
@@ -65,33 +63,29 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   onTap: () {},
                 ),
-                const Divider(
-                  color: SolidColors.dividerColor,
-                ),
+                const Divider(color: SolidColors.dividerColor),
                 ListTile(
                   title: Text(
                     MyStrings.shareTec,
                     style: textTheme.headlineMedium,
                   ),
                   onTap: () async {
-                    await Share.share(MyStrings.shareText);
+                    await SharePlus.instance.share(
+                      ShareParams(text: MyStrings.shareText),
+                    );
                   },
                 ),
-                const Divider(
-                  color: SolidColors.dividerColor,
-                ),
+                const Divider(color: SolidColors.dividerColor),
                 ListTile(
                   title: Text(
-                   MyStrings.tecIngithub,
+                    MyStrings.tecIngithub,
                     style: textTheme.headlineMedium,
                   ),
                   onTap: () {
                     myLaunchUrl(MyStrings.techBlogGithubUrl);
                   },
                 ),
-                const Divider(
-                  color: SolidColors.dividerColor,
-                ),
+                const Divider(color: SolidColors.dividerColor),
               ],
             ),
           ),
@@ -107,44 +101,40 @@ class _MainScreenState extends State<MainScreen> {
                 onTap: (() {
                   _key.currentState!.openDrawer();
                 }),
-                child: const Icon(
-                  Icons.menu,
-                  color: SolidColors.blackColor,
-                ),
+                child: const Icon(Icons.menu, color: SolidColors.blackColor),
               ),
-              Image.asset(
-                Assets.images.logo.path,
-                height: size.height / 13.6,
-              ),
+              Image.asset(Assets.images.logo.path, height: size.height / 13.6),
               IconButton(
                 onPressed: () {
                   // method to show the search bar
                   showSearch(
-                      context: context,
-                      // delegate to customize the search bar
-                      delegate: CustomSearchDelegate()
+                    context: context,
+                    // delegate to customize the search bar
+                    delegate: CustomSearchDelegate(),
                   );
                 },
-                icon: const Icon(Icons.search , color: SolidColors.blackColor,),
-              )
+                icon: const Icon(Icons.search, color: SolidColors.blackColor),
+              ),
             ],
           ),
         ),
         body: Stack(
           children: [
             Positioned.fill(
-                child: Obx(
-              () => IndexedStack(
-                index: selectedPageIndex.value,
-                children: [
-                  HomeScreen(
+              child: Obx(
+                () => IndexedStack(
+                  index: selectedPageIndex.value,
+                  children: [
+                    HomeScreen(
                       size: size,
                       textTheme: textTheme,
-                      bodyMargin: Dimens.bodyMargin), //0
-                  const ProfileScreen() //1
-                ],
+                      bodyMargin: Dimens.bodyMargin,
+                    ), //0
+                    const ProfileScreen(), //1
+                  ],
+                ),
               ),
-            )),
+            ),
             BottomNavigation(
               size: size,
               bodyMargin: Dimens.bodyMargin,
@@ -159,4 +149,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-

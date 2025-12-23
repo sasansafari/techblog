@@ -14,9 +14,9 @@ import 'package:tec/view/articles/articel_list_sceen.dart';
 
 class ArticleEmptyState extends StatelessWidget {
   const ArticleEmptyState({
-    Key? key,
+    super.key,
     required this.textTheme,
-  }) : super(key: key);
+  });
 
   final TextTheme textTheme;
 
@@ -48,11 +48,10 @@ class ArticleEmptyState extends StatelessWidget {
 
 class Cats extends StatelessWidget {
   Cats(
-      {Key? key,
+      {super.key,
       required this.homeScreenController,
       required this.manageArticleController,
-      required this.textTheme})
-      : super(key: key);
+      required this.textTheme});
 
   final HomeScreenController homeScreenController;
   final ManageArticleController manageArticleController;
@@ -86,7 +85,7 @@ class Cats extends StatelessWidget {
                     child: Center(
                       child: Text(
                         homeScreenController.tagsList[index].title!,
-                        style: textTheme.headline2,
+                        style: textTheme.displayMedium,
                       ),
                     )),
               ),
@@ -105,10 +104,10 @@ class Cats extends StatelessWidget {
 
 class Similar extends StatelessWidget {
   const Similar({
-    Key? key,
+    super.key,
     required this.singleArticleController,
     required this.textheme,
-  }) : super(key: key);
+  });
 
   final SingleArticleController singleArticleController;
   final TextTheme textheme;
@@ -177,14 +176,14 @@ class Similar extends StatelessWidget {
                                   Text(
                                     singleArticleController
                                         .relatedList[index].author!,
-                                    style: textheme.subtitle1,
+                                    style: textheme.titleMedium,
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         singleArticleController
                                             .relatedList[index].view!,
-                                        style: textheme.subtitle1,
+                                        style: textheme.titleMedium,
                                       ),
                                       SizedBox(
                                         width: Dimens.small,
@@ -221,10 +220,10 @@ class Similar extends StatelessWidget {
 
 class Tags extends StatelessWidget {
   const Tags({
-    Key? key,
+    super.key,
     required this.singleArticleController,
     required this.textheme,
-  }) : super(key: key);
+  });
 
   final SingleArticleController singleArticleController;
   final TextTheme textheme;
@@ -261,7 +260,7 @@ class Tags extends StatelessWidget {
                           Dimens.small, Dimens.small),
                       child: Text(
                         singleArticleController.tagList[index].title!,
-                        style: textheme.headline2,
+                        style: textheme.displayMedium,
                       )),
                 ),
               ),

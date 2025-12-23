@@ -10,10 +10,10 @@ import '../podcast/hot_podcast_list.dart';
 
 class SeeMorePodcast extends StatelessWidget {
   const SeeMorePodcast({
-    Key? key,
+    super.key,
     required this.bodyMargin,
     required this.textTheme,
-  }) : super(key: key);
+  });
 
   final double bodyMargin;
   final TextTheme textTheme;
@@ -37,7 +37,7 @@ class SeeMorePodcast extends StatelessWidget {
               onTap: () => Get.to(HotPodcastList(title: MyStrings.myFavPodcast,)),
               child: Text(
                 MyStrings.viewHotestPodCasts,
-                style: textTheme.headline3,
+                style: textTheme.displaySmall,
               ),
             ),
           )
