@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:tech/controller/file_controller.dart';
+import 'package:tec/controller/file_controller.dart';
 
 FilePickerController _filePickerController = Get.put(FilePickerController());
 Future pickFile() async {
