@@ -1,17 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:tec/component/decrations.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/constant/my_strings.dart';
-import 'package:tec/constant/storage_const.dart';
 import 'package:tec/controller/register_controller.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/route_manager/names.dart';
-import 'package:tec/view/register/register_intro.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -28,7 +24,8 @@ class BottomNavigation extends StatelessWidget {
   final Function(int) changeScreen;
   final RxInt selectedScreen;
 
-  RegisterController registerController = Get.put(RegisterController());
+  final RegisterController registerController = Get.put(RegisterController());
+  static final RxBool isWriteSheetOpen = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +62,18 @@ class BottomNavigation extends StatelessWidget {
                           : SolidColors.greyColor,
                     ),
                   ),
-                  IconButton(
-                      onPressed: (() {
-                        registerController.toggleLogin();
-                      }),
-                      icon: ImageIcon(
-                        Image.asset(Assets.icons.write.path).image,
-                        color: SolidColors.lightIcon,
-                        size: Dimens.large+3,
-                      )),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      registerController.toggleLogin();
+                    },
+                    child: ImageIcon(
+                      Image.asset(Assets.icons.write.path).image,
+                      color: isWriteSheetOpen.value
+                          ? SolidColors.lightIcon
+                          : SolidColors.greyColor,
+                      size: isWriteSheetOpen.value ? 26 : 24,
+                    ),
+                  ),
                   ZoomTapAnimation(
                       onTap: () => changeScreen(1),
                       child: ImageIcon(
@@ -93,8 +93,9 @@ class BottomNavigation extends StatelessWidget {
   }
 }
 
-  routeToWriteBottomSheet() {
-    Get.bottomSheet(Container(
+  routeToWriteBottomSheet() async {
+    BottomNavigation.isWriteSheetOpen.value = true;
+    await Get.bottomSheet(Container(
       height: Get.height / 3,
       decoration:  BoxDecoration(
           color: SolidColors.lightText,
@@ -169,4 +170,5 @@ class BottomNavigation extends StatelessWidget {
         ]),
       ),
     ));
+    BottomNavigation.isWriteSheetOpen.value = false;
   }

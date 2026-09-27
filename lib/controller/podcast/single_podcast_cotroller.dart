@@ -16,114 +16,117 @@ class SinglePodcastController extends GetxController {
   RxBool loading = false.obs;
   RxList<PodcastsFileModel> podcastFileList = RxList();
   final player = AudioPlayer();
-  late ConcatenatingAudioSource playList;
+  ConcatenatingAudioSource playList = ConcatenatingAudioSource(children: []);
   RxBool playState = false.obs;
   RxBool isLoopAll = false.obs;
   RxInt currentFileIndex = 0.obs;
 
-  int? duration;
   RxInt selectedIndex = 0.obs;
   Rx<Duration> progressValue = const Duration(seconds: 0).obs;
   Rx<Duration> totalDuration = const Duration(seconds: 0).obs;
   Rx<Duration> bufferedValue = const Duration(seconds: 0).obs;
   Timer? timer;
+  int? duration;
+
+  final List<StreamSubscription> _subscriptions = [];
 
   @override
-  onInit() async {
+  void onInit() async {
     super.onInit();
-    if (id == null) {
-      if (Get.arguments is PodcastModel) {
-        id = (Get.arguments as PodcastModel).id;
-      } else if (Get.arguments != null) {
-        id = Get.arguments.toString();
-      }
+    if (id == null && Get.arguments != null && Get.arguments is PodcastModel) {
+      id = (Get.arguments as PodcastModel).id;
     }
 
-    playList = ConcatenatingAudioSource(useLazyPreparation: true, children: []);
-
-    player.durationStream.listen((d) {
-      if (d != null) {
-        totalDuration.value = d;
-      }
-    });
-
-    player.playerStateStream.listen((state) {
+    _subscriptions.add(player.playerStateStream.listen((state) {
       playState.value = state.playing;
-    });
+    }));
 
-    await getPodcastFiles();
-    if (playList.length > 0) {
-      await player.setAudioSource(playList,
-          initialIndex: 0, initialPosition: Duration.zero);
+    _subscriptions.add(player.positionStream.listen((pos) {
+      progressValue.value = pos;
+    }));
+
+    _subscriptions.add(player.bufferedPositionStream.listen((buf) {
+      bufferedValue.value = buf;
+    }));
+
+    _subscriptions.add(player.durationStream.listen((dur) {
+      if (dur != null) {
+        totalDuration.value = dur;
+        duration = dur.inSeconds;
+      }
+    }));
+
+    _subscriptions.add(player.currentIndexStream.listen((index) {
+      if (index != null) {
+        currentFileIndex.value = index;
+      }
+    }));
+
+    if (id != null) {
+      await getPodcastFiles();
     }
   }
 
-  getPodcastFiles() async {
+  Future<void> getPodcastFiles() async {
     loading.value = true;
-    podcastFileList.clear();
+    try {
+      var response =
+          await DioService().getMethod(ApiUrlConstant.podcastFiles + id.toString());
 
-    if (id == null) {
-      loading.value = false;
-      return;
-    }
-
-    var response =
-        await DioService().getMethod(ApiUrlConstant.podcastFiles + id.toString());
-
-    if (response != null &&
-        response.statusCode == 200 &&
-        response.data != null &&
-        response.data["files"] != null) {
-      for (var element in response.data["files"]) {
-        var podcastFileModel = PodcastsFileModel.fromJson(element);
-        podcastFileList.add(podcastFileModel);
-        if (podcastFileModel.file != null) {
-          playList.add(AudioSource.uri(Uri.parse(podcastFileModel.file!)));
+      if (response != null && response.statusCode == 200 && response.data != null) {
+        podcastFileList.clear();
+        List<AudioSource> sources = [];
+        for (var element in response.data["files"]) {
+          var podcastFileModel = PodcastsFileModel.fromJson(element);
+          podcastFileList.add(podcastFileModel);
+          if (podcastFileModel.file != null && podcastFileModel.file!.isNotEmpty) {
+            sources.add(AudioSource.uri(Uri.parse(podcastFileModel.file!)));
+          }
+        }
+        if (sources.isNotEmpty) {
+          playList = ConcatenatingAudioSource(children: sources);
+          await player.setAudioSource(playList,
+              initialIndex: 0, initialPosition: Duration.zero);
         }
       }
+    } catch (e) {
+      developer.log('Error fetching podcast files: $e');
+    } finally {
+      loading.value = false;
     }
-    loading.value = false;
+  }
+
+  Future<void> playFile(int index) async {
+    if (index >= 0 && index < podcastFileList.length && playList.length > index) {
+      try {
+        currentFileIndex.value = index;
+        await player.seek(Duration.zero, index: index);
+        await player.play();
+      } catch (e) {
+        developer.log('Error playing file: $e');
+      }
+    }
+  }
+
+  Future<void> togglePlay() async {
+    if (playList.length == 0) return;
+    try {
+      if (player.playing) {
+        await player.pause();
+      } else {
+        await player.play();
+      }
+    } catch (e) {
+      developer.log('Error toggling play: $e');
+    }
   }
 
   startProgress() {
-    const tick = Duration(seconds: 1);
-    switch (player.duration) {
-      case null:
-        duration = 0;
-        break;
-      default:
-        duration = player.duration!.inSeconds;
-        break;
-    }
-
-    if (timer != null) {
-      if (timer!.isActive) {
-        timer!.cancel();
-        timer = null;
-      }
-    }
-    timer = Timer.periodic(tick, (timer) {
-      if (player.position.inSeconds == duration) {
-        timer.cancel();
-      }
-      if (player.playing) {
-        progressValue.value = player.position;
-
-        bufferedValue.value = player.bufferedPosition;
-        developer.log('TIMER :: ${progressValue.value}');
-      }
-    });
+    // Kept for backward compatibility with external calls
   }
 
   timerCheck() {
-    if (player.playing) {
-      startProgress();
-    } else {
-      timer?.cancel();
-      timer = null;
-      progressValue.value = Duration.zero;
-      bufferedValue.value = Duration.zero;
-    }
+    // Kept for backward compatibility with external calls
   }
 
   setLoopMode() {
@@ -138,7 +141,12 @@ class SinglePodcastController extends GetxController {
 
   @override
   void onClose() {
+    for (var sub in _subscriptions) {
+      sub.cancel();
+    }
+    _subscriptions.clear();
     timer?.cancel();
+    player.stop();
     player.dispose();
     super.onClose();
   }

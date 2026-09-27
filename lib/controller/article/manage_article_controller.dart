@@ -35,17 +35,18 @@ class ManageArticleController extends GetxController {
 
   getManagedArticle() async {
     loading.value = true;
-    // ignore: todo
-    //TODO get userid from getStorage ApiConstant.getArticleList+userid
-    // var response = await DioService().getMethod(ApiConstant.publishedByMe+GetStorage().read(StorageKey.userId));
-    var response =
-        await DioService().getMethod(ApiUrlConstant.publishedByMe + "1");
+    try {
+      var userId = GetStorage().read(StorageKey.userId) ?? "1";
+      var response =
+          await DioService().getMethod(ApiUrlConstant.publishedByMe + userId.toString());
 
-    if (response.statusCode == 200) {
-      response.data.forEach((element) {
-        articleList.add(ArticleModel.fromJson(element));
-      });
-
+      if (response != null && response.statusCode == 200 && response.data != null) {
+        articleList.clear();
+        response.data.forEach((element) {
+          articleList.add(ArticleModel.fromJson(element));
+        });
+      }
+    } finally {
       loading.value = false;
     }
   }
@@ -58,20 +59,35 @@ class ManageArticleController extends GetxController {
 
   storeArticle() async {
     var fileController = Get.find<FilePickerController>();
+    if (fileController.file.value.path == null) {
+      Get.snackbar('خطا', 'لطفاً تصویر مقاله را انتخاب کنید');
+      return;
+    }
+    if (articleInfoModel.value.catId == null) {
+      Get.snackbar('خطا', 'لطفاً دسته‌بندی مقاله را انتخاب کنید');
+      return;
+    }
     loading.value = true;
-    Map<String, dynamic> map = {
-      ApiArticleKeyConstant.title: articleInfoModel.value.title,
-      ApiArticleKeyConstant.content: articleInfoModel.value.content,
-      ApiArticleKeyConstant.catId: articleInfoModel.value.catId,
-      ApiArticleKeyConstant.userId: GetStorage().read(StorageKey.userId),
-      ApiArticleKeyConstant.image:
-          await dio.MultipartFile.fromFile(fileController.file.value.path!),
-      ApiArticleKeyConstant.command: Commands.store,
-      ApiArticleKeyConstant.tagList: "[]"
-    };
-    var response =
-        await DioService().postMethod(map, ApiUrlConstant.articlePost);
-    log(response.data.toString());
-    loading.value = false;
+    try {
+      Map<String, dynamic> map = {
+        ApiArticleKeyConstant.title: articleInfoModel.value.title,
+        ApiArticleKeyConstant.content: articleInfoModel.value.content,
+        ApiArticleKeyConstant.catId: articleInfoModel.value.catId,
+        ApiArticleKeyConstant.userId: GetStorage().read(StorageKey.userId),
+        ApiArticleKeyConstant.image:
+            await dio.MultipartFile.fromFile(fileController.file.value.path!),
+        ApiArticleKeyConstant.command: Commands.store,
+        ApiArticleKeyConstant.tagList: "[]"
+      };
+      var response =
+          await DioService().postMethod(map, ApiUrlConstant.articlePost);
+      log(response.toString());
+      Get.snackbar('موفقیت', 'مقاله با موفقیت ذخیره شد');
+    } catch (e) {
+      log(e.toString());
+      Get.snackbar('خطا', 'خطا در ارسال مقاله');
+    } finally {
+      loading.value = false;
+    }
   }
 }

@@ -8,12 +8,14 @@ Future pickFile() async {
       await FilePicker.platform.pickFiles(type: FileType.image);
   if (result != null && result.files.isNotEmpty) {
     _filePickerController.file.value = result.files.first;
-  } else {}
+  }
 }
 
 Future audioFile() async {
   FilePickerController filePickerController = Get.put(FilePickerController());
   FilePickerResult? result =
       await FilePicker.platform.pickFiles(type: FileType.audio);
-  filePickerController.file.value = result!.files.first;
+  if (result != null && result.files.isNotEmpty) {
+    filePickerController.file.value = result.files.first;
+  }
 }

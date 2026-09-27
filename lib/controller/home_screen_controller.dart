@@ -21,24 +21,31 @@ class HomeScreenController extends GetxController {
 
   getHomeItems() async {
     loading.value = true;
+    try {
+      var response = await DioService().getMethod(ApiUrlConstant.getHomeItems);
 
-    var response = await DioService().getMethod(ApiUrlConstant.getHomeItems);
+      if (response != null && response.statusCode == 200 && response.data != null) {
+        topVisitedList.clear();
+        response.data['top_visited'].forEach((element) {
+          topVisitedList.add(ArticleModel.fromJson(element));
+        });
 
-    if (response.statusCode == 200) {
-      response.data['top_visited'].forEach((element) {
-        topVisitedList.add(ArticleModel.fromJson(element));
-      });
+        topPodcasts.clear();
+        response.data['top_podcasts'].forEach((element) {
+          topPodcasts.add(PodcastModel.fromJson(element));
+        });
 
-      response.data['top_podcasts'].forEach((element) {
-        topPodcasts.add(PodcastModel.fromJson(element));
-      });
+        tagsList.clear();
+        response.data['tags'].forEach((element) {
+          tagsList.add(TagsModel.fromJson(element));
+        });
 
-      response.data['tags'].forEach((element) {
-        tagsList.add(TagsModel.fromJson(element));
-      });
+        if (response.data['poster'] != null) {
+          poster.value = PosterModel.fromJson(response.data['poster']);
+        }
+      }
+    } finally {
       loading.value = false;
-
-      poster.value = PosterModel.fromJson(response.data['poster']);
     }
   }
 }

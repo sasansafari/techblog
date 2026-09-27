@@ -7,7 +7,6 @@ import 'package:tec/constant/my_colors.dart';
 import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/article/list_article_controller.dart';
 import 'package:tec/controller/article/single_article_controller.dart';
-import 'package:tec/route_manager/names.dart';
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
@@ -38,7 +37,6 @@ class ArticleListScreen extends StatelessWidget {
                           onTap: (() async {
                             await singleArticleController.getArticleInfo(
                                 listArticleController.articleList[index].id);
-                            Get.toNamed(NamedRoute.routeSingleArticle);
                           }),
                           child: Padding(
                             padding: EdgeInsets.all(Dimens.small),

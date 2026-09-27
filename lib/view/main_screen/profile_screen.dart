@@ -119,9 +119,9 @@ class ProfileScreen extends StatelessWidget {
       title: MyStrings.nameFatemeAmiri,
       titleStyle: const TextStyle(color: SolidColors.scaffoldBg),
       backgroundColor: SolidColors.primaryColor,
-      content:  Text(
-       MyStrings.areYouSureExit,
-        style: TextStyle(color: SolidColors.scaffoldBg),
+      content: Text(
+        MyStrings.areYouSureExit,
+        style: const TextStyle(color: SolidColors.scaffoldBg),
       ),
       radius: Dimens.small,
       cancel: ElevatedButton(
@@ -133,12 +133,13 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () {
             if (GetStorage().read(StorageKey.token) == null) {
               Get.back();
-              Get.snackbar(MyStrings.error,MyStrings.youAlreadyLeft);
+              Get.snackbar(MyStrings.error, MyStrings.youAlreadyLeft);
             } else {
               BoxStorage.box.erase();
-              Get.offNamed(NamedRoute.profileScreen);
+              Get.back();
+              Get.offAllNamed(NamedRoute.routeMainScreen);
             }
           },
-          child:  Text(MyStrings.exit)),
+          child: Text(MyStrings.exit)),
     );
   }

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:tec/component/decrations.dart';
 import 'package:tec/component/dimens.dart';
 import 'package:tec/component/my_component.dart';
@@ -16,10 +17,10 @@ import 'package:tec/services/pick_file.dart';
 import '../../gen/assets.gen.dart';
 
 class SingleManagePodcast extends StatelessWidget {
-  SinglePodcastController controller = Get.put(SinglePodcastController());
-  ManagePodcastController managePodcastController =
+  final SinglePodcastController controller = Get.put(SinglePodcastController());
+  final ManagePodcastController managePodcastController =
       Get.put(ManagePodcastController());
-  FilePickerController filePickerController = Get.put(FilePickerController());
+  final FilePickerController filePickerController = Get.put(FilePickerController());
 
   SingleManagePodcast({Key? key}) : super(key: key);
 
@@ -244,7 +245,7 @@ class SingleManagePodcast extends StatelessWidget {
 
                             controller.player.playing
                                 ? controller.startProgress()
-                                : controller.timer!.cancel();
+                                : controller.timer?.cancel();
                           },
                           total: controller.player.duration ??
                               const Duration(seconds: 0)),
@@ -256,7 +257,7 @@ class SingleManagePodcast extends StatelessWidget {
                           onTap: () async {
                             await controller.player.seekToNext();
                             controller.currentFileIndex.value =
-                                controller.player.currentIndex!;
+                                controller.player.currentIndex ?? 0;
                             controller.timerCheck();
                           },
                           child: const Icon(
@@ -267,7 +268,7 @@ class SingleManagePodcast extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             controller.player.playing
-                                ? controller.timer!.cancel()
+                                ? controller.timer?.cancel()
                                 : controller.startProgress();
 
                             controller.player.playing
@@ -278,7 +279,7 @@ class SingleManagePodcast extends StatelessWidget {
                                 controller.player.playing;
 
                             controller.currentFileIndex.value =
-                                controller.player.currentIndex!;
+                                controller.player.currentIndex ?? 0;
                           },
                           child: Obx(
                             () => Icon(
@@ -294,7 +295,7 @@ class SingleManagePodcast extends StatelessWidget {
                           onTap: () async {
                             await controller.player.seekToPrevious();
                             controller.currentFileIndex.value =
-                                controller.player.currentIndex!;
+                                controller.player.currentIndex ?? 0;
                             controller.timerCheck();
                           },
                           child: const Icon(
@@ -517,7 +518,7 @@ class SingleManagePodcast extends StatelessWidget {
               padding: EdgeInsets.only(top: Dimens.large - 2),
               child: ElevatedButton(
                 style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
+                    fixedSize: WidgetStateProperty.all(
                         Size(Get.width / 3, Dimens.xlarge - 8))),
                 onPressed: (() async {
                   await managePodcastController.titlePodcast();

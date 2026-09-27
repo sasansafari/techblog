@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,6 +30,32 @@ RxInt currentHourValue = 0.obs;
   var userId = '';
   var catId = '';
 
+  @override
+  void onInit() {
+    super.onInit();
+    getManagedPodcasts();
+  }
+
+  getManagedPodcasts() async {
+    loading.value = true;
+    try {
+      var uId = GetStorage().read(StorageKey.userId) ?? "1";
+      var response = await DioService()
+          .getMethod(ApiUrlConstant.PublishedByMePodcast + uId.toString());
+
+      if (response != null && response.statusCode == 200 && response.data != null) {
+        podcastModel.clear();
+        for (var element in response.data) {
+          podcastModel.add(PodcastModel.fromJson(element));
+        }
+      }
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      loading.value = false;
+    }
+  }
+
   updateTitle() {
     podcastFileModel.update((val) {
       val!.title = titleTextEditingController.text;
@@ -39,50 +63,78 @@ RxInt currentHourValue = 0.obs;
   }
 
   titlePodcast() async {
-    loading.value = true;
-    Map<String, dynamic> map = {
-      ApiPodcastTitleKyConstants.userId: GetStorage().read(StorageKey.userId),
-      ApiPodcastTitleKyConstants.catId: catId,
-      ApiPodcastTitleKyConstants.title: titleTextEditingController.text,
-      ApiPodcastTitleKyConstants.command: Commands.storTitle,
-    };
-    var response =
-        await DioService().postMethod(map, ApiUrlConstant.postPodcast);
-    if (response.statusCode == 200) {
-      SnackBar(
-        content: Text("با موفقیت انجام شد"),
-      );
+    if (titleTextEditingController.text.trim().isEmpty) {
+      Get.snackbar('خطا', 'لطفاً عنوان پادکست را وارد کنید');
+      return;
     }
-    loading.value = false;
+    loading.value = true;
+    try {
+      Map<String, dynamic> map = {
+        ApiPodcastTitleKyConstants.userId: GetStorage().read(StorageKey.userId),
+        ApiPodcastTitleKyConstants.catId: catId,
+        ApiPodcastTitleKyConstants.title: titleTextEditingController.text,
+        ApiPodcastTitleKyConstants.command: Commands.storTitle,
+      };
+      var response =
+          await DioService().postMethod(map, ApiUrlConstant.postPodcast);
+      if (response != null && response.statusCode == 200) {
+        Get.snackbar('موفقیت', 'عنوان پادکست با موفقیت ثبت شد');
+      }
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      loading.value = false;
+    }
   }
 
   filePodcast() async {
     var fileController = Get.find<FilePickerController>();
+    if (fileController.file.value.path == null) {
+      return;
+    }
     loading.value = true;
-    Map<String, dynamic> map = {
-      ApiPodcastFileKyConstants.title: podcastFileModel.value.title,
-      ApiPodcastFileKyConstants.file:
-          await dio.MultipartFile.fromFile(fileController.file.value.path!),
-      ApiPodcastFileKyConstants.podcastId: podcastFileModel.value.podcastId,
-      ApiPodcastFileKyConstants.command: Commands.storFile,
-      ApiPodcastFileKyConstants.length: podcastFileModel.value.lenght,
-    };
-    var response =
-        await DioService().postMethod(map, ApiUrlConstant.postPodcast);
+    try {
+      Map<String, dynamic> map = {
+        ApiPodcastFileKyConstants.title: podcastFileModel.value.title,
+        ApiPodcastFileKyConstants.file:
+            await dio.MultipartFile.fromFile(fileController.file.value.path!),
+        ApiPodcastFileKyConstants.podcastId: podcastFileModel.value.podcastId,
+        ApiPodcastFileKyConstants.command: Commands.storFile,
+        ApiPodcastFileKyConstants.length: podcastFileModel.value.lenght,
+      };
+      await DioService().postMethod(map, ApiUrlConstant.postPodcast);
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      loading.value = false;
+    }
   }
 
   UpdatePodcast() async {
     var fileController = Get.find<FilePickerController>();
+    if (fileController.file.value.path == null) {
+      Get.snackbar('خطا', 'لطفاً فایل را انتخاب کنید');
+      return;
+    }
     loading.value = true;
-    Map<String, dynamic> map = {
-      ApiPodcastUpdateKyConstants.image:
-          await dio.MultipartFile.fromFile(fileController.file.value.path!),
-      ApiPodcastUpdateKyConstants.file: podcastFileModel.value.file,
-      ApiPodcastUpdateKyConstants.podcastId: podcastFileModel.value.podcastId,
-      ApiPodcastUpdateKyConstants.command: Commands.storUpdate,
-      ApiPodcastUpdateKyConstants.userId: GetStorage().read(StorageKey.userId),
-    };
-    var response =
-        await DioService().postMethod(map, ApiUrlConstant.postPodcast);
+    try {
+      Map<String, dynamic> map = {
+        ApiPodcastUpdateKyConstants.image:
+            await dio.MultipartFile.fromFile(fileController.file.value.path!),
+        ApiPodcastUpdateKyConstants.file: podcastFileModel.value.file,
+        ApiPodcastUpdateKyConstants.podcastId: podcastFileModel.value.podcastId,
+        ApiPodcastUpdateKyConstants.command: Commands.storUpdate,
+        ApiPodcastUpdateKyConstants.userId: GetStorage().read(StorageKey.userId),
+      };
+      var response =
+          await DioService().postMethod(map, ApiUrlConstant.postPodcast);
+      if (response != null && response.statusCode == 200) {
+        Get.snackbar('موفقیت', 'پادکست با موفقیت بروزرسانی شد');
+      }
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      loading.value = false;
+    }
   }
 }

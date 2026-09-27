@@ -20,13 +20,18 @@ class PodcastModel {
 
   factory PodcastModel.fromJson(Map<String, dynamic> json) {
     return PodcastModel(
-      id: json['id'] ?? '',
+      id: json['id']?.toString() ?? '',
       title: json['title'] ?? '',
-      poster: ApiUrlConstant.hostDlUrl + (json['poster'] ?? ''),
-      publisher: json['publisher'] ?? '',
-      view: json['view'] ?? '',
+      poster: (json['poster'] != null && json['poster'].toString().startsWith('http'))
+          ? json['poster']
+          : ApiUrlConstant.hostDlUrl + (json['poster'] ?? ''),
+      publisher: (json['publisher'] != null && json['publisher'].toString().isNotEmpty)
+          ? json['publisher']
+          : (json['author'] != null && json['author'].toString().isNotEmpty)
+              ? json['author']
+              : 'ناشناس',
+      view: json['view']?.toString() ?? '',
       createdAt: json['created_at'] ?? '',
     );
-
   }
 }

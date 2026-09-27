@@ -43,12 +43,12 @@ class Pages{
                GetPage(
               name: NamedRoute.singleManagePodcast,
               page: () => SingleManagePodcast(),
-              binding: podcastManagerBinding(), 
+              binding: PodcastManagerBinding(), 
               ),
                GetPage(
               name: NamedRoute.podcastManageList,
               page: () => ManagePodcast(),
-              binding: podcastManagerBinding(),
+              binding: PodcastManagerBinding(),
               ),
 
 
