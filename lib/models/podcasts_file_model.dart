@@ -10,10 +10,13 @@ class PodcastsFileModel {
   PodcastsFileModel(this.title);
 
   PodcastsFileModel.fromJson(Map<String, dynamic> element) {
-    id = element["id"];
-    podcastId = element["podcast_id"];
-    file = ApiUrlConstant.hostDlUrl + element["file"];
-    title = element["title"];
-    lenght = element["length"];
+    id = element["id"]?.toString();
+    podcastId = element["podcast_id"]?.toString();
+    String? rawFile = element["file"]?.toString();
+    if (rawFile != null && rawFile.isNotEmpty) {
+      file = rawFile.startsWith("http") ? rawFile : ApiUrlConstant.hostDlUrl + rawFile;
+    }
+    title = element["title"]?.toString() ?? '';
+    lenght = element["length"]?.toString() ?? '0';
   }
 }

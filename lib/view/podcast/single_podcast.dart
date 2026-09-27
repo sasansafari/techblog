@@ -12,115 +12,146 @@ import 'package:tec/gen/assets.gen.dart';
 
 import 'package:tec/models/podcast_model.dart';
 
-// ignore: must_be_immutable
+import 'package:share_plus/share_plus.dart';
+
 class PodcastSingle extends StatelessWidget {
-  late SinglePodcastController controller;
-  late PodcastModel podcastModel;
+  late final SinglePodcastController controller;
+  late final PodcastModel podcastModel;
+
   PodcastSingle({Key? key}) : super(key: key) {
-    podcastModel = Get.arguments;
+    if (Get.arguments is PodcastModel) {
+      podcastModel = Get.arguments;
+    } else {
+      podcastModel = PodcastModel(
+        id: '0',
+        title: '',
+        poster: '',
+        publisher: 'ناشناس',
+        view: '',
+        createdAt: '',
+      );
+    }
+    if (Get.isRegistered<SinglePodcastController>()) {
+      Get.delete<SinglePodcastController>();
+    }
     controller = Get.put(SinglePodcastController(id: podcastModel.id));
   }
 
   @override
   Widget build(BuildContext context) {
-    print(controller.id);
-
     var textheme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, result) {
+        controller.player.stop();
+      },
+      child: SafeArea(
+        child: Scaffold(
           body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(children: [
-                Stack(
-                  children: [
-                    SizedBox(
-                      height: Get.height / 3,
-                      width: double.infinity,
-                      child: CachedNetworkImage(
-                        imageUrl: podcastModel.poster!,
-                        imageBuilder: ((context, imageProvider) => Image(
-                              image: imageProvider,
-                              fit: BoxFit.fill,
-                            )),
-                        placeholder: ((context, url) => const Loading()),
-                        errorWidget: ((context, url, error) =>
-                            Image.asset(Assets.images.singlePlaceHolder.path)),
-                      ),
-                    ),
-                    Positioned(
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: Dimens.xlarge - 4,
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  end: Alignment.bottomCenter,
-                                  begin: Alignment.topCenter,
-                                  colors: GradientColors.singleAppbarGradiant)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                width: Dimens.medium + 4,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                      await controller.player
-                                          .stop();
-                                      controller.startProgress();
-                                      controller.progressValue
-                                          .value = const Duration(seconds: 0);
-                                      controller
-                                          .selectedIndex.value = 0;
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: Get.height / 3,
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              imageUrl: podcastModel.poster ?? '',
+                              imageBuilder: ((context, imageProvider) => Image(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  )),
+                              placeholder: ((context, url) => const Loading()),
+                              errorWidget: ((context, url, error) =>
+                                  Image.asset(Assets.images.singlePlaceHolder.path)),
+                            ),
+                          ),
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              height: Dimens.xlarge - 4,
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      end: Alignment.bottomCenter,
+                                      begin: Alignment.topCenter,
+                                      colors: GradientColors.singleAppbarGradiant)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  SizedBox(
+                                    width: Dimens.medium + 4,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await controller.player.stop();
                                       Get.back();
                                     },
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: SolidColors.lightIcon,
-                                  size: Dimens.medium + 8,
-                                ),
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: SolidColors.lightIcon,
+                                      size: Dimens.medium + 8,
+                                    ),
+                                  ),
+                                  const Expanded(child: SizedBox()),
+                                  SizedBox(
+                                    width: Dimens.medium + 4,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await Share.share(
+                                        '${podcastModel.title ?? ''}\n${podcastModel.poster ?? ''}',
+                                      );
+                                    },
+                                    child: Icon(
+                                      Icons.share,
+                                      color: SolidColors.lightIcon,
+                                      size: Dimens.medium + 8,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: Dimens.medium + 4,
+                                  ),
+                                ],
                               ),
-                              const Expanded(child: SizedBox()),
-                              SizedBox(
-                                width: Dimens.medium + 4,
-                              ),
-                              Icon(
-                                Icons.share,
-                                color: SolidColors.lightIcon,
-                                size: Dimens.medium + 8,
-                              ),
-                              SizedBox(
-                                width: Dimens.medium + 4,
-                              ),
-                            ],
-                          ),
-                        ))
-                  ],
+                            ),
+                          )
+                        ],
+                      ),
+
+                      // title
+                      Titlee(podcastModel: podcastModel, textheme: textheme),
+
+                      // writer / publisher
+                      Writer(podcastModel: podcastModel, textheme: textheme),
+
+                      const SizedBox(height: 8),
+
+                      // file list
+                      FileList(controller: controller, textheme: textheme),
+
+                      // Space to ensure bottom items aren't covered by PlayerManager
+                      SizedBox(height: Get.height / 6),
+                    ],
+                  ),
                 ),
+              ),
 
-                //title
-               Titlee(podcastModel: podcastModel, textheme: textheme),
-
-                //writer
-              Writer(podcastModel: podcastModel, textheme: textheme),
-
-                //file list
-               FileList(controller: controller, textheme: textheme),
-              ]),
-            ),
+              // player manager
+              PlayerManager(controller: controller),
+            ],
           ),
-
-          //player manager
-          PlayerManager(controller: controller,)
-        ],
-      )),
+        ),
+      ),
     );
   }
 }

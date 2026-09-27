@@ -57,7 +57,7 @@ class RegisterIntro extends StatelessWidget {
 
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
-    var isValidate;
+    bool isValidate = false;
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -89,10 +89,7 @@ class RegisterIntro extends StatelessWidget {
                   child: TextFormField(
                     controller: registerController.emailTextEditingController,
                     onChanged: (value) {
-                      debugPrint(
-                          value + MyStrings.isEmail + isEmail(value).toString());
-                      isValidate = EmailValidator.validate(
-                          registerController.emailTextEditingController.text);
+                      isValidate = EmailValidator.validate(value.trim());
                     },
                     style: textTheme.headlineSmall,
                     textAlign: TextAlign.center,
@@ -104,18 +101,19 @@ class RegisterIntro extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: (() async {
-                    if (registerController
-                        .emailTextEditingController.text.isEmpty) {
+                    String email = registerController
+                        .emailTextEditingController.text
+                        .trim();
+                    if (email.isEmpty) {
                       Get.snackbar(
-                          MyStrings.error,MyStrings.enterEmaile);
+                          MyStrings.error, MyStrings.enterEmaile);
+                    } else if (isValidate || EmailValidator.validate(email)) {
+                      registerController.register();
+                      Navigator.pop(context);
+                      _activateCodeBottomSheet(context, size, textTheme);
                     } else {
-                      if (isValidate) {
-                        registerController.register();
-                        Navigator.pop(context);
-                        _activateCodeBottomSheet(context, size, textTheme);
-                      } else {
-                        Get.snackbar( MyStrings.error, MyStrings.formatEmailNotCorrect);
-                      }
+                      Get.snackbar(
+                          MyStrings.error, MyStrings.formatEmailNotCorrect);
                     }
                   }),
                   child:  Text(MyStrings.continuation),

@@ -47,7 +47,7 @@ class ArticleEmptyState extends StatelessWidget {
 }
 
 class Cats extends StatelessWidget {
-  Cats(
+  const Cats(
       {Key? key,
       required this.homeScreenController,
       required this.manageArticleController,
@@ -56,7 +56,7 @@ class Cats extends StatelessWidget {
 
   final HomeScreenController homeScreenController;
   final ManageArticleController manageArticleController;
-  TextTheme textTheme;
+  final TextTheme textTheme;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

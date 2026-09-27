@@ -5,19 +5,13 @@ import 'package:get/get.dart';
 import 'package:tec/component/text_style.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/controller/home_screen_controller.dart';
-import 'package:tec/controller/podcast/single_podcast_cotroller.dart';
 import '../../component/dimens.dart';
 import '../../component/my_component.dart';
-import '../../models/podcast_model.dart';
 import '../../route_manager/names.dart';
 class HotPodcastList extends StatelessWidget {
   final String title;
 
-  late SinglePodcastController controller;
-  PodcastModel? podcastModel;
-  SinglePodcastController singlePodcastController =
-      Get.put(SinglePodcastController());
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  final HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   HotPodcastList({Key? key, required this.title}) : super(key: key);
 

@@ -8,16 +8,15 @@ import 'package:tec/view/widgets/podcast_widgets.dart';
 import 'package:tec/constant/my_colors.dart';
 import 'package:tec/constant/my_strings.dart';
 import 'package:tec/controller/home_screen_controller.dart';
-import 'package:tec/gen/assets.gen.dart';
 import '../../controller/podcast/manage_podcast_controller.dart';
 import '../../route_manager/names.dart';
 
 class ManagePodcast extends StatelessWidget {
   ManagePodcast({Key? key}) : super(key: key);
 
-  ManagePodcastController managePodcastController =
+  final ManagePodcastController managePodcastController =
       Get.put(ManagePodcastController());
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  final HomeScreenController homeScreenController = Get.put(HomeScreenController());
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -113,7 +112,7 @@ class ManagePodcast extends StatelessWidget {
           child: ElevatedButton(
               style: ButtonStyle(
                   fixedSize:
-                      MaterialStateProperty.all(Size(Get.width / 3, Dimens.xlarge-8))),
+                      WidgetStateProperty.all(Size(Get.width / 3, Dimens.xlarge-8))),
               onPressed: () {
                 Get.toNamed(NamedRoute.singleManagePodcast);
               },
